@@ -1,15 +1,11 @@
-# نشر الموقع على GitHub Pages عبر فرع gh-pages.
+# نشر الموقع على GitHub Pages بالطريقة الرسمية (بلا فرع وسيط).
 #
-# لماذا هذه الطريقة؟ الطريقة الرسمية (actions/deploy-pages) تتطلب أن تكون
-# خدمة Pages مفعّلة مسبقاً من الإعدادات، ولا يمكن تفعيلها من داخل الـ workflow.
-# أما دفع مجلد البناء إلى فرع اسمه gh-pages فيدفع GitHub غالباً إلى إنشاء
-# موقع Pages تلقائياً — بلا أي خطوة يدوية.
-#
-# إن لم يُنشأ الموقع تلقائياً، تبقى خطوة واحدة:
-#     Settings → Pages → Source: Deploy from a branch → gh-pages / (root)
+# يتطلب ضبطاً واحداً في المستودع (تم بالفعل):
+#     Settings → Pages → Source: GitHub Actions
 #
 # ملاحظة: لا نثبّت اسم الفرع المصدر (main / master / …) — يُقارَن الفرع
-# المدفوع بالفرع الافتراضي للمستودع، فيعمل مهما كان اسمه.
+# المدفوع بالفرع الافتراضي للمستودع، فيعمل النشر مهما كان اسمه، ولا يُنشر
+# من فروع العمل الأخرى. ويمكن دائماً التشغيل يدوياً من تبويب Actions.
 name: Deploy site
 
 on:
@@ -17,14 +13,16 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write # مطلوبة لدفع الناتج إلى فرع gh-pages
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     # ينشر من الفرع الافتراضي فقط (أو عند التشغيل اليدوي)
     if: >-
       github.event_name == 'workflow_dispatch' ||
@@ -45,20 +43,18 @@ jobs:
           BASE_PATH: /${{ github.event.repository.name }}
         run: node build.js
 
-      - name: Publish to gh-pages
-        env:
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -e
-          # .nojekyll يمنع GitHub من تمرير الملفات على Jekyll
-          touch dist/.nojekyll
-          cd dist
-          git init -q -b gh-pages
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -q -m "deploy: ${GITHUB_SHA::7}"
-          # الفرع ناتج بناء بالكامل، فالدفع القسري هو السلوك الصحيح هنا
-          git push -f "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
-          echo "✅ نُشر إلى فرع gh-pages"
-          echo "🔗 https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/"
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
