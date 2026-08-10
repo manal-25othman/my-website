@@ -1,5 +1,6 @@
 # نشر الموقع تلقائياً على GitHub Pages عند كل دفعة إلى الفرع الافتراضي.
-# فعّله مرة واحدة من:  Settings → Pages → Source: GitHub Actions
+# يفعّل الـ workflow خدمة Pages بنفسه عند أول تشغيل، فلا حاجة لخطوة يدوية.
+# إن رفض التفعيل التلقائي:  Settings → Pages → Source: GitHub Actions
 #
 # ملاحظة: لا نثبّت اسم الفرع (main / master / …) — يُقارَن الفرع المدفوع
 # بالفرع الافتراضي للمستودع، فيعمل النشر مهما كان اسمه، ولا يُنشر من
@@ -31,7 +32,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       # المشروع بلا اعتماديات — لا حاجة لـ npm install
       - name: Build
@@ -42,7 +43,11 @@ jobs:
           BASE_PATH: /${{ github.event.repository.name }}
         run: node build.js
 
+      # enablement: true يفعّل GitHub Pages على المستودع تلقائياً عند أول تشغيل
+      # (يحتاج permissions: pages: write أدناه) — فلا حاجة لخطوة يدوية.
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
