@@ -1,6 +1,10 @@
 # نشر الموقع تلقائياً على GitHub Pages عند كل دفعة إلى الفرع الافتراضي.
-# يفعّل الـ workflow خدمة Pages بنفسه عند أول تشغيل، فلا حاجة لخطوة يدوية.
-# إن رفض التفعيل التلقائي:  Settings → Pages → Source: GitHub Actions
+#
+# ⚠️ خطوة يدوية واحدة مطلوبة مرة واحدة فقط قبل أول نشر ناجح:
+#     Settings → Pages → Source: GitHub Actions
+# (لا يمكن أتمتتها: إنشاء موقع Pages يحتاج صلاحية إدارية لا يملكها
+#  GITHUB_TOKEN الافتراضي، فتفشل الخطوة بـ "Resource not accessible".)
+# بعد التفعيل، أعد تشغيل آخر workflow من تبويب Actions أو ادفع أي تعديل.
 #
 # ملاحظة: لا نثبّت اسم الفرع (main / master / …) — يُقارَن الفرع المدفوع
 # بالفرع الافتراضي للمستودع، فيعمل النشر مهما كان اسمه، ولا يُنشر من
@@ -43,11 +47,8 @@ jobs:
           BASE_PATH: /${{ github.event.repository.name }}
         run: node build.js
 
-      # enablement: true يفعّل GitHub Pages على المستودع تلقائياً عند أول تشغيل
-      # (يحتاج permissions: pages: write أدناه) — فلا حاجة لخطوة يدوية.
+      # يتطلب أن تكون Pages مفعّلة مسبقاً على المستودع (انظر أعلى الملف)
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
