@@ -1,0 +1,17 @@
+# ناتج البناء — يُبنى تلقائياً، لا داعي لرفعه
+dist/
+
+# Node
+node_modules/
+npm-debug.log*
+.npm
+
+# نظام التشغيل والمحررات
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# لقطات المعاينة (تُولَّد محلياً)
+.screenshots/

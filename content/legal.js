@@ -1,0 +1,174 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ *  الصفحات القانونية  /  Legal pages
+ * ═══════════════════════════════════════════════════════════════════════════
+ *  النصوص أدناه مكتوبة لتطابق ما يفعله هذا الموقع فعلياً:
+ *  موقع ثابت، بلا حسابات مستخدمين، بلا قواعد بيانات، ولا يُحمِّل أي
+ *  سكربت تتبّع ما لم تُفعّل التحليلات في content/site.js.
+ *
+ *  ⚠️ راجع النصوص وعدّلها بما يناسب ولايتك القضائية قبل النشر.
+ *     هذه صياغة عامة وليست استشارة قانونية.
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+
+export const lastUpdated = '2026-01-01'; // ← حدّثه عند أي تعديل
+
+export const privacy = {
+  title: { ar: 'سياسة الخصوصية', en: 'Privacy Policy' },
+  intro: {
+    ar: 'هذه الصفحة توضح ما يجمعه هذا الموقع من بيانات وما لا يجمعه.',
+    en: 'This page explains what data this website collects — and what it does not.',
+  },
+  sections: [
+    {
+      heading: { ar: 'طبيعة الموقع', en: 'How this site works' },
+      body: {
+        ar: [
+          'هذا موقع ثابت (Static). لا يحتوي على حسابات مستخدمين ولا قاعدة بيانات، ولا يُنشئ ملفات تعريف ارتباط (Cookies) لأغراض تسويقية.',
+          'الإعداد الوحيد الذي يُحفظ في متصفحك هو تفضيلك للمظهر (فاتح/داكن) واللغة، ويُخزَّن محلياً في جهازك (localStorage) ولا يُرسل إلى أي خادم.',
+        ],
+        en: [
+          'This is a static website. It has no user accounts, no database, and sets no marketing cookies.',
+          'The only setting stored in your browser is your theme (light/dark) and language preference, kept locally on your device via localStorage and never sent to any server.',
+        ],
+      },
+    },
+    {
+      heading: { ar: 'نموذج التواصل', en: 'The contact form' },
+      body: {
+        ar: [
+          'عند استخدام نموذج التواصل، تُستخدم البيانات التي تكتبها (الاسم، البريد، الموضوع، الرسالة) لغرض واحد فقط: الرد على رسالتك.',
+          'في الوضع الافتراضي، لا تُرسل الرسالة إلى أي خادم تابع لهذا الموقع، بل يفتح النموذج برنامج البريد لديك وتبقى أنت المُرسِل. أما إذا فُعِّلت خدمة إرسال خارجية، فتخضع البيانات المُرسَلة أيضاً لسياسة خصوصية تلك الخدمة.',
+        ],
+        en: [
+          'When you use the contact form, the details you enter (name, email, subject, message) are used for one purpose only: replying to your message.',
+          'By default the message is not sent to any server belonging to this site — the form opens your own email client and you remain the sender. If an external form service is enabled, the submitted data is additionally covered by that service’s privacy policy.',
+        ],
+      },
+    },
+    {
+      heading: { ar: 'التحليلات', en: 'Analytics' },
+      body: {
+        ar: [
+          'لا يُحمَّل أي سكربت تحليلات ما لم يُفعَّل صراحةً في إعدادات الموقع. وعند تفعيله، تُجمع بيانات إحصائية مجمّعة عن الصفحات الأكثر زيارة دون تحديد هوية الزائر.',
+          'يُحترم إعداد Do Not Track في متصفحك عند تفعيل هذا الخيار في الإعدادات.',
+        ],
+        en: [
+          'No analytics script is loaded unless it is explicitly enabled in the site configuration. When enabled, it collects aggregate statistics about page visits without identifying individual visitors.',
+          'Your browser’s Do Not Track setting is respected when that option is enabled in the configuration.',
+        ],
+      },
+    },
+    {
+      heading: { ar: 'المحتوى الخارجي', en: 'Embedded content' },
+      body: {
+        ar: [
+          'قد تحتوي بعض الصفحات على مقاطع مضمّنة من TikTok. لا تُحمَّل هذه المقاطع تلقائياً — بل عند ضغطك على زر التحميل فقط. وبمجرد تحميلها تسري عليها سياسة خصوصية المنصة صاحبة المحتوى.',
+        ],
+        en: [
+          'Some pages may contain embedded TikTok videos. These are never loaded automatically — only when you click to load them. Once loaded, the platform’s own privacy policy applies to that content.',
+        ],
+      },
+    },
+    {
+      heading: { ar: 'الروابط الخارجية', en: 'External links' },
+      body: {
+        ar: [
+          'يحتوي الموقع على روابط لمواقع خارجية (مثل مواقع الأدوات الرسمية ومنصات التواصل). لا نتحمل مسؤولية محتوى تلك المواقع أو سياسات خصوصيتها.',
+        ],
+        en: [
+          'This site links to external websites (such as official tool websites and social platforms). We are not responsible for the content or privacy practices of those sites.',
+        ],
+      },
+    },
+    {
+      heading: { ar: 'التواصل بخصوص الخصوصية', en: 'Privacy enquiries' },
+      body: {
+        ar: ['لأي سؤال يتعلق بالخصوصية، يمكن التواصل عبر البريد الموضّح في صفحة «تواصل معي».'],
+        en: ['For any privacy-related question, use the email address shown on the Contact page.'],
+      },
+    },
+  ],
+};
+
+export const terms = {
+  title: { ar: 'شروط الاستخدام', en: 'Terms of Use' },
+  intro: {
+    ar: 'باستخدامك لهذا الموقع فإنك توافق على الشروط التالية.',
+    en: 'By using this website you agree to the following terms.',
+  },
+  sections: [
+    {
+      heading: { ar: 'الغرض من الموقع', en: 'Purpose of this site' },
+      body: {
+        ar: [
+          'هذا الموقع هو الموقع الرسمي الشخصي لصاحبه، ويعرض خبرته المهنية ومحتواه ومقالاته ومشاريعه.',
+        ],
+        en: [
+          'This is the owner’s official personal website, presenting their professional experience, content, articles and projects.',
+        ],
+      },
+    },
+    {
+      heading: { ar: 'المحتوى والملكية الفكرية', en: 'Content & intellectual property' },
+      body: {
+        ar: [
+          'جميع المقالات والنصوص والمواد المنشورة على هذا الموقع مملوكة لصاحب الموقع ما لم يُذكر خلاف ذلك.',
+          'يُسمح بالاقتباس والمشاركة مع نسبة المحتوى إلى مصدره ووضع رابط للصفحة الأصلية. ولا يُسمح بإعادة النشر الكامل أو الاستخدام التجاري دون إذن مسبق.',
+          'أسماء وشعارات الأدوات والمنصات المذكورة تعود لأصحابها، وذكرها هنا لغرض المراجعة والتعريف فقط.',
+        ],
+        en: [
+          'All articles, text and material published on this site belong to the site owner unless stated otherwise.',
+          'Quoting and sharing are permitted with attribution and a link to the original page. Full republication or commercial use requires prior permission.',
+          'Names and logos of tools and platforms mentioned belong to their respective owners and appear here for review and identification purposes only.',
+        ],
+      },
+    },
+    {
+      heading: { ar: 'طبيعة المحتوى', en: 'Nature of the content' },
+      body: {
+        ar: [
+          'المحتوى المنشور — بما في ذلك مراجعات الأدوات — يعبّر عن رأي وتجربة شخصية في وقت النشر، ولا يُعد استشارة مهنية أو تقنية أو طبية أو قانونية.',
+          'تتغير الأدوات وأسعارها وإمكاناتها باستمرار، لذا يُنصح بالرجوع إلى المصدر الرسمي لكل أداة قبل اتخاذ أي قرار.',
+        ],
+        en: [
+          'Published content — including tool reviews — reflects a personal opinion and experience at the time of writing, and does not constitute professional, technical, medical or legal advice.',
+          'Tools, their pricing and capabilities change frequently; always check each tool’s official source before making a decision.',
+        ],
+      },
+    },
+    {
+      heading: { ar: 'الحسابات الرسمية', en: 'Official accounts' },
+      body: {
+        ar: [
+          'الحسابات المذكورة في قسم «الحضور الرقمي الرسمي» هي الحسابات الرسمية الوحيدة لصاحب الموقع. وأي حساب آخر يستخدم الاسم نفسه أو الصورة نفسها لا يمثله.',
+        ],
+        en: [
+          'The accounts listed in the “Official digital presence” section are the site owner’s only official accounts. Any other account using the same name or photo does not represent them.',
+        ],
+      },
+    },
+    {
+      heading: { ar: 'حدود المسؤولية', en: 'Limitation of liability' },
+      body: {
+        ar: [
+          'يُقدَّم المحتوى كما هو، ولا يتحمل صاحب الموقع مسؤولية أي ضرر ناتج عن الاعتماد عليه أو عن استخدام مواقع خارجية مرتبطة به.',
+        ],
+        en: [
+          'Content is provided as is. The site owner is not liable for any loss arising from reliance on it, or from the use of external websites linked from it.',
+        ],
+      },
+    },
+    {
+      heading: { ar: 'تعديل الشروط', en: 'Changes to these terms' },
+      body: {
+        ar: ['قد تُحدَّث هذه الشروط من وقت لآخر، ويُشار إلى تاريخ آخر تحديث أعلى الصفحة.'],
+        en: [
+          'These terms may be updated from time to time; the date of the latest update is shown at the top of the page.',
+        ],
+      },
+    },
+  ],
+};
+
+export default { privacy, terms, lastUpdated };

@@ -1,0 +1,16 @@
+{
+  "name": "personal-brand-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "الموقع الشخصي الرسمي — مولّد ثابت بلا اعتماديات",
+  "scripts": {
+    "build": "node build.js",
+    "check": "node build.js --check-only",
+    "dev": "node build.js && node serve.js",
+    "serve": "node serve.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
