@@ -1,0 +1,23 @@
+{
+  "name": "[الاسم الكامل]",
+  "short_name": "[الاسم الكامل]",
+  "description": "الموقع الرسمي — مختص في الذكاء الاصطناعي والتقنية. مقالات وتجارب عملية وأدوات ذكاء اصطناعي ومحتوى تقني، إضافة إلى الخبرة المهنية والمشاريع والكتاب.",
+  "start_url": "/my-website/",
+  "display": "standalone",
+  "background_color": "#0b0d12",
+  "theme_color": "#0b0d12",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "/my-website/assets/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/my-website/assets/img/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
