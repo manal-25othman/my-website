@@ -33,7 +33,7 @@ npm run check    # تقرير: ما الذي لم تستبدله بعد؟
 كل قيمة بين قوسين مربعين `[ … ]` هي عنصر نائب. شغّل `npm run check` في أي وقت
 لترى ما تبقّى. الترتيب أدناه مرتّب حسب الأهمية:
 
-### 1. الهوية — `content/site.js` ← **ابدأ من هنا**
+### 1. الهوية — `content/site.json` ← **ابدأ من هنا**
 
 | الحقل | ماذا تضع |
 |---|---|
@@ -62,18 +62,18 @@ npm run check    # تقرير: ما الذي لم تستبدله بعد؟
 ضع الملف بنفس الاسم في `src/assets/img/` ولا حاجة لتعديل أي كود.
 أي ملف لا تضعه يُولَّد تلقائياً كعنصر نائب **معلَّم بوضوح** (`[YOUR PHOTO]`).
 
-### 3. المحتوى
+### 3. المحتوى — عبر لوحة التحكم أو ملفات JSON
 
 | الملف | المحتوى |
 |---|---|
-| `content/about.js` | الإحصائيات · الاهتمامات · التعليم · الشهادات · المسار المهني |
-| `content/experience.js` | الوظائف والمسؤوليات والإنجازات |
-| `content/expertise.js` | مجالات التخصص |
-| `content/ai-tools.js` | دليل الأدوات |
-| `content/projects.js` | المشاريع |
-| `content/book.js` | الكتاب |
-| `content/tiktok.js` | حساب TikTok والمقاطع |
-| `content/legal.js` | الخصوصية وشروط الاستخدام |
+| `content/about.json` | الإحصائيات · الاهتمامات · التعليم · الشهادات · المسار المهني |
+| `content/experience.json` | الوظائف والمسؤوليات والإنجازات |
+| `content/expertise.json` | مجالات التخصص |
+| `content/ai-tools.json` | دليل الأدوات |
+| `content/projects.json` | المشاريع |
+| `content/book.json` | الكتاب |
+| `content/tiktok.json` | حساب TikTok والمقاطع |
+| `content/legal.json` | الخصوصية وشروط الاستخدام |
 | `content/ui.js` | كل نصوص الواجهة بالعربية والإنجليزية |
 | `content/articles/` | المقالات (ملفات Markdown) |
 
@@ -121,7 +121,7 @@ featured: true       # يظهر في «مقالات مختارة»
 
 ### أداة ذكاء اصطناعي
 
-انسخ كائناً في `content/ai-tools.js` وعدّله. تحصل الأداة على صفحة مستقلة
+أضف أداة من لوحة التحكم، أو انسخ كائناً في `content/ai-tools.json` وعدّله. تحصل الأداة على صفحة مستقلة
 على `/ai-tools/<slug>/` وتظهر في الدليل مع البحث والفلاتر.
 
 > ⚠️ **لا تضع تقييماً أو مراجعة لأداة لم تجرّبها.** اترك `rating: null`
@@ -129,7 +129,7 @@ featured: true       # يظهر في «مقالات مختارة»
 
 ### مقطع TikTok
 
-في `content/tiktok.js` ضع رابط المقطع الكامل:
+في `content/tiktok.json` ضع رابط المقطع الكامل:
 
 ```js
 videos: [
@@ -143,8 +143,8 @@ videos: [
 
 ### وظيفة · مشروع · شهادة
 
-انسخ أي كائن في `content/experience.js` أو `content/projects.js` أو
-`content/about.js`، ضعه في أعلى المصفوفة، وعدّل الحقول. الترتيب في المصفوفة
+انسخ أي كائن في `content/experience.json` أو `content/projects.json` أو
+`content/about.json`، ضعه في أعلى المصفوفة، وعدّل الحقول. الترتيب في المصفوفة
 هو ترتيب العرض.
 
 ---
@@ -169,7 +169,7 @@ videos: [
 
 **الدومين يُضبط تلقائياً:** يقرأ البناء متغيّر `VERCEL_PROJECT_PRODUCTION_URL`
 ويستخدمه في `canonical` و `sitemap.xml` و Open Graph، فلا تحتاج لتعديل
-`content/site.js` بعد النشر.
+`content/site.json` بعد النشر.
 
 **دومين خاص؟** بعد ربطه في Vercel، أضف متغيّر بيئة في إعدادات المشروع:
 
@@ -184,25 +184,6 @@ SITE_URL = https://yourdomain.com
 وتخزيناً مؤقتاً طويلاً للخطوط ومتوسطاً للصور، مع `must-revalidate` لملفات
 CSS و JS حتى يصل أي تحديث فوراً.
 
-### GitHub Pages (جاهز)
-
-الملف `.github/workflows/deploy.yml` يبني الموقع وينشره تلقائياً عند كل دفعة
-إلى **الفرع الافتراضي للمستودع** (لا يهم اسمه — يُقارَن آلياً).
-
-الإعداد المطلوب مرة واحدة فقط (تم بالفعل على هذا المستودع):
-
-**Settings → Pages → Source: GitHub Actions**
-
-ثم ضع الدومين الصحيح في `content/site.js`:
-
-```js
-url: 'https://<username>.github.io',
-basePath: '/<repo>',   // ← ضروري إذا كان الموقع داخل مجلد فرعي
-```
-
-**دومين خاص؟** اضبط `url: 'https://yourdomain.com'` و `basePath: ''`،
-ثم أضف الدومين في Settings → Pages → Custom domain.
-
 ### أي استضافة أخرى
 
 `npm run build` ثم ارفع محتويات `dist/` — يعمل على Netlify و Vercel و
@@ -216,10 +197,33 @@ SITE_URL=https://yourdomain.com BASE_PATH= GA_ID=G-XXXXXXX npm run build
 
 | المتغير | الغرض |
 |---|---|
-| `SITE_URL` | يتجاوز الدومين المضبوط في `content/site.js` |
+| `SITE_URL` | يتجاوز الدومين المضبوط في `content/site.json` |
 | `BASE_PATH` | مسار فرعي للاستضافة |
 | `GA_ID` | معرّف Google Analytics |
 | `TIKTOK_PIXEL_ID` | معرّف TikTok Pixel |
+
+---
+
+## 🎛️ لوحة التحكم
+
+المحتوى مخزَّن بصيغة JSON و Markdown، ويُدار عبر
+**[Pages CMS](https://app.pagescms.org)** — لوحة تحكم مجانية تعمل مباشرة
+على المستودع، بلا خادم ولا قاعدة بيانات ولا تكلفة.
+
+**الدخول:**
+
+1. افتحي [app.pagescms.org](https://app.pagescms.org)
+2. **Sign in with GitHub** → امنحي الوصول لهذا المستودع
+3. اختاري المستودع → تظهر الأقسام: الهوية · المقالات · من أنا · الخبرة ·
+   التخصصات · أدوات AI · المشاريع · الكتاب · TikTok · الخصوصية والشروط
+
+كل حقل له عنوان عربي وشرح مختصر. الحفظ يكتب مباشرة في المستودع، وينشر
+Vercel التعديل تلقائياً خلال دقيقة.
+
+ملف الإعداد `.pages.yml` يصف الحقول — عدّليه فقط عند إضافة حقول جديدة.
+
+> **بديل بلا طرف ثالث:** يمكن تعديل ملفات `content/*.json` مباشرة من واجهة
+> GitHub (أيقونة القلم ✏️) — يعمل من الجوال ولا يحتاج أي إعداد.
 
 ---
 
@@ -251,7 +255,7 @@ SITE_URL=https://yourdomain.com BASE_PATH= GA_ID=G-XXXXXXX npm run build
 ## 📊 التحليلات
 
 **لا يُحمَّل أي سكربت تتبّع ما لم تضع المعرّفات بنفسك** في
-`content/site.js → analytics`. عند التفعيل تُتتبَّع الأحداث التالية تلقائياً:
+`content/site.json → analytics`. عند التفعيل تُتتبَّع الأحداث التالية تلقائياً:
 
 `page_view` · `article_view` · `tool_click` · `tiktok_click` ·
 `social_click` · `contact_submit`
@@ -298,11 +302,12 @@ contactForm: { mode: 'endpoint', endpoint: 'https://formspree.io/f/xxxxxxx' }
 ## 🧱 بنية المشروع
 
 ```
-content/            ← كل ما تعدّله أنت
-  site.js             الهوية المركزية (الاسم، الصورة، الحسابات، SEO، التحليلات)
+content/            ← كل ما تعدّله أنت (عبر لوحة التحكم أو مباشرة)
+  README.md           دليل المحتوى والقواعد
+  site.json           الهوية المركزية (الاسم، الصورة، الحسابات، SEO، التحليلات)
+  about.json  experience.json  expertise.json  ai-tools.json
+  projects.json  book.json  tiktok.json  legal.json
   ui.js               نصوص الواجهة بالعربية والإنجليزية
-  about.js  experience.js  expertise.js  ai-tools.js
-  projects.js  book.js  tiktok.js  legal.js
   articles/*.md       المقالات
 
 src/
@@ -312,6 +317,8 @@ src/
 
 build.js            المولّد
 serve.js            خادم المعاينة المحلي
+.pages.yml          إعداد لوحة التحكم
+vercel.json         إعداد النشر
 dist/               الناتج (لا يُرفع إلى Git — يُبنى تلقائياً)
 ```
 

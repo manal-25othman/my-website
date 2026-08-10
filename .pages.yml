@@ -1,0 +1,846 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  لوحة تحكم الموقع  —  Pages CMS  (app.pagescms.org)
+# ═══════════════════════════════════════════════════════════════════════════
+#  هذا الملف يصف حقول لوحة التحكم. لا تعدّله إلا إذا أضفت حقولاً جديدة.
+#  كل تعديل تحفظينه من اللوحة يُرسَل إلى المستودع، وينشره Vercel تلقائياً.
+# ═══════════════════════════════════════════════════════════════════════════
+
+media:
+  - name: images
+    label: الصور
+    input: src/assets/img
+    output: img
+    extensions: [png, jpg, jpeg, webp, svg]
+
+content:
+  # ─────────────────────────────────────────────────────────────────────
+  #  ١ · الهوية  —  أهم ملف في الموقع
+  # ─────────────────────────────────────────────────────────────────────
+  - name: identity
+    label: الهوية والحسابات
+    type: file
+    path: content/site.json
+    icon: user
+    fields:
+      - name: profile
+        label: الهوية الشخصية
+        type: object
+        fields:
+          - name: name
+            label: الاسم الكامل
+            type: object
+            description: يظهر في كل صفحة وفي بيانات محركات البحث
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - name: professionalTitle
+            label: المسمى المهني
+            type: object
+            description: لا تستخدمي «مهندس / باحث / مستشار / متحدث» إلا إن كان مسماك الفعلي
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - name: secondaryTitle
+            label: التخصص الثانوي
+            type: object
+            description: سطر مساند يظهر أسفل الهيرو
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - name: headline
+            label: العنوان الرئيسي في الهيرو
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: text }
+              - { name: en, label: بالإنجليزية, type: text }
+          - name: supporting
+            label: النص المساند تحت العنوان
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: text }
+              - { name: en, label: بالإنجليزية, type: text }
+          - name: shortBio
+            label: نبذة قصيرة
+            type: object
+            description: تظهر في الهيرو وبطاقة الكاتب والملف التعريفي
+            fields:
+              - { name: ar, label: بالعربية, type: text }
+              - { name: en, label: بالإنجليزية, type: text }
+          - name: longBio
+            label: نبذة موسّعة
+            type: object
+            description: كل عنصر فقرة مستقلة
+            fields:
+              - { name: ar, label: فقرات بالعربية, type: text, list: true }
+              - { name: en, label: فقرات بالإنجليزية, type: text, list: true }
+          - name: photo
+            label: الصورة الشخصية
+            type: image
+            description: استخدمي نفس الصورة في TikTok و LinkedIn و X — تطابق الصورة يقوّي الهوية
+          - name: photoAlt
+            label: وصف الصورة (للقارئ الشاشي)
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - name: ogImage
+            label: صورة المشاركة (1200×630)
+            type: image
+            description: تظهر عند مشاركة رابط الموقع في التواصل الاجتماعي
+          - name: email
+            label: البريد الإلكتروني
+            type: string
+          - name: location
+            label: الموقع الجغرافي
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - name: availability
+            label: حالة التوفّر
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - name: social
+            label: الحسابات الرسمية
+            type: object
+            list: true
+            description: >-
+              الحساب الذي له رابط فقط هو الذي يُرسَل إلى محركات البحث كإشارة
+              هوية. اتركي الرابط فارغاً لأي حساب غير موجود.
+            fields:
+              - name: id
+                label: المنصة
+                type: select
+                options:
+                  values: [tiktok, linkedin, x, email]
+              - name: label
+                label: الاسم المعروض
+                type: object
+                fields:
+                  - { name: ar, label: بالعربية, type: string }
+                  - { name: en, label: بالإنجليزية, type: string }
+              - { name: handle, label: اسم المستخدم, type: string }
+              - name: url
+                label: الرابط الكامل
+                type: string
+                description: مثال — https://www.tiktok.com/@username
+              - { name: primary, label: حساب رئيسي (يظهر كزر), type: boolean }
+
+      - name: url
+        label: دومين الموقع
+        type: string
+        description: على Vercel يُضبط تلقائياً — لا تغيّريه إلا مع دومين خاص
+      - { name: basePath, label: مسار فرعي, type: string }
+
+      - name: languages
+        label: اللغات
+        type: object
+        list: true
+        fields:
+          - { name: code, label: الرمز, type: string }
+          - { name: label, label: الاسم, type: string }
+          - { name: dir, label: الاتجاه, type: select, options: { values: [rtl, ltr] } }
+          - { name: locale, label: locale, type: string }
+          - { name: prefix, label: بادئة الرابط, type: string }
+
+      - name: seo
+        label: إعدادات محركات البحث
+        type: object
+        fields:
+          - name: homeTitle
+            label: عنوان الصفحة الرئيسية
+            type: object
+            description: اتركيه فارغاً ليُبنى تلقائياً من اسمك
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - name: description
+            label: وصف الموقع
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: text }
+              - { name: en, label: بالإنجليزية, type: text }
+          - name: keywords
+            label: الكلمات المفتاحية
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string, list: true }
+              - { name: en, label: بالإنجليزية, type: string, list: true }
+          - name: googleSiteVerification
+            label: كود تحقق Google Search Console
+            type: string
+
+      - name: analytics
+        label: التحليلات
+        type: object
+        description: لا يُحمَّل أي سكربت تتبّع ما لم تضعي المعرّفات هنا
+        fields:
+          - { name: googleAnalyticsId, label: Google Analytics (G-XXXX), type: string }
+          - { name: tiktokPixelId, label: TikTok Pixel, type: string }
+          - { name: respectDoNotTrack, label: احترام إعداد Do Not Track, type: boolean }
+
+      - name: contactForm
+        label: نموذج التواصل
+        type: object
+        fields:
+          - name: mode
+            label: طريقة الإرسال
+            type: select
+            options:
+              values: [mailto, endpoint]
+            description: mailto يفتح بريد الزائر · endpoint يرسل لخدمة خارجية
+          - { name: endpoint, label: رابط الخدمة الخارجية, type: string }
+
+      - { name: copyrightStartYear, label: سنة بداية حقوق النشر, type: number }
+
+  # ─────────────────────────────────────────────────────────────────────
+  #  ٢ · المقالات
+  # ─────────────────────────────────────────────────────────────────────
+  - name: articles
+    label: المقالات
+    type: collection
+    path: content/articles
+    filename: '{primary}.md'
+    icon: file-text
+    view:
+      fields: [title, category, date, featured]
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - { name: title, label: العنوان, type: string }
+      - name: description
+        label: الوصف المختصر
+        type: text
+        description: يظهر في نتائج البحث وبطاقات المشاركة
+      - { name: date, label: تاريخ النشر, type: date }
+      - name: category
+        label: التصنيف
+        type: select
+        options:
+          values:
+            - الذكاء الاصطناعي
+            - أدوات الذكاء الاصطناعي
+            - التقنية
+            - الإنتاجية
+            - التحول الرقمي
+            - تجارب تقنية
+            - المعلوماتية الصحية
+      - { name: tags, label: الوسوم, type: string, list: true }
+      - { name: cover, label: صورة المقال, type: image }
+      - { name: featured, label: مقال مميّز, type: boolean }
+      - name: placeholder
+        label: مسودة نموذجية
+        type: boolean
+        description: عند التفعيل لا يُفهرَس المقال في محركات البحث ويظهر بشارة «نموذج»
+      - { name: body, label: نص المقال, type: rich-text }
+
+  # ─────────────────────────────────────────────────────────────────────
+  #  ٣ · من أنا
+  # ─────────────────────────────────────────────────────────────────────
+  - name: about
+    label: من أنا
+    type: file
+    path: content/about.json
+    icon: id-card
+    fields:
+      - name: stats
+        label: أرقام المصداقية
+        type: object
+        list: true
+        description: اتركي الرقم فارغاً ليظهر «—» بدل رقم غير حقيقي
+        fields:
+          - name: label
+            label: العنوان
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - { name: value, label: القيمة, type: number }
+          - { name: suffix, label: لاحقة (مثل +), type: string }
+          - name: auto
+            label: حساب تلقائي من المحتوى
+            type: select
+            options:
+              values: [articles, tools, projects]
+      - name: aboutParagraphs
+        label: فقرات «من أنا»
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: text, list: true }
+          - { name: en, label: بالإنجليزية, type: text, list: true }
+      - name: mission
+        label: رسالة المحتوى
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: text }
+          - { name: en, label: بالإنجليزية, type: text }
+      - name: interests
+        label: الاهتمامات التقنية
+        type: object
+        list: true
+        fields:
+          - name: icon
+            label: الأيقونة
+            type: select
+            options:
+              values: [spark, wand, chip, flow, pulse, book, chart, shield]
+          - name: label
+            label: العنوان
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - name: note
+            label: الوصف
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+      - name: education
+        label: التعليم
+        type: object
+        list: true
+        fields:
+          - name: degree
+            label: الدرجة والتخصص
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - name: institution
+            label: الجهة التعليمية
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - { name: period, label: الفترة, type: string }
+          - name: note
+            label: ملاحظة
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - name: placeholder
+            label: بيانات نموذجية
+            type: boolean
+            description: أزيليها بعد تعبئة بياناتك الحقيقية
+      - name: certifications
+        label: الشهادات المهنية
+        type: object
+        list: true
+        description: لا تُدرجي إلا شهادات تملكينها فعلاً
+        fields:
+          - name: name
+            label: اسم الشهادة
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - name: issuer
+            label: الجهة المانحة
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - { name: year, label: السنة, type: string }
+          - { name: credentialUrl, label: رابط التحقق, type: string }
+          - { name: placeholder, label: بيانات نموذجية, type: boolean }
+      - name: journey
+        label: المسار المهني
+        type: object
+        list: true
+        fields:
+          - { name: year, label: السنة, type: string }
+          - name: type
+            label: النوع
+            type: select
+            options:
+              values: [work, education, milestone, content]
+          - name: title
+            label: العنوان
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - name: description
+            label: الوصف
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: text }
+              - { name: en, label: بالإنجليزية, type: text }
+          - { name: placeholder, label: بيانات نموذجية, type: boolean }
+
+  # ─────────────────────────────────────────────────────────────────────
+  #  ٤ · الخبرة المهنية
+  # ─────────────────────────────────────────────────────────────────────
+  - name: experience
+    label: الخبرة المهنية
+    type: file
+    path: content/experience.json
+    icon: briefcase
+    list: true
+    fields:
+      - name: organization
+        label: جهة العمل
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: string }
+          - { name: en, label: بالإنجليزية, type: string }
+      - name: role
+        label: المسمى الوظيفي
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: string }
+          - { name: en, label: بالإنجليزية, type: string }
+      - { name: startDate, label: تاريخ البداية, type: string }
+      - { name: endDate, label: تاريخ النهاية, type: string }
+      - name: period
+        label: الفترة (نص معروض)
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: string }
+          - { name: en, label: بالإنجليزية, type: string }
+      - { name: current, label: الوظيفة الحالية, type: boolean }
+      - name: location
+        label: الموقع
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: string }
+          - { name: en, label: بالإنجليزية, type: string }
+      - name: summary
+        label: ملخّص الدور
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: text }
+          - { name: en, label: بالإنجليزية, type: text }
+      - name: responsibilities
+        label: المسؤوليات
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: text, list: true }
+          - { name: en, label: بالإنجليزية, type: text, list: true }
+      - name: achievements
+        label: أبرز الإنجازات
+        type: object
+        description: استخدمي أرقاماً حقيقية قابلة للتحقق فقط
+        fields:
+          - { name: ar, label: بالعربية, type: text, list: true }
+          - { name: en, label: بالإنجليزية, type: text, list: true }
+      - { name: stack, label: الأنظمة والتقنيات, type: string, list: true }
+      - { name: placeholder, label: بيانات نموذجية, type: boolean }
+
+  # ─────────────────────────────────────────────────────────────────────
+  #  ٥ · التخصصات
+  # ─────────────────────────────────────────────────────────────────────
+  - name: expertise
+    label: التخصصات
+    type: file
+    path: content/expertise.json
+    icon: layers
+    list: true
+    fields:
+      - { name: id, label: المعرّف, type: string }
+      - name: icon
+        label: الأيقونة
+        type: select
+        options:
+          values: [spark, chip, flow, pulse, share, shield]
+      - name: feature
+        label: تخصص أساسي
+        type: boolean
+        description: يُعرض بحجم أكبر في أعلى القسم
+      - name: title
+        label: العنوان
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: string }
+          - { name: en, label: بالإنجليزية, type: string }
+      - name: intro
+        label: الوصف
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: text }
+          - { name: en, label: بالإنجليزية, type: text }
+      - name: items
+        label: العناصر
+        type: object
+        list: true
+        fields:
+          - { name: ar, label: بالعربية, type: string }
+          - { name: en, label: بالإنجليزية, type: string }
+
+  # ─────────────────────────────────────────────────────────────────────
+  #  ٦ · أدوات الذكاء الاصطناعي
+  # ─────────────────────────────────────────────────────────────────────
+  - name: aitools
+    label: أدوات الذكاء الاصطناعي
+    type: file
+    path: content/ai-tools.json
+    icon: sparkles
+    fields:
+      - name: categories
+        label: التصنيفات
+        type: object
+        list: true
+        fields:
+          - { name: id, label: المعرّف, type: string }
+          - name: label
+            label: الاسم
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+      - name: tools
+        label: الأدوات
+        type: object
+        list: true
+        description: لا تضعي تقييماً أو مراجعة لأداة لم تجرّبيها
+        fields:
+          - { name: name, label: اسم الأداة, type: string }
+          - name: slug
+            label: معرّف الرابط
+            type: string
+            description: إنجليزي بلا مسافات — لا تغيّريه بعد النشر
+          - { name: category, label: التصنيف, type: string }
+          - { name: logo, label: الشعار, type: image }
+          - { name: featured, label: أداة مميّزة, type: boolean }
+          - name: summary
+            label: وصف مختصر
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: text }
+              - { name: en, label: بالإنجليزية, type: text }
+          - name: whatItDoes
+            label: ماذا تفعل
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: text }
+              - { name: en, label: بالإنجليزية, type: text }
+          - name: rating
+            label: تقييمك من ٥
+            type: number
+            description: اتركيه فارغاً ليظهر «لم تُقيَّم بعد»
+          - name: bestFor
+            label: أفضل استخدام
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - name: pricing
+            label: التسعير
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - name: review
+            label: تجربتك مع الأداة
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: text }
+              - { name: en, label: بالإنجليزية, type: text }
+          - name: pros
+            label: ما يميزها
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string, list: true }
+              - { name: en, label: بالإنجليزية, type: string, list: true }
+          - name: cons
+            label: حدودها
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string, list: true }
+              - { name: en, label: بالإنجليزية, type: string, list: true }
+          - name: whoFor
+            label: لمن تُناسب
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: text }
+              - { name: en, label: بالإنجليزية, type: text }
+          - { name: url, label: الموقع الرسمي, type: string }
+          - { name: articleSlugs, label: مقالات مرتبطة, type: string, list: true }
+          - { name: tiktokUrl, label: رابط مقطع TikTok, type: string }
+          - { name: placeholder, label: بيانات نموذجية, type: boolean }
+
+  # ─────────────────────────────────────────────────────────────────────
+  #  ٧ · المشاريع
+  # ─────────────────────────────────────────────────────────────────────
+  - name: projects
+    label: المشاريع
+    type: file
+    path: content/projects.json
+    icon: folder
+    list: true
+    fields:
+      - name: name
+        label: اسم المشروع
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: string }
+          - { name: en, label: بالإنجليزية, type: string }
+      - { name: slug, label: معرّف الرابط, type: string }
+      - { name: year, label: السنة, type: string }
+      - name: role
+        label: دورك في المشروع
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: string }
+          - { name: en, label: بالإنجليزية, type: string }
+      - name: summary
+        label: وصف مختصر
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: text }
+          - { name: en, label: بالإنجليزية, type: text }
+      - name: problem
+        label: المشكلة
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: text }
+          - { name: en, label: بالإنجليزية, type: text }
+      - name: solution
+        label: الحل
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: text }
+          - { name: en, label: بالإنجليزية, type: text }
+      - { name: stack, label: التقنيات, type: string, list: true }
+      - name: results
+        label: النتائج
+        type: object
+        description: أرقام حقيقية فقط
+        fields:
+          - { name: ar, label: بالعربية, type: text, list: true }
+          - { name: en, label: بالإنجليزية, type: text, list: true }
+      - { name: image, label: صورة المشروع, type: image }
+      - { name: url, label: رابط المشروع, type: string }
+      - { name: placeholder, label: بيانات نموذجية, type: boolean }
+
+  # ─────────────────────────────────────────────────────────────────────
+  #  ٨ · الكتاب
+  # ─────────────────────────────────────────────────────────────────────
+  - name: book
+    label: الكتاب
+    type: file
+    path: content/book.json
+    icon: book
+    fields:
+      - { name: enabled, label: إظهار قسم الكتاب, type: boolean }
+      - name: published
+        label: منشور فعلاً
+        type: boolean
+        description: عند التعطيل تظهر شارة «قيد الإعداد» ولا تُرسَل بيانات الكتاب لمحركات البحث
+      - name: title
+        label: عنوان الكتاب
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: string }
+          - { name: en, label: بالإنجليزية, type: string }
+      - name: subtitle
+        label: العنوان الفرعي
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: string }
+          - { name: en, label: بالإنجليزية, type: string }
+      - { name: cover, label: غلاف الكتاب, type: image }
+      - name: coverAlt
+        label: وصف الغلاف
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: string }
+          - { name: en, label: بالإنجليزية, type: string }
+      - name: tagline
+        label: فكرة الكتاب في سطر
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: text }
+          - { name: en, label: بالإنجليزية, type: text }
+      - name: description
+        label: وصف الكتاب
+        type: object
+        fields:
+          - { name: ar, label: فقرات بالعربية, type: text, list: true }
+          - { name: en, label: فقرات بالإنجليزية, type: text, list: true }
+      - name: why
+        label: لماذا كتبته
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: text, list: true }
+          - { name: en, label: بالإنجليزية, type: text, list: true }
+      - name: topics
+        label: محاور الكتاب
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: string, list: true }
+          - { name: en, label: بالإنجليزية, type: string, list: true }
+      - name: audience
+        label: لمن هذا الكتاب
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: string, list: true }
+          - { name: en, label: بالإنجليزية, type: string, list: true }
+      - name: publication
+        label: معلومات النشر
+        type: object
+        description: اتركي أي حقل فارغاً ليظهر «—» بدل معلومة غير مؤكدة
+        fields:
+          - name: publisher
+            label: دار النشر
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - { name: year, label: سنة النشر, type: string }
+          - { name: pages, label: عدد الصفحات, type: number }
+          - name: language
+            label: اللغة
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - { name: isbn, label: ISBN, type: string }
+          - name: format
+            label: الصيغة
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+      - name: links
+        label: أزرار الشراء والتحميل
+        type: object
+        list: true
+        fields:
+          - name: label
+            label: نص الزر
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - { name: url, label: الرابط, type: string }
+          - { name: primary, label: زر رئيسي, type: boolean }
+      - { name: placeholder, label: بيانات نموذجية, type: boolean }
+
+  # ─────────────────────────────────────────────────────────────────────
+  #  ٩ · TikTok
+  # ─────────────────────────────────────────────────────────────────────
+  - name: tiktok
+    label: محتوى TikTok
+    type: file
+    path: content/tiktok.json
+    icon: video
+    fields:
+      - { name: enabled, label: إظهار قسم TikTok, type: boolean }
+      - { name: handle, label: اسم المستخدم, type: string }
+      - { name: profileUrl, label: رابط الحساب, type: string }
+      - name: bio
+        label: نبذة الحساب
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: text }
+          - { name: en, label: بالإنجليزية, type: text }
+      - name: followers
+        label: عدد المتابعين
+        type: number
+        description: رقم حقيقي فقط — اتركيه فارغاً ليظهر «—»
+      - { name: likes, label: عدد الإعجابات, type: number }
+      - name: topics
+        label: مواضيع المحتوى
+        type: object
+        list: true
+        fields:
+          - { name: ar, label: بالعربية, type: string }
+          - { name: en, label: بالإنجليزية, type: string }
+      - name: videos
+        label: المقاطع المميزة
+        type: object
+        list: true
+        description: ضعي رابط المقطع الكامل — يُستخرج رقمه تلقائياً
+        fields:
+          - { name: url, label: رابط المقطع, type: string }
+          - name: title
+            label: عنوان المقطع
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - { name: topic, label: الموضوع, type: string }
+
+  # ─────────────────────────────────────────────────────────────────────
+  # ١٠ · الصفحات القانونية
+  # ─────────────────────────────────────────────────────────────────────
+  - name: legal
+    label: الخصوصية والشروط
+    type: file
+    path: content/legal.json
+    icon: shield
+    fields:
+      - { name: lastUpdated, label: تاريخ آخر تحديث, type: date }
+      - name: privacy
+        label: سياسة الخصوصية
+        type: object
+        fields:
+          - name: title
+            label: العنوان
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - name: intro
+            label: المقدمة
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: text }
+              - { name: en, label: بالإنجليزية, type: text }
+          - name: sections
+            label: الأقسام
+            type: object
+            list: true
+            fields:
+              - name: heading
+                label: عنوان القسم
+                type: object
+                fields:
+                  - { name: ar, label: بالعربية, type: string }
+                  - { name: en, label: بالإنجليزية, type: string }
+              - name: body
+                label: النص
+                type: object
+                fields:
+                  - { name: ar, label: فقرات بالعربية, type: text, list: true }
+                  - { name: en, label: فقرات بالإنجليزية, type: text, list: true }
+      - name: terms
+        label: شروط الاستخدام
+        type: object
+        fields:
+          - name: title
+            label: العنوان
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - name: intro
+            label: المقدمة
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: text }
+              - { name: en, label: بالإنجليزية, type: text }
+          - name: sections
+            label: الأقسام
+            type: object
+            list: true
+            fields:
+              - name: heading
+                label: عنوان القسم
+                type: object
+                fields:
+                  - { name: ar, label: بالعربية, type: string }
+                  - { name: en, label: بالإنجليزية, type: string }
+              - name: body
+                label: النص
+                type: object
+                fields:
+                  - { name: ar, label: فقرات بالعربية, type: text, list: true }
+                  - { name: en, label: فقرات بالإنجليزية, type: text, list: true }

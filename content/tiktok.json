@@ -1,0 +1,63 @@
+{
+  "enabled": true,
+  "handle": "[@username]",
+  "profileUrl": null,
+  "bio": {
+    "ar": "[نبذة حسابك على TikTok — يُفضَّل أن تطابق نبذة الموقع.]",
+    "en": "[Your TikTok bio — ideally matching the site biography.]"
+  },
+  "followers": null,
+  "likes": null,
+  "topics": [
+    {
+      "ar": "الذكاء الاصطناعي",
+      "en": "AI"
+    },
+    {
+      "ar": "التقنية",
+      "en": "Technology"
+    },
+    {
+      "ar": "أدوات الذكاء الاصطناعي",
+      "en": "AI tools"
+    },
+    {
+      "ar": "الإنتاجية",
+      "en": "Productivity"
+    },
+    {
+      "ar": "نصائح عملية",
+      "en": "Tips"
+    },
+    {
+      "ar": "شروحات",
+      "en": "Tutorials"
+    }
+  ],
+  "videos": [
+    {
+      "url": null,
+      "title": {
+        "ar": "[عنوان المقطع]",
+        "en": "[Video title]"
+      },
+      "topic": "AI"
+    },
+    {
+      "url": null,
+      "title": {
+        "ar": "[عنوان المقطع]",
+        "en": "[Video title]"
+      },
+      "topic": "AI tools"
+    },
+    {
+      "url": null,
+      "title": {
+        "ar": "[عنوان المقطع]",
+        "en": "[Video title]"
+      },
+      "topic": "Productivity"
+    }
+  ]
+}

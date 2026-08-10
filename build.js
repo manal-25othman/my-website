@@ -21,16 +21,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import SITE from './content/site.js';
 import UI from './content/ui.js';
-import * as ABOUT from './content/about.js';
-import EXPERIENCE from './content/experience.js';
-import EXPERTISE from './content/expertise.js';
-import BOOK from './content/book.js';
-import { categories as TOOL_CATEGORIES, tools as TOOLS } from './content/ai-tools.js';
-import PROJECTS from './content/projects.js';
-import TIKTOK from './content/tiktok.js';
-import LEGAL from './content/legal.js';
 
 import { setBasePath, href, asset, absolute, L, formatDate, isPlaceholderText } from './src/lib/html.js';
 import { parseFrontmatter, renderMarkdown, readingTime, plainExcerpt } from './src/lib/markdown.js';
@@ -39,6 +30,23 @@ import { layout } from './src/templates/layout.js';
 import * as P from './src/templates/pages.js';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
+
+/* ── تحميل المحتوى  /  Load content ──────────────────────────────────
+ *  المحتوى مخزَّن بصيغة JSON لتتمكن لوحة التحكم من قراءته وتعديله.
+ *  الشرح والإرشادات موجودة في content/README.md وفي حقول لوحة التحكم.
+ * ─────────────────────────────────────────────────────────────────── */
+const readJson = (name) =>
+  JSON.parse(fs.readFileSync(path.join(ROOT, 'content', name), 'utf8'));
+
+const SITE = readJson('site.json');
+const ABOUT = readJson('about.json');
+const EXPERIENCE = readJson('experience.json');
+const EXPERTISE = readJson('expertise.json');
+const BOOK = readJson('book.json');
+const { categories: TOOL_CATEGORIES, tools: TOOLS } = readJson('ai-tools.json');
+const PROJECTS = readJson('projects.json');
+const TIKTOK = readJson('tiktok.json');
+const LEGAL = readJson('legal.json');
 const DIST = path.join(ROOT, 'dist');
 const CHECK_ONLY = process.argv.includes('--check-only');
 

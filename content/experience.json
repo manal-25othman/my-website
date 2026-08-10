@@ -1,0 +1,94 @@
+[
+  {
+    "organization": {
+      "ar": "[اسم الجهة]",
+      "en": "[Organisation name]"
+    },
+    "role": {
+      "ar": "[المسمى الوظيفي]",
+      "en": "[Job title]"
+    },
+    "startDate": null,
+    "endDate": null,
+    "period": {
+      "ar": "[—— — حتى الآن]",
+      "en": "[—— — Present]"
+    },
+    "current": true,
+    "location": {
+      "ar": "[المدينة، الدولة]",
+      "en": "[City, Country]"
+    },
+    "summary": {
+      "ar": "[سطر واحد يصف طبيعة الدور ونطاق المسؤولية.]",
+      "en": "[One line describing the role and scope of responsibility.]"
+    },
+    "responsibilities": {
+      "ar": [
+        "[المسؤولية الأولى.]",
+        "[المسؤولية الثانية.]",
+        "[المسؤولية الثالثة.]"
+      ],
+      "en": [
+        "[First responsibility.]",
+        "[Second responsibility.]",
+        "[Third responsibility.]"
+      ]
+    },
+    "achievements": {
+      "ar": [
+        "[الإنجاز الأول — استخدم رقماً حقيقياً قابلاً للتحقق إن أمكن.]"
+      ],
+      "en": [
+        "[First achievement — use a real, verifiable number where possible.]"
+      ]
+    },
+    "stack": [
+      "[النظام / التقنية]"
+    ],
+    "placeholder": true
+  },
+  {
+    "organization": {
+      "ar": "[اسم الجهة السابقة]",
+      "en": "[Previous organisation]"
+    },
+    "role": {
+      "ar": "[المسمى الوظيفي]",
+      "en": "[Job title]"
+    },
+    "startDate": null,
+    "endDate": null,
+    "period": {
+      "ar": "[—— — ——]",
+      "en": "[—— — ——]"
+    },
+    "current": false,
+    "location": {
+      "ar": "[المدينة، الدولة]",
+      "en": "[City, Country]"
+    },
+    "summary": {
+      "ar": "[سطر واحد يصف طبيعة الدور ونطاق المسؤولية.]",
+      "en": "[One line describing the role and scope of responsibility.]"
+    },
+    "responsibilities": {
+      "ar": [
+        "[المسؤولية الأولى.]",
+        "[المسؤولية الثانية.]"
+      ],
+      "en": [
+        "[First responsibility.]",
+        "[Second responsibility.]"
+      ]
+    },
+    "achievements": {
+      "ar": [],
+      "en": []
+    },
+    "stack": [
+      "[النظام / التقنية]"
+    ],
+    "placeholder": true
+  }
+]

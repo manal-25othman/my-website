@@ -1,0 +1,150 @@
+{
+  "profile": {
+    "name": {
+      "ar": "[الاسم الكامل]",
+      "en": "[YOUR NAME]"
+    },
+    "professionalTitle": {
+      "ar": "مختص في الذكاء الاصطناعي والتقنية",
+      "en": "AI & Technology Professional"
+    },
+    "secondaryTitle": {
+      "ar": "التحول الرقمي والمعلوماتية الصحية",
+      "en": "Digital Transformation & Health Informatics"
+    },
+    "headline": {
+      "ar": "أشارك المعرفة والتجارب العملية في الذكاء الاصطناعي والتقنية.",
+      "en": "I share practical knowledge and hands-on experience in AI and technology."
+    },
+    "supporting": {
+      "ar": "مساحة تجمع خبرتي المهنية، مقالاتي، كتابي، مشاريعي، وأدوات الذكاء الاصطناعي التي أستكشفها وأشارك تجربتي حولها.",
+      "en": "One place that brings together my professional experience, articles, book, projects, and the AI tools I explore and share my experience with."
+    },
+    "shortBio": {
+      "ar": "أستكشف أدوات الذكاء الاصطناعي والتقنيات الحديثة، أجرّبها بنفسي، ثم أشارك ما ينفع منها في العمل اليومي — بلغة عملية بعيدة عن التعقيد.",
+      "en": "I explore AI tools and emerging technologies, test them myself, then share what actually works in day-to-day professional work — in plain, practical language."
+    },
+    "longBio": {
+      "ar": [
+        "اهتمامي المهني يتركز على الذكاء الاصطناعي والتقنيات الناشئة وكيفية توظيفها بشكل عملي داخل بيئة العمل. أتابع ما يظهر من أدوات، أجرّبها على مهام حقيقية، ثم أكتب ما تعلّمته منها: ما الذي وفّر وقتاً فعلياً، وما الذي بقي وعداً تسويقياً.",
+        "إلى جانب ذلك، يمتد اهتمامي إلى التحول الرقمي وتحسين الإجراءات، وإلى تبسيط التقنية لمن ليست التقنية تخصصهم. أرى أن أكبر فجوة اليوم ليست في توفر الأدوات، بل في معرفة متى وكيف تُستخدم.",
+        "أنشر خلاصة هذه التجارب في صورة مقالات ومحتوى مرئي قصير، هدفها واحد: أن يخرج القارئ أو المشاهد بشيء قابل للتطبيق في نفس اليوم."
+      ],
+      "en": [
+        "My professional focus is artificial intelligence and emerging technologies — specifically, how to put them to practical use inside real working environments. I follow the tools as they appear, test them on real tasks, then write up what I learned: what genuinely saved time, and what stayed a marketing promise.",
+        "Alongside that, my interests extend to digital transformation, process improvement, and making technology understandable for people whose field is not technology. The biggest gap today is not tool availability — it is knowing when and how to use them.",
+        "I publish what comes out of these experiments as articles and short-form video, with a single goal: that the reader or viewer leaves with something they can apply the same day."
+      ]
+    },
+    "photo": "img/profile.png",
+    "photoAlt": {
+      "ar": "الصورة الشخصية",
+      "en": "Professional portrait"
+    },
+    "ogImage": "img/og-cover.png",
+    "email": "[your@email.com]",
+    "location": {
+      "ar": "[المدينة، الدولة]",
+      "en": "[City, Country]"
+    },
+    "availability": {
+      "ar": "مفتوح للتعاون المهني والمشاركات التقنية",
+      "en": "Open to professional collaboration and speaking about technology"
+    },
+    "social": [
+      {
+        "id": "tiktok",
+        "label": {
+          "ar": "TikTok",
+          "en": "TikTok"
+        },
+        "handle": "[@username]",
+        "url": null,
+        "primary": true
+      },
+      {
+        "id": "linkedin",
+        "label": {
+          "ar": "LinkedIn",
+          "en": "LinkedIn"
+        },
+        "handle": "[in/username]",
+        "url": null
+      },
+      {
+        "id": "x",
+        "label": {
+          "ar": "X",
+          "en": "X"
+        },
+        "handle": "[@username]",
+        "url": null
+      },
+      {
+        "id": "email",
+        "label": {
+          "ar": "البريد الإلكتروني",
+          "en": "Email"
+        },
+        "handle": "[your@email.com]",
+        "url": null
+      }
+    ]
+  },
+  "url": "https://example.com",
+  "basePath": "",
+  "languages": [
+    {
+      "code": "ar",
+      "label": "العربية",
+      "dir": "rtl",
+      "locale": "ar_SA",
+      "prefix": ""
+    },
+    {
+      "code": "en",
+      "label": "English",
+      "dir": "ltr",
+      "locale": "en_US",
+      "prefix": "en"
+    }
+  ],
+  "seo": {
+    "homeTitle": null,
+    "description": {
+      "ar": "الموقع الرسمي — مختص في الذكاء الاصطناعي والتقنية. مقالات وتجارب عملية وأدوات ذكاء اصطناعي ومحتوى تقني، إضافة إلى الخبرة المهنية والمشاريع والكتاب.",
+      "en": "Official website — AI & technology professional. Articles, hands-on experiments, an AI tools directory, technology content, professional experience, projects and a book."
+    },
+    "keywords": {
+      "ar": [
+        "الذكاء الاصطناعي",
+        "أدوات الذكاء الاصطناعي",
+        "الذكاء الاصطناعي التوليدي",
+        "التقنية",
+        "التحول الرقمي",
+        "الإنتاجية",
+        "المعلوماتية الصحية"
+      ],
+      "en": [
+        "Artificial Intelligence",
+        "AI Tools",
+        "Generative AI",
+        "Technology",
+        "Digital Transformation",
+        "Productivity",
+        "Health Informatics"
+      ]
+    },
+    "googleSiteVerification": null
+  },
+  "analytics": {
+    "googleAnalyticsId": null,
+    "tiktokPixelId": null,
+    "respectDoNotTrack": true
+  },
+  "contactForm": {
+    "mode": "mailto",
+    "endpoint": null
+  },
+  "copyrightStartYear": 2026
+}
