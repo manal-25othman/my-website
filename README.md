@@ -151,6 +151,39 @@ videos: [
 
 ## 🚀 النشر
 
+### Vercel (جاهز)
+
+المشروع مضبوط بالكامل عبر `vercel.json` — لا حاجة لإدخال أي إعداد يدوي:
+
+| الإعداد | القيمة |
+|---|---|
+| Build Command | `node build.js` |
+| Output Directory | `dist` |
+| Install Command | متخطّى (لا اعتماديات) |
+| Framework Preset | `Other` |
+
+**الخطوات:**
+
+1. [vercel.com/new](https://vercel.com/new) → **Import Git Repository** → اختر المستودع
+2. اترك كل الحقول كما هي (Vercel يقرأ `vercel.json` تلقائياً) → **Deploy**
+
+**الدومين يُضبط تلقائياً:** يقرأ البناء متغيّر `VERCEL_PROJECT_PRODUCTION_URL`
+ويستخدمه في `canonical` و `sitemap.xml` و Open Graph، فلا تحتاج لتعديل
+`content/site.js` بعد النشر.
+
+**دومين خاص؟** بعد ربطه في Vercel، أضف متغيّر بيئة في إعدادات المشروع:
+
+```
+SITE_URL = https://yourdomain.com
+```
+
+ثم أعد النشر (Redeploy) لتلتقطه بيانات SEO.
+
+`vercel.json` يضبط أيضاً: `trailingSlash` ليطابق روابط الموقع، وترويسات
+أمان (`nosniff` · `Referrer-Policy` · `HSTS` · `Permissions-Policy`)،
+وتخزيناً مؤقتاً طويلاً للخطوط ومتوسطاً للصور، مع `must-revalidate` لملفات
+CSS و JS حتى يصل أي تحديث فوراً.
+
 ### GitHub Pages (جاهز)
 
 الملف `.github/workflows/deploy.yml` يبني الموقع وينشره تلقائياً عند كل دفعة

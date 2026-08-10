@@ -51,6 +51,17 @@ if (process.env.BASE_PATH !== undefined) SITE.basePath = process.env.BASE_PATH;
 if (process.env.GA_ID) SITE.analytics.googleAnalyticsId = process.env.GA_ID;
 if (process.env.TIKTOK_PIXEL_ID) SITE.analytics.tiktokPixelId = process.env.TIKTOK_PIXEL_ID;
 
+/* ── Vercel: اشتقاق الدومين تلقائياً ───────────────────────────────────
+ *  على Vercel يُخدَم الموقع من الجذر، فلا مسار فرعي. ونفضّل دومين
+ *  الإنتاج على رابط النشر المؤقت حتى لا تتغيّر canonical مع كل نشر.
+ *  ضبط SITE_URL يدوياً يتجاوز هذا كله (لازم عند استخدام دومين خاص).
+ * ─────────────────────────────────────────────────────────────────── */
+if (process.env.VERCEL && !process.env.SITE_URL) {
+  const host = process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+  if (host) SITE.url = `https://${host.replace(/^https?:\/\//, '').replace(/\/+$/, '')}`;
+  if (process.env.BASE_PATH === undefined) SITE.basePath = '';
+}
+
 /* `url` يجب أن يكون أصل الموقع فقط (origin) لأن basePath يُضاف للروابط لاحقاً.
  * لو وُضع الرابط كاملاً (مثل https://user.github.io/repo مع basePath=/repo)
  * نحذف التكرار حتى لا تتضاعف المسارات في canonical و sitemap. */
