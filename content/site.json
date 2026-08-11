@@ -1,8 +1,8 @@
 {
   "profile": {
     "name": {
-      "ar": "[الاسم الكامل]",
-      "en": "[YOUR NAME]"
+      "ar": "منال عثمان",
+      "en": "manal Othman"
     },
     "professionalTitle": {
       "ar": "مختص في الذكاء الاصطناعي والتقنية",
@@ -59,7 +59,6 @@
           "en": "TikTok"
         },
         "handle": "[@username]",
-        "url": null,
         "primary": true
       },
       {
@@ -69,7 +68,7 @@
           "en": "LinkedIn"
         },
         "handle": "[in/username]",
-        "url": null
+        "primary": false
       },
       {
         "id": "x",
@@ -78,7 +77,7 @@
           "en": "X"
         },
         "handle": "[@username]",
-        "url": null
+        "primary": false
       },
       {
         "id": "email",
@@ -87,19 +86,17 @@
           "en": "Email"
         },
         "handle": "[your@email.com]",
-        "url": null
+        "primary": false
       }
     ]
   },
   "url": "https://example.com",
-  "basePath": "",
   "languages": [
     {
       "code": "ar",
       "label": "العربية",
       "dir": "rtl",
-      "locale": "ar_SA",
-      "prefix": ""
+      "locale": "ar_SA"
     },
     {
       "code": "en",
@@ -110,7 +107,6 @@
     }
   ],
   "seo": {
-    "homeTitle": null,
     "description": {
       "ar": "الموقع الرسمي — مختص في الذكاء الاصطناعي والتقنية. مقالات وتجارب عملية وأدوات ذكاء اصطناعي ومحتوى تقني، إضافة إلى الخبرة المهنية والمشاريع والكتاب.",
       "en": "Official website — AI & technology professional. Articles, hands-on experiments, an AI tools directory, technology content, professional experience, projects and a book."
@@ -134,17 +130,13 @@
         "Productivity",
         "Health Informatics"
       ]
-    },
-    "googleSiteVerification": null
+    }
   },
   "analytics": {
-    "googleAnalyticsId": null,
-    "tiktokPixelId": null,
     "respectDoNotTrack": true
   },
   "contactForm": {
-    "mode": "mailto",
-    "endpoint": null
+    "mode": "mailto"
   },
   "copyrightStartYear": 2026
 }
