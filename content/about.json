@@ -1,23 +1,46 @@
 {
   "stats": [
     {
-      "label": { "ar": "جمهور المحتوى التقني", "en": "Technical Content Audience" },
-      "text": { "ar": "20K+", "en": "20K+" }
+      "label": {
+        "ar": "جمهور المحتوى التقني",
+        "en": "Technical Content Audience"
+      },
+      "text": {
+        "ar": "20K+",
+        "en": "20K+"
+      }
     },
     {
-      "label": { "ar": "التخصص الأساسي", "en": "Core Expertise" },
-      "text": { "ar": "ذكاء اصطناعي توليدي", "en": "Generative AI" }
+      "label": {
+        "ar": "التخصص الأساسي",
+        "en": "Core Expertise"
+      },
+      "text": {
+        "ar": "ذكاء اصطناعي توليدي",
+        "en": "Generative AI"
+      }
     },
     {
-      "label": { "ar": "مشاريع عملية", "en": "Hands-on Projects" },
-      "text": { "ar": "منتجات AI", "en": "AI Products" }
+      "label": {
+        "ar": "مشاريع عملية",
+        "en": "Hands-on Projects"
+      },
+      "text": {
+        "ar": "منتجات AI",
+        "en": "AI Products"
+      }
     },
     {
-      "label": { "ar": "سنوات الخبرة", "en": "Years of Experience" },
-      "text": { "ar": "+6", "en": "6+" }
+      "label": {
+        "ar": "سنوات الخبرة",
+        "en": "Years of Experience"
+      },
+      "text": {
+        "ar": "‎6+",
+        "en": "6+"
+      }
     }
   ],
-
   "aboutParagraphs": {
     "ar": [
       "أنا منال عثمان، مهندسة ذكاء اصطناعي توليدي بخلفية أكاديمية في علوم الحاسب، وأدرس حاليًا إدارة الأعمال.",
@@ -32,16 +55,17 @@
       "Alongside my technical work, I create technical content focused on AI and emerging technologies, making complex concepts easier to understand and apply."
     ]
   },
-
   "mission": {
     "ar": "لا أنظر إلى الذكاء الاصطناعي كتقنية منفصلة عن المنتج — بل كأداة تُبنى حول مشكلة حقيقية وسير عمل حقيقي.",
     "en": "I don't treat AI as a technology separate from the product — but as a tool built around a real problem and a real workflow."
   },
-
   "whatIDo": [
     {
       "icon": "spark",
-      "label": { "ar": "الذكاء الاصطناعي التوليدي", "en": "Generative AI" },
+      "label": {
+        "ar": "الذكاء الاصطناعي التوليدي",
+        "en": "Generative AI"
+      },
       "note": {
         "ar": "أحوّل قدرات النماذج الذكية إلى تطبيقات وحلول عملية مبنية حول حالات استخدام واقعية.",
         "en": "Generative AI solutions designed around real use cases, workflows, and user needs."
@@ -49,7 +73,10 @@
     },
     {
       "icon": "layers",
-      "label": { "ar": "منتجات الذكاء الاصطناعي", "en": "AI Products" },
+      "label": {
+        "ar": "منتجات الذكاء الاصطناعي",
+        "en": "AI Products"
+      },
       "note": {
         "ar": "أشارك في تحويل الأفكار إلى منتجات رقمية قابلة للاستخدام — من التصور والبنية إلى التنفيذ والتحسين.",
         "en": "From product concept and architecture to implementation and refinement."
@@ -57,7 +84,10 @@
     },
     {
       "icon": "flow",
-      "label": { "ar": "RAG و AI Agents", "en": "RAG & AI Agents" },
+      "label": {
+        "ar": "RAG و AI Agents",
+        "en": "RAG & AI Agents"
+      },
       "note": {
         "ar": "أبني حلولًا تستفيد من المعرفة والبيانات الخاصة بالمنتج أو المؤسسة.",
         "en": "RAG-based knowledge systems and AI-powered workflows designed for practical use."
@@ -65,14 +95,16 @@
     },
     {
       "icon": "chip",
-      "label": { "ar": "المنتجات الرقمية", "en": "Digital Products" },
+      "label": {
+        "ar": "المنتجات الرقمية",
+        "en": "Digital Products"
+      },
       "note": {
         "ar": "خبرة في بناء المنصات والمواقع والمنتجات الرقمية بمختلف أنواعها.",
         "en": "Web platforms, SaaS products, content systems, and digital experiences."
       }
     }
   ],
-
   "whyMe": {
     "lead": {
       "ar": [
@@ -87,7 +119,10 @@
     "cards": [
       {
         "icon": "chip",
-        "title": { "ar": "أساس تقني", "en": "Technical Foundation" },
+        "title": {
+          "ar": "أساس تقني",
+          "en": "Technical Foundation"
+        },
         "note": {
           "ar": "خلفية في علوم الحاسب وست سنوات من العمل التقني وتطوير المنتجات الرقمية.",
           "en": "A Computer Science background and six years of hands-on technical work and digital product development."
@@ -95,7 +130,10 @@
       },
       {
         "icon": "spark",
-        "title": { "ar": "تفكير منتَجي في الذكاء الاصطناعي", "en": "AI Product Thinking" },
+        "title": {
+          "ar": "تفكير منتَجي في الذكاء الاصطناعي",
+          "en": "AI Product Thinking"
+        },
         "note": {
           "ar": "اهتمام بتطبيق الذكاء الاصطناعي لحل مشكلات حقيقية، لا لعرض التقنية لذاتها.",
           "en": "Applying AI to solve real problems — not to showcase the technology for its own sake."
@@ -103,7 +141,10 @@
       },
       {
         "icon": "flow",
-        "title": { "ar": "حل المشكلات", "en": "Problem Solving" },
+        "title": {
+          "ar": "حل المشكلات",
+          "en": "Problem Solving"
+        },
         "note": {
           "ar": "القدرة على تحليل المشكلات التقنية والتشغيلية وتحويلها إلى حلول قابلة للتنفيذ.",
           "en": "Analysing technical and operational problems and turning them into solutions that ship."
@@ -111,7 +152,10 @@
       },
       {
         "icon": "share",
-        "title": { "ar": "التواصل التقني", "en": "Technical Communication" },
+        "title": {
+          "ar": "التواصل التقني",
+          "en": "Technical Communication"
+        },
         "note": {
           "ar": "تبسيط التقنية وصناعة محتوى تعليمي وتقني حولها لجمهور واسع.",
           "en": "Making technology understandable, and building educational technical content around it."
@@ -119,18 +163,22 @@
       }
     ]
   },
-
   "career": {
-    "title": { "ar": "إلى أين أتجه", "en": "Where I'm Heading" },
+    "title": {
+      "ar": "إلى أين أتجه",
+      "en": "Where I'm Heading"
+    },
     "body": {
       "ar": "أركز على بناء مسار مهني يجمع بين الذكاء الاصطناعي التوليدي، والمنتجات الرقمية، والتقنية التطبيقية — والعمل على حلول تستخدم الذكاء الاصطناعي بطريقة عملية وقابلة للتوسع.",
       "en": "I'm building a career at the intersection of Generative AI, digital products, and applied technology — focusing on practical AI solutions that create measurable value and scale with real-world needs."
     }
   },
-
   "education": [
     {
-      "degree": { "ar": "بكالوريوس علوم الحاسب", "en": "Bachelor of Computer Science" },
+      "degree": {
+        "ar": "بكالوريوس علوم الحاسب",
+        "en": "Bachelor of Computer Science"
+      },
       "institution": {
         "ar": "جامعة الإمام محمد بن سعود الإسلامية",
         "en": "Imam Muhammad Ibn Saud Islamic University"
@@ -142,19 +190,30 @@
       }
     },
     {
-      "degree": { "ar": "بكالوريوس إدارة الأعمال", "en": "Bachelor of Business Administration" },
-      "institution": { "ar": "جامعة ميدأوشن", "en": "Midocean University" },
-      "period": { "ar": "قيد الدراسة — متوقع 2027", "en": "In progress — expected 2027" },
+      "degree": {
+        "ar": "بكالوريوس إدارة الأعمال",
+        "en": "Bachelor of Business Administration"
+      },
+      "institution": {
+        "ar": "جامعة ميدأوشن",
+        "en": "Midocean University"
+      },
+      "period": {
+        "ar": "قيد الدراسة — متوقع 2027",
+        "en": "In progress — expected 2027"
+      },
       "note": {
         "ar": "لتوسيع فهمي للجانب التجاري والإداري للمنتجات والمشاريع التقنية.",
         "en": "Broadening my understanding of the business and management side of technical products."
       }
     }
   ],
-
   "certifications": [
     {
-      "name": { "ar": "AI Practitioner", "en": "AI Practitioner" },
+      "name": {
+        "ar": "AI Practitioner",
+        "en": "AI Practitioner"
+      },
       "issuer": {
         "ar": "برنامج بالشراكة مع أمازون — جامعة حائل (25 ساعة تدريبية)",
         "en": "Amazon-affiliated program — University of Hail (25 training hours)"
@@ -163,7 +222,10 @@
       "credentialUrl": null
     },
     {
-      "name": { "ar": "تدريب المدربين (TOT)", "en": "Train the Trainer (TOT)" },
+      "name": {
+        "ar": "تدريب المدربين (TOT)",
+        "en": "Train the Trainer (TOT)"
+      },
       "issuer": {
         "ar": "تنفيذ التدريب وتصميم المناهج (45 ساعة)",
         "en": "Training Delivery & Curriculum Design (45 hrs)"
@@ -172,7 +234,10 @@
       "credentialUrl": null
     },
     {
-      "name": { "ar": "إدارة المشاريع الاحترافية", "en": "Professional Project Management" },
+      "name": {
+        "ar": "إدارة المشاريع الاحترافية",
+        "en": "Professional Project Management"
+      },
       "issuer": {
         "ar": "تدريب موائم لمنهجية PMP (35 ساعة)",
         "en": "PMP-aligned training (35 hrs)"
@@ -181,51 +246,101 @@
       "credentialUrl": null
     },
     {
-      "name": { "ar": "أساسيات البرمجة بلغة Python", "en": "Principles of Programming in Python" },
-      "issuer": { "ar": "—", "en": "—" },
+      "name": {
+        "ar": "أساسيات البرمجة بلغة Python",
+        "en": "Principles of Programming in Python"
+      },
+      "issuer": {
+        "ar": "—",
+        "en": "—"
+      },
       "year": "—",
       "credentialUrl": null
     },
     {
-      "name": { "ar": "دورة نظام Odoo الاحترافية", "en": "Odoo System Professional Course" },
-      "issuer": { "ar": "—", "en": "—" },
+      "name": {
+        "ar": "دورة نظام Odoo الاحترافية",
+        "en": "Odoo System Professional Course"
+      },
+      "issuer": {
+        "ar": "—",
+        "en": "—"
+      },
       "year": "—",
       "credentialUrl": null
     },
     {
-      "name": { "ar": "Power BI", "en": "Power BI" },
-      "issuer": { "ar": "قيد الإنجاز", "en": "In progress" },
+      "name": {
+        "ar": "Power BI",
+        "en": "Power BI"
+      },
+      "issuer": {
+        "ar": "قيد الإنجاز",
+        "en": "In progress"
+      },
       "year": "—",
       "credentialUrl": null
     }
   ],
-
   "contributions": {
-    "title": { "ar": "محاضرات ومشاركات", "en": "Talks & Contributions" },
+    "title": {
+      "ar": "محاضرات ومشاركات",
+      "en": "Talks & Contributions"
+    },
     "lead": {
       "ar": "مشاركات تدريبية وتوعوية قدّمتها لجهات تعليمية ومجتمعية.",
       "en": "Training and awareness sessions delivered for educational and community organisations."
     },
     "items": [
       {
-        "title": { "ar": "«الضحية» — التوعية بالسلامة الرقمية", "en": "“The Victim” — Digital safety awareness" },
-        "org": { "ar": "اليوم السيبراني للفتيات — محاضِرة", "en": "Girls Cyber Day — Instructor" }
+        "title": {
+          "ar": "«الضحية» — التوعية بالسلامة الرقمية",
+          "en": "“The Victim” — Digital safety awareness"
+        },
+        "org": {
+          "ar": "اليوم السيبراني للفتيات — محاضِرة",
+          "en": "Girls Cyber Day — Instructor"
+        }
       },
       {
-        "title": { "ar": "«التوعية الأمنية» — ممارسات الإنترنت الآمن", "en": "“Security Awareness” — Safe online practices" },
-        "org": { "ar": "اليوم السيبراني العربي — محاضِرة", "en": "Arab Cyber Day — Instructor" }
+        "title": {
+          "ar": "«التوعية الأمنية» — ممارسات الإنترنت الآمن",
+          "en": "“Security Awareness” — Safe online practices"
+        },
+        "org": {
+          "ar": "اليوم السيبراني العربي — محاضِرة",
+          "en": "Arab Cyber Day — Instructor"
+        }
       },
       {
-        "title": { "ar": "«الدمج بين التعليم التقليدي والذكاء الاصطناعي»", "en": "“Combining Traditional Education & Artificial Intelligence”" },
-        "org": { "ar": "وزارة التعليم — محاضِرة", "en": "Ministry of Education — Instructor" }
+        "title": {
+          "ar": "«الدمج بين التعليم التقليدي والذكاء الاصطناعي»",
+          "en": "“Combining Traditional Education & Artificial Intelligence”"
+        },
+        "org": {
+          "ar": "وزارة التعليم — محاضِرة",
+          "en": "Ministry of Education — Instructor"
+        }
       },
       {
-        "title": { "ar": "«الأمن السيبراني: كيف تحمي نفسك رقميًا»", "en": "“Cybersecurity: How to Protect Yourself Digitally”" },
-        "org": { "ar": "وزارة التعليم — للمعلمين والطلاب", "en": "Ministry of Education — for educators and students" }
+        "title": {
+          "ar": "«الأمن السيبراني: كيف تحمي نفسك رقميًا»",
+          "en": "“Cybersecurity: How to Protect Yourself Digitally”"
+        },
+        "org": {
+          "ar": "وزارة التعليم — للمعلمين والطلاب",
+          "en": "Ministry of Education — for educators and students"
+        }
       },
       {
-        "title": { "ar": "«الوعي والأمن الرقمي»", "en": "“Digital Awareness & Security”" },
-        "org": { "ar": "جمعية صعوبات التعلم — محاضِرة", "en": "Learning Difficulties Association — Instructor" }
+        "title": {
+          "ar": "«الوعي والأمن الرقمي»",
+          "en": "“Digital Awareness & Security”"
+        },
+        "org": {
+          "ar": "جمعية صعوبات التعلم — محاضِرة",
+          "en": "Learning Difficulties Association — Instructor"
+        }
       }
     ]
   }

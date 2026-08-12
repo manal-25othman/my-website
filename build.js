@@ -272,8 +272,8 @@ function build() {
   /* ── صور افتراضية تُولَّد إن لم تُرفع صور حقيقية ── */
   const imgDir = path.join(DIST, 'assets', 'img');
   fs.mkdirSync(imgDir, { recursive: true });
-  if (!fs.existsSync(path.join(imgDir, 'og-cover.png'))) {
-    fs.writeFileSync(path.join(imgDir, 'og-cover.png'), ogCover());
+  if (!hasAsset(SITE.profile.ogImage)) {
+    fs.writeFileSync(path.join(imgDir, path.basename(SITE.profile.ogImage)), ogCover());
   }
   if (!fs.existsSync(path.join(imgDir, 'apple-touch-icon.png'))) {
     fs.writeFileSync(path.join(imgDir, 'apple-touch-icon.png'), appIcon());
@@ -281,8 +281,8 @@ function build() {
   if (!fs.existsSync(path.join(imgDir, 'favicon.svg'))) {
     fs.writeFileSync(path.join(imgDir, 'favicon.svg'), faviconSvg());
   }
-  if (!fs.existsSync(path.join(imgDir, 'profile.png'))) {
-    fs.writeFileSync(path.join(imgDir, 'profile.png'), photoPlaceholder());
+  if (SITE.profile.photoIsPlaceholder) {
+    fs.writeFileSync(path.join(imgDir, path.basename(SITE.profile.photo)), photoPlaceholder());
   }
 
   /* ── sitemap · robots · manifest ── */

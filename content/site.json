@@ -42,12 +42,12 @@
         "Alongside my technical work, I create technical content on AI and emerging technologies, making complex concepts easier to understand and apply."
       ]
     },
-    "photo": "img/profile.png",
+    "photo": "img/profile.jpg",
     "photoAlt": {
       "ar": "منال عثمان — مهندسة ذكاء اصطناعي توليدي",
       "en": "Manal Othman — Generative AI Engineer"
     },
-    "ogImage": "img/og-cover.png",
+    "ogImage": "img/og-cover.jpg",
     "email": "manal.alareqi@gmail.com",
     "location": {
       "ar": "الرياض، المملكة العربية السعودية",
@@ -61,28 +61,40 @@
     "social": [
       {
         "id": "linkedin",
-        "label": { "ar": "LinkedIn", "en": "LinkedIn" },
+        "label": {
+          "ar": "LinkedIn",
+          "en": "LinkedIn"
+        },
         "handle": "[in/username]",
         "url": null,
         "primary": false
       },
       {
         "id": "tiktok",
-        "label": { "ar": "TikTok", "en": "TikTok" },
+        "label": {
+          "ar": "TikTok",
+          "en": "TikTok"
+        },
         "handle": "[@username]",
         "url": null,
         "primary": true
       },
       {
         "id": "github",
-        "label": { "ar": "GitHub", "en": "GitHub" },
+        "label": {
+          "ar": "GitHub",
+          "en": "GitHub"
+        },
         "handle": "manal-25othman",
         "url": "https://github.com/manal-25othman",
         "primary": false
       },
       {
         "id": "email",
-        "label": { "ar": "البريد الإلكتروني", "en": "Email" },
+        "label": {
+          "ar": "البريد الإلكتروني",
+          "en": "Email"
+        },
         "handle": "manal.alareqi@gmail.com",
         "url": "mailto:manal.alareqi@gmail.com",
         "primary": false
@@ -92,8 +104,20 @@
   "url": "https://example.com",
   "basePath": "",
   "languages": [
-    { "code": "ar", "label": "العربية", "dir": "rtl", "locale": "ar_SA", "prefix": "" },
-    { "code": "en", "label": "English", "dir": "ltr", "locale": "en_US", "prefix": "en" }
+    {
+      "code": "ar",
+      "label": "العربية",
+      "dir": "rtl",
+      "locale": "ar_SA",
+      "prefix": ""
+    },
+    {
+      "code": "en",
+      "label": "English",
+      "dir": "ltr",
+      "locale": "en_US",
+      "prefix": "en"
+    }
   ],
   "seo": {
     "homeTitle": {
