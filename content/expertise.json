@@ -1,139 +1,86 @@
 [
   {
-    "id": "artificial-intelligence",
+    "id": "ai",
     "icon": "spark",
     "feature": true,
-    "title": {
-      "ar": "الذكاء الاصطناعي",
-      "en": "Artificial Intelligence"
-    },
+    "title": { "ar": "الذكاء الاصطناعي والأنظمة الذكية", "en": "AI & Intelligent Systems" },
     "intro": {
-      "ar": "المجال الأساسي: استكشاف الأدوات وتقييمها وتوظيفها عملياً.",
-      "en": "The core domain: exploring, evaluating and practically applying the tools."
+      "ar": "المجال الأساسي: بناء حلول توليدية تعمل على معرفة وبيانات حقيقية.",
+      "en": "The core domain: generative solutions grounded in real knowledge and data."
     },
     "items": [
-      {
-        "ar": "الذكاء الاصطناعي التوليدي",
-        "en": "Generative AI"
-      },
-      {
-        "ar": "أدوات الذكاء الاصطناعي",
-        "en": "AI tools"
-      },
-      {
-        "ar": "الإنتاجية بالذكاء الاصطناعي",
-        "en": "AI productivity"
-      },
-      {
-        "ar": "الأتمتة بالذكاء الاصطناعي",
-        "en": "AI automation"
-      },
-      {
-        "ar": "المساعدات الذكية",
-        "en": "AI assistants"
-      },
-      {
-        "ar": "إنتاج المحتوى بالذكاء الاصطناعي",
-        "en": "AI content creation"
-      },
-      {
-        "ar": "أدوات البحث بالذكاء الاصطناعي",
-        "en": "AI research tools"
-      }
+      { "ar": "Generative AI", "en": "Generative AI" },
+      { "ar": "RAG", "en": "RAG" },
+      { "ar": "AI Agents", "en": "AI Agents" },
+      { "ar": "LLM Applications", "en": "LLM Applications" },
+      { "ar": "Prompt Engineering", "en": "Prompt Engineering" },
+      { "ar": "AI Automation", "en": "AI Automation" }
     ]
   },
   {
-    "id": "technology",
+    "id": "engineering",
     "icon": "chip",
-    "title": {
-      "ar": "التقنية",
-      "en": "Technology"
-    },
+    "title": { "ar": "الهندسة والتطوير", "en": "Engineering" },
     "intro": {
-      "ar": "متابعة ما هو جديد، وتبسيطه لمن يحتاج استخدامه.",
-      "en": "Following what is new, and making it usable for the people who need it."
+      "ar": "بناء الواجهات والمنصات التي تُستخدم فعلاً.",
+      "en": "Building the interfaces and platforms that actually get used."
     },
     "items": [
-      {
-        "ar": "التقنيات الناشئة",
-        "en": "Emerging technologies"
-      },
-      {
-        "ar": "التحول الرقمي",
-        "en": "Digital transformation"
-      },
-      {
-        "ar": "المنصات التقنية",
-        "en": "Technology platforms"
-      },
-      {
-        "ar": "الإنتاجية الرقمية",
-        "en": "Digital productivity"
-      },
-      {
-        "ar": "التعليم التقني",
-        "en": "Technology education"
-      }
+      { "ar": "Next.js", "en": "Next.js" },
+      { "ar": "React", "en": "React" },
+      { "ar": "TypeScript", "en": "TypeScript" },
+      { "ar": "JavaScript", "en": "JavaScript" },
+      { "ar": "Tailwind CSS", "en": "Tailwind CSS" },
+      { "ar": "REST APIs", "en": "REST APIs" }
     ]
   },
   {
-    "id": "professional-technology",
-    "icon": "pulse",
-    "title": {
-      "ar": "التقنية في القطاع المهني",
-      "en": "Applied professional technology"
-    },
+    "id": "data",
+    "icon": "shield",
+    "title": { "ar": "البيانات والبنية", "en": "Data & Architecture" },
     "intro": {
-      "ar": "الجانب المؤسسي: الأنظمة والإجراءات والبيانات.",
-      "en": "The organisational side: systems, processes and data."
+      "ar": "طبقة البيانات والعزل والأمان — حيث تُصنع الثقة في منتجات SaaS.",
+      "en": "The data, isolation and security layer — where trust in a SaaS product is built."
     },
     "items": [
-      {
-        "ar": "تقنيات الرعاية الصحية",
-        "en": "Healthcare technology"
-      },
-      {
-        "ar": "المعلوماتية الصحية",
-        "en": "Health informatics"
-      },
-      {
-        "ar": "نظم المعلومات",
-        "en": "Information systems"
-      },
-      {
-        "ar": "الصحة الرقمية",
-        "en": "Digital health"
-      }
+      { "ar": "PostgreSQL", "en": "PostgreSQL" },
+      { "ar": "Prisma", "en": "Prisma" },
+      { "ar": "pgvector", "en": "pgvector" },
+      { "ar": "Database Architecture", "en": "Database Architecture" },
+      { "ar": "Row Level Security", "en": "Row Level Security" },
+      { "ar": "Multi-tenant Architecture", "en": "Multi-tenant Architecture" }
     ]
   },
   {
-    "id": "knowledge",
+    "id": "product",
+    "icon": "layers",
+    "title": { "ar": "المنتج", "en": "Product" },
+    "intro": {
+      "ar": "من الفكرة إلى منتج رقمي قابل للاستخدام والتوسّع.",
+      "en": "From idea to a digital product people can use and scale."
+    },
+    "items": [
+      { "ar": "SaaS", "en": "SaaS" },
+      { "ar": "AI Products", "en": "AI Products" },
+      { "ar": "Digital Products", "en": "Digital Products" },
+      { "ar": "UX/UI", "en": "UX/UI" },
+      { "ar": "Product Development", "en": "Product Development" },
+      { "ar": "Workflow Automation", "en": "Workflow Automation" }
+    ]
+  },
+  {
+    "id": "communication",
     "icon": "share",
-    "title": {
-      "ar": "المحتوى ونقل المعرفة",
-      "en": "Content & knowledge sharing"
-    },
+    "title": { "ar": "التواصل التقني", "en": "Communication" },
     "intro": {
-      "ar": "تحويل التجربة الشخصية إلى معرفة قابلة للتطبيق.",
-      "en": "Turning hands-on experience into knowledge people can apply."
+      "ar": "تبسيط التقنية وتحويلها إلى معرفة قابلة للتطبيق.",
+      "en": "Making technology understandable and applicable."
     },
     "items": [
-      {
-        "ar": "المحتوى التقني",
-        "en": "Technical content"
-      },
-      {
-        "ar": "المحتوى التعليمي",
-        "en": "Educational content"
-      },
-      {
-        "ar": "مراجعات الأدوات",
-        "en": "Tool reviews"
-      },
-      {
-        "ar": "المحتوى القصير",
-        "en": "Short-form video"
-      }
+      { "ar": "Technical Content", "en": "Technical Content" },
+      { "ar": "Technical Writing", "en": "Technical Writing" },
+      { "ar": "AI Education", "en": "AI Education" },
+      { "ar": "Technology Communication", "en": "Technology Communication" }
     ]
   }
 ]

@@ -33,24 +33,6 @@ export function button({ label, url, variant = 'solid', size = '', iconName, ext
   </a>`;
 }
 
-/** تقييم بالنجوم — يعرض «لم تُقيَّم بعد» بدل اختراع رقم */
-export function rating(value, ui, lang) {
-  if (value === null || value === undefined) {
-    return `<span class="rating rating--none">${esc(L(ui.tools.notRated, lang))}</span>`;
-  }
-  const v = Math.max(0, Math.min(5, Number(value)));
-  const full = Math.floor(v);
-  const half = v - full >= 0.5;
-  const stars = Array.from({ length: 5 }, (_, i) => {
-    if (i < full) return `<span class="star is-on">${icon('star', { size: 15 })}</span>`;
-    if (i === full && half) return `<span class="star is-half">${icon('star', { size: 15 })}</span>`;
-    return `<span class="star">${icon('starOutline', { size: 15 })}</span>`;
-  }).join('');
-  return `<span class="rating" role="img" aria-label="${attr(v)} / 5">
-    <span class="rating__stars" aria-hidden="true">${stars}</span>
-    <span class="rating__value">${esc(v.toFixed(1))}</span></span>`;
-}
-
 /** الصورة الشخصية — تعرض بديلاً أنيقاً إن لم تُرفع صورة بعد */
 export function portrait(site, lang, { size = 'lg', className = '' } = {}) {
   const p = site.profile;
@@ -66,14 +48,27 @@ export function portrait(site, lang, { size = 'lg', className = '' } = {}) {
   </figure>`;
 }
 
-/** بطاقة إحصائية — «—» عندما لا يوجد رقم حقيقي */
+/** بطاقة إحصائية — تقبل رقماً (يُعدّ تصاعدياً) أو نصاً، و«—» عند غياب القيمة */
 export function statCard(stat, lang, computed) {
-  const value = stat.auto && computed[stat.auto] ? computed[stat.auto] : stat.value;
-  const hasValue = value !== null && value !== undefined && value !== '';
+  const auto = stat.auto && computed[stat.auto] ? computed[stat.auto] : null;
+  const numeric = auto !== null ? auto : stat.value;
+  const text = L(stat.text, lang);
+
+  let inner;
+  let countAttr = '';
+  if (text) {
+    inner = `<span class="stat__text" dir="auto">${esc(text)}</span>`;
+  } else if (numeric !== null && numeric !== undefined && numeric !== '') {
+    countAttr = ` data-count="${attr(numeric)}"`;
+    inner = `<span class="stat__num">${esc(numeric)}</span>${
+      stat.suffix ? `<span class="stat__suffix">${esc(stat.suffix)}</span>` : ''
+    }`;
+  } else {
+    inner = DASH;
+  }
+
   return `<div class="stat">
-    <span class="stat__value"${hasValue ? ` data-count="${attr(value)}"` : ''}>
-      ${hasValue ? `<span class="stat__num">${esc(value)}</span>${stat.suffix ? `<span class="stat__suffix">${esc(stat.suffix)}</span>` : ''}` : DASH}
-    </span>
+    <span class="stat__value"${countAttr}>${inner}</span>
     <span class="stat__label">${esc(L(stat.label, lang))}</span>
   </div>`;
 }
@@ -86,67 +81,12 @@ export function chip(label, { url = null, small = false } = {}) {
     : `<span class="${cls}">${esc(label)}</span>`;
 }
 
-/** بطاقة مقال */
-export function articleCard(article, ui, lang, { featured = false } = {}) {
-  const url = href(`articles/${article.slug}/`, lang);
-  return `<article class="acard${featured ? ' acard--feature' : ''}">
-    <a class="acard__media" href="${url}" tabindex="-1" aria-hidden="true">
-      ${
-        article.cover
-          ? `<img src="${asset(article.cover)}" alt="" loading="lazy" decoding="async" width="800" height="450">`
-          : `<span class="acard__pattern" data-seed="${attr(article.slug)}"></span>`
-      }
-    </a>
-    <div class="acard__body">
-      <div class="acard__meta">
-        <span class="acard__cat">${esc(article.category)}</span>
-        <span class="dot" aria-hidden="true"></span>
-        <time datetime="${attr(article.date)}">${esc(article.dateLabel)}</time>
-        <span class="dot" aria-hidden="true"></span>
-        <span>${esc(readingLabel(article.readingTime, lang))}</span>
-      </div>
-      <h3 class="acard__title"><a href="${url}">${esc(article.title)}</a></h3>
-      <p class="acard__desc">${esc(article.description)}</p>
-      ${article.placeholder ? placeholderBadge(ui, lang) : ''}
-    </div>
-  </article>`;
-}
-
-/** بطاقة أداة ذكاء اصطناعي */
-export function toolCard(tool, ui, lang) {
-  const url = href(`ai-tools/${tool.slug}/`, lang);
-  const name = L(tool.name, lang);
-  const initial = (String(name).replace(/[[\]]/g, '').trim()[0] || '·').toUpperCase();
-  return `<article class="tcard" data-category="${attr(tool.category)}"
-      data-search="${attr([name, L(tool.summary, lang), L(tool.bestFor, lang), tool.categoryLabel].join(' ').toLowerCase())}">
-    <div class="tcard__top">
-      <span class="tcard__logo">${
-        tool.logo
-          ? `<img src="${asset('img/tools/' + tool.logo)}" alt="" loading="lazy" decoding="async" width="44" height="44">`
-          : esc(initial)
-      }</span>
-      <div class="tcard__id">
-        <h3 class="tcard__name"><a href="${url}">${esc(name)}</a></h3>
-        <span class="tcard__cat">${esc(tool.categoryLabel)}</span>
-      </div>
-    </div>
-    <p class="tcard__desc">${esc(L(tool.summary, lang))}</p>
-    <dl class="tcard__facts">
-      <div><dt>${esc(L(ui.tools.bestFor, lang))}</dt><dd>${esc(L(tool.bestFor, lang))}</dd></div>
-      <div><dt>${esc(L(ui.tools.pricing, lang))}</dt><dd>${esc(L(tool.pricing, lang) || DASH)}</dd></div>
-    </dl>
-    <div class="tcard__foot">
-      ${rating(tool.rating, ui, lang)}
-      <a class="tcard__more" href="${url}">${esc(L(ui.common.details, lang))}${icon('chevron', { size: 15 })}</a>
-    </div>
-    ${tool.placeholder ? placeholderBadge(ui, lang) : ''}
-  </article>`;
-}
-
 /** بطاقة مشروع */
 export function projectCard(project, ui, lang) {
   const url = href(`projects/${project.slug}/`, lang);
   const name = L(project.name, lang);
+  const cats = project.categories || [];
+
   return `<article class="pcard">
     <a class="pcard__media" href="${url}" tabindex="-1" aria-hidden="true">
       ${
@@ -156,11 +96,13 @@ export function projectCard(project, ui, lang) {
       }
     </a>
     <div class="pcard__body">
-      <div class="pcard__meta"><span>${esc(project.year)}</span><span class="dot" aria-hidden="true"></span><span>${esc(L(project.role, lang))}</span></div>
+      <div class="pcard__meta">
+        ${cats.slice(0, 2).map((c) => `<span class="pcard__cat">${esc(c)}</span>`).join('<span class="dot" aria-hidden="true"></span>')}
+      </div>
       <h3 class="pcard__title"><a href="${url}">${esc(name)}</a></h3>
-      <p class="pcard__desc">${esc(L(project.summary, lang))}</p>
+      <p class="pcard__desc">${esc(L(project.tagline, lang) || L(project.summary, lang))}</p>
       <div class="pcard__stack">${(project.stack || []).slice(0, 4).map((s) => chip(L(s, lang), { small: true })).join('')}</div>
-      ${project.placeholder ? placeholderBadge(ui, lang) : ''}
+      <a class="pcard__more" href="${url}">${esc(L(ui.common.caseStudy, lang))}${icon('chevron', { size: 15 })}</a>
     </div>
   </article>`;
 }
@@ -177,21 +119,6 @@ export function shareRow(ui, lang, { url, title }) {
     <button class="share__btn" type="button" data-copy="${attr(url)}"
       data-copied="${attr(L(ui.common.copied, lang))}" aria-label="${attr(L(ui.common.copyLink, lang))}">${icon('copy', { size: 16 })}</button>
   </div>`;
-}
-
-/** بطاقة الكاتب أسفل المقال */
-export function authorCard(site, ui, lang) {
-  const p = site.profile;
-  return `<aside class="author">
-    ${portrait(site, lang, { size: 'sm', className: 'author__photo' })}
-    <div class="author__body">
-      <p class="author__eyebrow">${esc(L(ui.articles.author, lang))}</p>
-      <p class="author__name">${esc(L(p.name, lang))}</p>
-      <p class="author__role">${esc(L(p.professionalTitle, lang))}</p>
-      <p class="author__bio">${esc(L(p.shortBio, lang))}</p>
-      <a class="author__link" href="${href('about/', lang)}">${esc(L(ui.about.title, lang))}${icon('chevron', { size: 14 })}</a>
-    </div>
-  </aside>`;
 }
 
 /** ملاحظة عندما لا يوجد محتوى بعد */

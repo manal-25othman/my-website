@@ -24,8 +24,7 @@ import { fileURLToPath } from 'node:url';
 import UI from './content/ui.js';
 
 import { setBasePath, href, asset, absolute, L, formatDate, isPlaceholderText } from './src/lib/html.js';
-import { parseFrontmatter, renderMarkdown, readingTime, plainExcerpt } from './src/lib/markdown.js';
-import { ogCover, appIcon, photoPlaceholder, bookPlaceholder } from './src/lib/png.js';
+import { ogCover, appIcon, photoPlaceholder } from './src/lib/png.js';
 import { layout } from './src/templates/layout.js';
 import * as P from './src/templates/pages.js';
 
@@ -42,9 +41,8 @@ const SITE = readJson('site.json');
 const ABOUT = readJson('about.json');
 const EXPERIENCE = readJson('experience.json');
 const EXPERTISE = readJson('expertise.json');
-const BOOK = readJson('book.json');
-const { categories: TOOL_CATEGORIES, tools: TOOLS } = readJson('ai-tools.json');
 const PROJECTS = readJson('projects.json');
+const PUBLICATIONS = readJson('publications.json');
 const TIKTOK = readJson('tiktok.json');
 const LEGAL = readJson('legal.json');
 const DIST = path.join(ROOT, 'dist');
@@ -87,64 +85,6 @@ const LANGS = SITE.languages.map((l) => l.code);
  * وتُعلَّم بوضوح كعناصر نائبة بدل أن تبدو نهائية. */
 const hasAsset = (rel) => rel && fs.existsSync(path.join(ROOT, 'src', 'assets', rel));
 SITE.profile.photoIsPlaceholder = !hasAsset(SITE.profile.photo);
-BOOK.coverIsPlaceholder = !hasAsset(BOOK.cover);
-
-/* ═══════════════════════════════════════════════════════════════════
- *  تحميل المقالات  /  Load articles
- *  <slug>.md  = العربية   ·   <slug>.en.md = الإنجليزية (اختيارية)
- * ═══════════════════════════════════════════════════════════════════ */
-function loadArticles() {
-  const dir = path.join(ROOT, 'content', 'articles');
-  if (!fs.existsSync(dir)) return {};
-
-  const files = fs.readdirSync(dir).filter((f) => f.endsWith('.md'));
-  const bySlug = new Map();
-
-  for (const file of files) {
-    const isEn = file.endsWith('.en.md');
-    const slug = file.replace(/\.en\.md$/, '').replace(/\.md$/, '');
-    const raw = fs.readFileSync(path.join(dir, file), 'utf8');
-    const { data, body } = parseFrontmatter(raw);
-    const { html, toc, words } = renderMarkdown(body);
-
-    const entry = {
-      slug,
-      title: data.title || slug,
-      description: data.description || plainExcerpt(body),
-      date: data.date ? String(data.date) : null,
-      category: data.category || '—',
-      tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
-      cover: data.cover || null,
-      featured: Boolean(data.featured),
-      placeholder: Boolean(data.placeholder),
-      updated: data.updated ? String(data.updated) : null,
-      html,
-      toc,
-      words,
-      readingTime: readingTime(words),
-    };
-
-    if (!bySlug.has(slug)) bySlug.set(slug, {});
-    bySlug.get(slug)[isEn ? 'en' : 'ar'] = entry;
-  }
-
-  /* لكل لغة: استخدم النسخة الخاصة بها، وإلا ارجع للعربية مع تنبيه */
-  const out = {};
-  for (const lang of LANGS) {
-    out[lang] = [...bySlug.values()]
-      .map((variants) => {
-        const own = variants[lang];
-        const base = own || variants.ar || variants.en;
-        if (!base) return null;
-        const article = { ...base, fallbackLang: own ? null : (variants.ar ? 'ar' : 'en') };
-        article.dateLabel = formatDate(article.date, lang);
-        return article;
-      })
-      .filter(Boolean)
-      .sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
-  }
-  return out;
-}
 
 /* ═══════════════════════════════════════════════════════════════════
  *  تجهيز البيانات لكل لغة  /  Per-language data bundle
@@ -154,26 +94,10 @@ function tiktokVideoId(url) {
   return m ? m[1] : null;
 }
 
-function buildData(lang, articlesByLang) {
-  const catLabel = (id) => {
-    const c = TOOL_CATEGORIES.find((x) => x.id === id);
-    return c ? L(c.label, lang) : id;
-  };
-
-  const tools = TOOLS.map((t) => ({ ...t, categoryLabel: catLabel(t.category) }));
-  const articles = articlesByLang[lang] || [];
-
-  /* أرقام تُحسب من المحتوى الحقيقي فقط (نتجاهل النماذج) */
+function buildData(lang) {
   const real = (arr) => arr.filter((x) => !x.placeholder).length;
   const computed = {
-    articles: real(articles) || null,
-    tools: real(tools) || null,
     projects: real(PROJECTS) || null,
-  };
-
-  const tiktok = {
-    ...TIKTOK,
-    videos: (TIKTOK.videos || []).map((v) => ({ ...v, videoId: tiktokVideoId(v.url) })),
   };
 
   return {
@@ -183,12 +107,9 @@ function buildData(lang, articlesByLang) {
     about: ABOUT,
     experience: EXPERIENCE,
     expertise: EXPERTISE,
-    book: BOOK,
-    tools,
-    toolCategories: TOOL_CATEGORIES,
     projects: PROJECTS,
-    tiktok,
-    articles,
+    publications: PUBLICATIONS,
+    tiktok: TIKTOK,
     legal: LEGAL,
     computed,
     formatDate,
@@ -201,13 +122,11 @@ function buildData(lang, articlesByLang) {
 function pagesFor(d) {
   const list = [
     P.homePage(d),
+    P.projectsPage(d),
     P.aboutPage(d),
     P.experiencePage(d),
     P.expertisePage(d),
-    P.articlesPage(d),
-    P.toolsPage(d),
-    P.projectsPage(d),
-    P.tiktokPage(d),
+    P.contentPage(d),
     P.mediaKitPage(d),
     P.contactPage(d),
     P.legalPage(d, LEGAL.privacy, 'privacy/', 'privacy'),
@@ -215,9 +134,6 @@ function pagesFor(d) {
     P.notFoundPage(d),
   ];
 
-  if (d.book && d.book.enabled) list.push(P.bookPage(d));
-  for (const a of d.articles) list.push(P.articlePage(d, a));
-  for (const t of d.tools) list.push(P.toolPage(d, t));
   for (const pr of d.projects) list.push(P.projectPage(d, pr));
 
   return list;
@@ -269,14 +185,11 @@ function placeholderReport() {
   };
 
   walk(SITE.profile, 'site.profile');
-  walk(ABOUT.stats, 'about.stats');
-  walk(ABOUT.education, 'about.education');
-  walk(ABOUT.certifications, 'about.certifications');
-  walk(ABOUT.journey, 'about.journey');
+  walk(ABOUT, 'about');
   walk(EXPERIENCE, 'experience');
-  walk(BOOK, 'book');
-  walk(TOOLS, 'ai-tools');
+  walk(EXPERTISE, 'expertise');
   walk(PROJECTS, 'projects');
+  walk(PUBLICATIONS, 'publications');
   walk(TIKTOK, 'tiktok');
   return found;
 }
@@ -286,12 +199,11 @@ function placeholderReport() {
  * ═══════════════════════════════════════════════════════════════════ */
 function build() {
   const started = Date.now();
-  const articlesByLang = loadArticles();
 
   const report = placeholderReport();
 
   if (CHECK_ONLY) {
-    printReport(report, articlesByLang);
+    printReport(report);
     return;
   }
 
@@ -302,7 +214,7 @@ function build() {
   let count = 0;
 
   for (const lang of LANGS) {
-    const d = buildData(lang, articlesByLang);
+    const d = buildData(lang);
     for (const page of pagesFor(d)) {
       const html = layout({ ...d, ...page });
       /* مسار الملف داخل dist مستقل عن basePath — الأخير يؤثر على الروابط فقط */
@@ -342,9 +254,6 @@ function build() {
   if (!fs.existsSync(path.join(imgDir, 'profile.png'))) {
     fs.writeFileSync(path.join(imgDir, 'profile.png'), photoPlaceholder());
   }
-  if (!fs.existsSync(path.join(imgDir, 'book-cover.png'))) {
-    fs.writeFileSync(path.join(imgDir, 'book-cover.png'), bookPlaceholder());
-  }
 
   /* ── sitemap · robots · manifest ── */
   write('sitemap.xml', sitemap(urls));
@@ -352,7 +261,7 @@ function build() {
   write('assets/site.webmanifest', manifest());
   write('.nojekyll', ''); // يمنع GitHub Pages من تجاهل الملفات التي تبدأ بـ _
 
-  printReport(report, articlesByLang);
+  printReport(report);
   console.log(`\n✅  ${count} ${'صفحة'} — ${((Date.now() - started) / 1000).toFixed(2)}s → dist/`);
   console.log(`    ${SITE.url}${SITE.basePath || ''}`);
 }
@@ -422,12 +331,11 @@ function faviconSvg() {
 }
 
 /* ── التقرير ── */
-function printReport(report, articlesByLang) {
-  const placeholderArticles = (articlesByLang.ar || []).filter((a) => a.placeholder).length;
+function printReport(report) {
   console.log('\n──────────────────────────────────────────────────────────');
   console.log('  تقرير العناصر النائبة  /  Placeholder report');
   console.log('──────────────────────────────────────────────────────────');
-  if (!report.length && !placeholderArticles) {
+  if (!report.length) {
     console.log('  ✅  لا توجد عناصر نائبة — الموقع جاهز للنشر.');
   } else {
     const groups = new Map();
@@ -439,11 +347,7 @@ function printReport(report, articlesByLang) {
     for (const [group, n] of groups) {
       console.log(`  ⚠️  ${String(group).padEnd(16)} ${n} عنصر يحتاج استبدالاً`);
     }
-    if (placeholderArticles) {
-      console.log(`  ⚠️  ${'articles'.padEnd(16)} ${placeholderArticles} مقال نموذجي (placeholder: true)`);
-    }
-    console.log('\n  الصفحات النموذجية لا تُفهرَس في محركات البحث ولا تدخل في sitemap.');
-    console.log('  راجع ملفات content/ واستبدل كل قيمة بين [ ] بمحتواك الحقيقي.');
+    console.log('\n  راجع ملفات content/ واستبدل كل قيمة بين [ ] بمحتواك الحقيقي.');
   }
   console.log('──────────────────────────────────────────────────────────');
 }

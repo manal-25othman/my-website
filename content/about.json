@@ -1,181 +1,232 @@
 {
   "stats": [
     {
-      "label": {
-        "ar": "خبرة مهنية",
-        "en": "Years of experience"
-      },
-      "value": null,
-      "suffix": "+"
+      "label": { "ar": "جمهور المحتوى التقني", "en": "Technical Content Audience" },
+      "text": { "ar": "20K+", "en": "20K+" }
     },
     {
-      "label": {
-        "ar": "مقالات",
-        "en": "Articles"
-      },
-      "value": null,
-      "auto": "articles"
+      "label": { "ar": "التخصص الأساسي", "en": "Core Expertise" },
+      "text": { "ar": "ذكاء اصطناعي توليدي", "en": "Generative AI" }
     },
     {
-      "label": {
-        "ar": "أدوات ذكاء اصطناعي",
-        "en": "AI tools reviewed"
-      },
-      "value": null,
-      "auto": "tools"
+      "label": { "ar": "مشاريع عملية", "en": "Hands-on Projects" },
+      "text": { "ar": "منتجات AI", "en": "AI Products" }
     },
     {
-      "label": {
-        "ar": "مشاريع",
-        "en": "Projects"
-      },
-      "value": null,
-      "auto": "projects"
+      "label": { "ar": "سنوات الخبرة", "en": "Years of Experience" },
+      "text": { "ar": "+6", "en": "6+" }
     }
   ],
+
   "aboutParagraphs": {
     "ar": [
-      "اهتمامي الأساسي هو الذكاء الاصطناعي والتقنيات الحديثة: ما الذي ظهر جديداً، وما الذي يستحق فعلاً أن يدخل في يومك المهني. لا أكتفي بقراءة صفحة الأداة — أجرّبها على مهمة حقيقية، ثم أحكم.",
-      "خلفيتي العملية تمتد إلى التحول الرقمي وتحسين الإجراءات داخل المؤسسات، وهو ما أعطاني زاوية نظر مختلفة تجاه الأدوات: الأداة الجيدة ليست الأقوى تقنياً، بل التي يستطيع الفريق استخدامها فعلاً دون مقاومة.",
-      "من هنا جاءت رسالة المحتوى الذي أنشره: تبسيط التقنية لمن ليست التقنية تخصصهم، وتحويل التجربة الشخصية إلى خطوات قابلة للتطبيق — سواء في مقال مكتوب أو في مقطع قصير."
+      "أنا منال عثمان، مهندسة ذكاء اصطناعي توليدي بخلفية أكاديمية في علوم الحاسب، وأدرس حاليًا إدارة الأعمال.",
+      "أعمل في تقاطع الذكاء الاصطناعي والمنتجات الرقمية، وأهتم بتحويل تقنيات الذكاء الاصطناعي من مجرد إمكانيات تقنية إلى حلول عملية يمكن استخدامها داخل المنتجات والعمليات اليومية.",
+      "عملت على مشاريع تجمع بين Generative AI و RAG و AI Agents وتطوير الويب وبناء منتجات SaaS، مع اهتمام خاص بالهندسة العملية للمنتجات، وتجربة المستخدم، وأمن البيانات.",
+      "إلى جانب عملي التقني، أصنع محتوى تقنيًا أشارك من خلاله المعرفة حول الذكاء الاصطناعي والتقنيات الحديثة، وأسعى إلى تبسيط المفاهيم التقنية وتحويلها إلى معرفة قابلة للتطبيق."
     ],
     "en": [
-      "My primary interest is artificial intelligence and emerging technology: what is genuinely new, and what actually deserves a place in your working day. I do not stop at the product page — I test a tool on a real task, then form a view.",
-      "My practical background extends into digital transformation and process improvement inside organisations, which gave me a different lens on tools: the best tool is not the technically strongest one, but the one a team will actually use without resistance.",
-      "That is where the mission behind my content comes from: making technology understandable for people whose field is not technology, and turning personal experiments into steps someone can apply — whether in a written article or a short video."
+      "I'm Manal Othman, a Generative AI Engineer with an academic background in Computer Science and ongoing studies in Business Administration.",
+      "I work at the intersection of artificial intelligence and digital products, focusing on turning emerging AI capabilities into practical solutions that can be integrated into real products and workflows.",
+      "My work includes projects involving Generative AI, RAG, AI Agents, SaaS products, web development, and data security, with a strong interest in practical product engineering and user experience.",
+      "Alongside my technical work, I create technical content focused on AI and emerging technologies, making complex concepts easier to understand and apply."
     ]
   },
+
   "mission": {
-    "ar": "أن يخرج من يقرأ أو يشاهد محتواي بشيء واحد على الأقل يستطيع تطبيقه في نفس اليوم.",
-    "en": "That anyone who reads or watches my content leaves with at least one thing they can apply the same day."
+    "ar": "لا أنظر إلى الذكاء الاصطناعي كتقنية منفصلة عن المنتج — بل كأداة تُبنى حول مشكلة حقيقية وسير عمل حقيقي.",
+    "en": "I don't treat AI as a technology separate from the product — but as a tool built around a real problem and a real workflow."
   },
-  "interests": [
+
+  "whatIDo": [
     {
       "icon": "spark",
-      "label": {
-        "ar": "الذكاء الاصطناعي التوليدي",
-        "en": "Generative AI"
-      },
+      "label": { "ar": "الذكاء الاصطناعي التوليدي", "en": "Generative AI" },
       "note": {
-        "ar": "التطبيق العملي في المهام اليومية",
-        "en": "Practical use in everyday tasks"
+        "ar": "أحوّل قدرات النماذج الذكية إلى تطبيقات وحلول عملية مبنية حول حالات استخدام واقعية.",
+        "en": "Generative AI solutions designed around real use cases, workflows, and user needs."
       }
     },
     {
-      "icon": "wand",
-      "label": {
-        "ar": "أدوات الذكاء الاصطناعي",
-        "en": "AI tools"
-      },
+      "icon": "layers",
+      "label": { "ar": "منتجات الذكاء الاصطناعي", "en": "AI Products" },
       "note": {
-        "ar": "تجربة ومقارنة ومراجعة صريحة",
-        "en": "Testing, comparing, honest reviews"
-      }
-    },
-    {
-      "icon": "chip",
-      "label": {
-        "ar": "التقنيات الناشئة",
-        "en": "Emerging technologies"
-      },
-      "note": {
-        "ar": "متابعة ما يستحق الانتباه فعلاً",
-        "en": "Tracking what genuinely matters"
+        "ar": "أشارك في تحويل الأفكار إلى منتجات رقمية قابلة للاستخدام — من التصور والبنية إلى التنفيذ والتحسين.",
+        "en": "From product concept and architecture to implementation and refinement."
       }
     },
     {
       "icon": "flow",
-      "label": {
-        "ar": "الأتمتة والإنتاجية",
-        "en": "Automation & productivity"
-      },
+      "label": { "ar": "RAG و AI Agents", "en": "RAG & AI Agents" },
       "note": {
-        "ar": "اختصار الخطوات المتكررة",
-        "en": "Cutting repetitive steps"
+        "ar": "أبني حلولًا تستفيد من المعرفة والبيانات الخاصة بالمنتج أو المؤسسة.",
+        "en": "RAG-based knowledge systems and AI-powered workflows designed for practical use."
       }
     },
     {
-      "icon": "pulse",
-      "label": {
-        "ar": "التحول الرقمي",
-        "en": "Digital transformation"
-      },
+      "icon": "chip",
+      "label": { "ar": "المنتجات الرقمية", "en": "Digital Products" },
       "note": {
-        "ar": "من الإجراء الورقي إلى منصة تُستخدم",
-        "en": "From paper process to a used platform"
-      }
-    },
-    {
-      "icon": "book",
-      "label": {
-        "ar": "تبسيط التقنية",
-        "en": "Explaining technology"
-      },
-      "note": {
-        "ar": "محتوى لغير المتخصصين",
-        "en": "Content for non-specialists"
+        "ar": "خبرة في بناء المنصات والمواقع والمنتجات الرقمية بمختلف أنواعها.",
+        "en": "Web platforms, SaaS products, content systems, and digital experiences."
       }
     }
   ],
+
+  "whyMe": {
+    "lead": {
+      "ar": [
+        "لأنني لا أنظر إلى الذكاء الاصطناعي كتقنية منفصلة عن المنتج.",
+        "أجمع بين الخلفية التقنية، وفهم المنتجات الرقمية، والذكاء الاصطناعي، والقدرة على تبسيط التقنية والتواصل حولها. أستطيع الانتقال من فهم المشكلة، إلى التفكير في الحل، ثم المشاركة في بناء منتج أو نظام رقمي يستخدم التقنية بطريقة عملية."
+      ],
+      "en": [
+        "Because I don't treat AI as a technology separate from the product.",
+        "I combine a technical foundation, an understanding of digital products, applied AI, and the ability to explain technology clearly. I can move from understanding the problem, to shaping the solution, to helping build a product or system that uses technology in a practical way."
+      ]
+    },
+    "cards": [
+      {
+        "icon": "chip",
+        "title": { "ar": "أساس تقني", "en": "Technical Foundation" },
+        "note": {
+          "ar": "خلفية في علوم الحاسب وست سنوات من العمل التقني وتطوير المنتجات الرقمية.",
+          "en": "A Computer Science background and six years of hands-on technical work and digital product development."
+        }
+      },
+      {
+        "icon": "spark",
+        "title": { "ar": "تفكير منتَجي في الذكاء الاصطناعي", "en": "AI Product Thinking" },
+        "note": {
+          "ar": "اهتمام بتطبيق الذكاء الاصطناعي لحل مشكلات حقيقية، لا لعرض التقنية لذاتها.",
+          "en": "Applying AI to solve real problems — not to showcase the technology for its own sake."
+        }
+      },
+      {
+        "icon": "flow",
+        "title": { "ar": "حل المشكلات", "en": "Problem Solving" },
+        "note": {
+          "ar": "القدرة على تحليل المشكلات التقنية والتشغيلية وتحويلها إلى حلول قابلة للتنفيذ.",
+          "en": "Analysing technical and operational problems and turning them into solutions that ship."
+        }
+      },
+      {
+        "icon": "share",
+        "title": { "ar": "التواصل التقني", "en": "Technical Communication" },
+        "note": {
+          "ar": "تبسيط التقنية وصناعة محتوى تعليمي وتقني حولها لجمهور واسع.",
+          "en": "Making technology understandable, and building educational technical content around it."
+        }
+      }
+    ]
+  },
+
+  "career": {
+    "title": { "ar": "إلى أين أتجه", "en": "Where I'm Heading" },
+    "body": {
+      "ar": "أركز على بناء مسار مهني يجمع بين الذكاء الاصطناعي التوليدي، والمنتجات الرقمية، والتقنية التطبيقية — والعمل على حلول تستخدم الذكاء الاصطناعي بطريقة عملية وقابلة للتوسع.",
+      "en": "I'm building a career at the intersection of Generative AI, digital products, and applied technology — focusing on practical AI solutions that create measurable value and scale with real-world needs."
+    }
+  },
+
   "education": [
     {
-      "degree": {
-        "ar": "[الدرجة العلمية والتخصص]",
-        "en": "[Degree and field]"
-      },
+      "degree": { "ar": "بكالوريوس علوم الحاسب", "en": "Bachelor of Computer Science" },
       "institution": {
-        "ar": "[اسم الجامعة]",
-        "en": "[University name]"
+        "ar": "جامعة الإمام محمد بن سعود الإسلامية",
+        "en": "Imam Muhammad Ibn Saud Islamic University"
       },
-      "period": "[——–——]",
+      "period": "—",
       "note": {
-        "ar": "",
-        "en": ""
-      },
-      "placeholder": true
-    }
-  ],
-  "certifications": [
-    {
-      "name": {
-        "ar": "[اسم الشهادة]",
-        "en": "[Certification name]"
-      },
-      "issuer": {
-        "ar": "[الجهة المانحة]",
-        "en": "[Issuing organisation]"
-      },
-      "year": "[——]",
-      "credentialUrl": null,
-      "placeholder": true
-    }
-  ],
-  "journey": [
-    {
-      "year": "[——]",
-      "type": "milestone",
-      "title": {
-        "ar": "[محطة مهنية]",
-        "en": "[Professional milestone]"
-      },
-      "description": {
-        "ar": "[وصف مختصر للمحطة أو التحول في المسار.]",
-        "en": "[A short description of this milestone or turning point.]"
-      },
-      "placeholder": true
+        "ar": "خلفية أكاديمية أسست معرفتي التقنية ومهاراتي في تطوير الأنظمة والمنتجات الرقمية.",
+        "en": "The academic foundation behind my technical knowledge and my work building systems and digital products."
+      }
     },
     {
-      "year": "[——]",
-      "type": "content",
-      "title": {
-        "ar": "[بداية نشر المحتوى التقني]",
-        "en": "[Started publishing technology content]"
-      },
-      "description": {
-        "ar": "[متى ولماذا بدأت في مشاركة المحتوى.]",
-        "en": "[When and why you started sharing content.]"
-      },
-      "placeholder": true
+      "degree": { "ar": "بكالوريوس إدارة الأعمال", "en": "Bachelor of Business Administration" },
+      "institution": { "ar": "جامعة ميدأوشن", "en": "Midocean University" },
+      "period": { "ar": "قيد الدراسة — متوقع 2027", "en": "In progress — expected 2027" },
+      "note": {
+        "ar": "لتوسيع فهمي للجانب التجاري والإداري للمنتجات والمشاريع التقنية.",
+        "en": "Broadening my understanding of the business and management side of technical products."
+      }
     }
-  ]
+  ],
+
+  "certifications": [
+    {
+      "name": { "ar": "AI Practitioner", "en": "AI Practitioner" },
+      "issuer": {
+        "ar": "برنامج بالشراكة مع أمازون — جامعة حائل (25 ساعة تدريبية)",
+        "en": "Amazon-affiliated program — University of Hail (25 training hours)"
+      },
+      "year": "—",
+      "credentialUrl": null
+    },
+    {
+      "name": { "ar": "تدريب المدربين (TOT)", "en": "Train the Trainer (TOT)" },
+      "issuer": {
+        "ar": "تنفيذ التدريب وتصميم المناهج (45 ساعة)",
+        "en": "Training Delivery & Curriculum Design (45 hrs)"
+      },
+      "year": "—",
+      "credentialUrl": null
+    },
+    {
+      "name": { "ar": "إدارة المشاريع الاحترافية", "en": "Professional Project Management" },
+      "issuer": {
+        "ar": "تدريب موائم لمنهجية PMP (35 ساعة)",
+        "en": "PMP-aligned training (35 hrs)"
+      },
+      "year": "—",
+      "credentialUrl": null
+    },
+    {
+      "name": { "ar": "أساسيات البرمجة بلغة Python", "en": "Principles of Programming in Python" },
+      "issuer": { "ar": "—", "en": "—" },
+      "year": "—",
+      "credentialUrl": null
+    },
+    {
+      "name": { "ar": "دورة نظام Odoo الاحترافية", "en": "Odoo System Professional Course" },
+      "issuer": { "ar": "—", "en": "—" },
+      "year": "—",
+      "credentialUrl": null
+    },
+    {
+      "name": { "ar": "Power BI", "en": "Power BI" },
+      "issuer": { "ar": "قيد الإنجاز", "en": "In progress" },
+      "year": "—",
+      "credentialUrl": null
+    }
+  ],
+
+  "contributions": {
+    "title": { "ar": "محاضرات ومشاركات", "en": "Talks & Contributions" },
+    "lead": {
+      "ar": "مشاركات تدريبية وتوعوية قدّمتها لجهات تعليمية ومجتمعية.",
+      "en": "Training and awareness sessions delivered for educational and community organisations."
+    },
+    "items": [
+      {
+        "title": { "ar": "«الضحية» — التوعية بالسلامة الرقمية", "en": "“The Victim” — Digital safety awareness" },
+        "org": { "ar": "اليوم السيبراني للفتيات — محاضِرة", "en": "Girls Cyber Day — Instructor" }
+      },
+      {
+        "title": { "ar": "«التوعية الأمنية» — ممارسات الإنترنت الآمن", "en": "“Security Awareness” — Safe online practices" },
+        "org": { "ar": "اليوم السيبراني العربي — محاضِرة", "en": "Arab Cyber Day — Instructor" }
+      },
+      {
+        "title": { "ar": "«الدمج بين التعليم التقليدي والذكاء الاصطناعي»", "en": "“Combining Traditional Education & Artificial Intelligence”" },
+        "org": { "ar": "وزارة التعليم — محاضِرة", "en": "Ministry of Education — Instructor" }
+      },
+      {
+        "title": { "ar": "«الأمن السيبراني: كيف تحمي نفسك رقميًا»", "en": "“Cybersecurity: How to Protect Yourself Digitally”" },
+        "org": { "ar": "وزارة التعليم — للمعلمين والطلاب", "en": "Ministry of Education — for educators and students" }
+      },
+      {
+        "title": { "ar": "«الوعي والأمن الرقمي»", "en": "“Digital Awareness & Security”" },
+        "org": { "ar": "جمعية صعوبات التعلم — محاضِرة", "en": "Learning Difficulties Association — Instructor" }
+      }
+    ]
+  }
 }

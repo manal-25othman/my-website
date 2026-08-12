@@ -1,94 +1,146 @@
 [
   {
-    "organization": {
-      "ar": "[اسم الجهة]",
-      "en": "[Organisation name]"
-    },
-    "role": {
-      "ar": "[المسمى الوظيفي]",
-      "en": "[Job title]"
-    },
-    "startDate": null,
+    "organization": { "ar": "مشروع مستقل — نموذج دعم أكاديمي جامعي", "en": "Independent Project — University Academic Support Prototype" },
+    "role": { "ar": "مطوّرة ذكاء اصطناعي", "en": "AI Developer" },
+    "startDate": "2025",
     "endDate": null,
-    "period": {
-      "ar": "[—— — حتى الآن]",
-      "en": "[—— — Present]"
-    },
+    "period": { "ar": "2025 — حتى الآن", "en": "2025 — Present" },
     "current": true,
-    "location": {
-      "ar": "[المدينة، الدولة]",
-      "en": "[City, Country]"
-    },
+    "location": { "ar": "الرياض", "en": "Riyadh" },
     "summary": {
-      "ar": "[سطر واحد يصف طبيعة الدور ونطاق المسؤولية.]",
-      "en": "[One line describing the role and scope of responsibility.]"
+      "ar": "تطوير نموذج أولي لمساعد أكاديمي مبني على Google AI Studio، يجيب عن أسئلة الطلاب اعتمادًا على المواد الدراسية المرفوعة فقط.",
+      "en": "Building an AI-powered academic support prototype on Google AI Studio that answers student questions grounded solely in the uploaded course materials."
     },
     "responsibilities": {
       "ar": [
-        "[المسؤولية الأولى.]",
-        "[المسؤولية الثانية.]",
-        "[المسؤولية الثالثة.]"
+        "رفع المواد الدراسية وتهيئة مساعد يجيب عن الأسئلة اعتمادًا على المحتوى المرفوع فقط.",
+        "تهيئة النظام لتوليد أسئلة تدريبية وملخّصات مركّزة من المواد نفسها.",
+        "تحسين النموذج تمهيدًا لعرضه رسميًا على جهة جامعية."
       ],
       "en": [
-        "[First responsibility.]",
-        "[Second responsibility.]",
-        "[Third responsibility.]"
+        "Uploaded course materials and configured an assistant that answers strictly from that content.",
+        "Configured automatic generation of practice questions and concise lecture summaries from the same materials.",
+        "Refining the prototype ahead of a formal presentation to a university."
       ]
     },
-    "achievements": {
-      "ar": [
-        "[الإنجاز الأول — استخدم رقماً حقيقياً قابلاً للتحقق إن أمكن.]"
-      ],
-      "en": [
-        "[First achievement — use a real, verifiable number where possible.]"
-      ]
-    },
-    "stack": [
-      "[النظام / التقنية]"
-    ],
-    "placeholder": true
+    "achievements": { "ar": [], "en": [] },
+    "stack": ["Google AI Studio", "Generative AI", "Knowledge Grounding", "Prompt Engineering"]
   },
   {
-    "organization": {
-      "ar": "[اسم الجهة السابقة]",
-      "en": "[Previous organisation]"
-    },
-    "role": {
-      "ar": "[المسمى الوظيفي]",
-      "en": "[Job title]"
-    },
-    "startDate": null,
+    "organization": { "ar": "Prompt Academy — مشروع مستقل", "en": "Prompt Academy — Independent Project" },
+    "role": { "ar": "مؤسِّسة ومطوِّرة", "en": "Creator & Developer" },
+    "startDate": "2025",
     "endDate": null,
-    "period": {
-      "ar": "[—— — ——]",
-      "en": "[—— — ——]"
-    },
-    "current": false,
-    "location": {
-      "ar": "[المدينة، الدولة]",
-      "en": "[City, Country]"
-    },
+    "period": { "ar": "2025 — حتى الآن", "en": "2025 — Present" },
+    "current": true,
+    "location": { "ar": "الرياض — عن بُعد", "en": "Riyadh — Remote" },
     "summary": {
-      "ar": "[سطر واحد يصف طبيعة الدور ونطاق المسؤولية.]",
-      "en": "[One line describing the role and scope of responsibility.]"
+      "ar": "منصة تعليمية مستقلة لتعليم كتابة الأوامر الاحترافية، بُنيت وأُطلقت بالكامل كإثبات عملي لمهارات الذكاء الاصطناعي التطبيقي.",
+      "en": "An independent educational platform teaching professional prompt-writing, built and launched end to end as applied proof of AI skills."
     },
     "responsibilities": {
       "ar": [
-        "[المسؤولية الأولى.]",
-        "[المسؤولية الثانية.]"
+        "بناء وإطلاق المنصة التعليمية بالكامل.",
+        "تطوير مساعد ذكي يعمل عبر Claude API يساعد الزوار على صياغة أوامر عالية الجودة في الوقت الفعلي.",
+        "تصميم سير عمل آلي لاستقبال المهتمين عبر n8n: تسجيل النموذج في جدول بيانات وإرسال رسائل تأكيد تلقائية.",
+        "تصميم الهوية البصرية وواجهة الاستخدام والمحتوى باستخدام أدوات مدعومة بالذكاء الاصطناعي."
       ],
       "en": [
-        "[First responsibility.]",
-        "[Second responsibility.]"
+        "Built and launched the full educational platform.",
+        "Developed a Claude API–powered assistant that helps visitors craft high-quality prompts in real time.",
+        "Designed an automated lead-capture workflow in n8n: submissions logged to a spreadsheet with automatic confirmation emails.",
+        "Designed the visual identity, UI and content using AI-assisted design and content tools."
+      ]
+    },
+    "achievements": { "ar": [], "en": [] },
+    "stack": ["Claude API", "n8n", "Prompt Engineering", "Web Development", "AI Automation"]
+  },
+  {
+    "organization": { "ar": "مستشفى الإيمان العام", "en": "Al-Iman General Hospital" },
+    "role": { "ar": "مبرمجة", "en": "Programmer" },
+    "startDate": "2019",
+    "endDate": "2025",
+    "period": { "ar": "2019 — 2025", "en": "2019 — 2025" },
+    "current": false,
+    "location": { "ar": "الرياض", "en": "Riyadh" },
+    "summary": {
+      "ar": "الإشراف على نظام المعلومات الصحية (HIS) وضمان استمرارية تدفق البيانات الطبية بين الأقسام، إلى جانب بناء حلول رقمية داخلية.",
+      "en": "Supervised the Health Information System (HIS), ensuring uninterrupted medical data flow across departments, alongside building internal digital solutions."
+    },
+    "responsibilities": {
+      "ar": [
+        "الإشراف على نظام المعلومات الصحية وضمان استمرارية تدفق البيانات الطبية بين الأقسام.",
+        "تصميم وإطلاق منصة تعلّم رقمية لموظفي المستشفى تُنظّم الوصول إلى المصادر التدريبية.",
+        "الإشراف على برنامج التدريب التعاوني وتوجيه المتدربين في المهارات التقنية.",
+        "تقديم دعم تقني متقدم لحل مشكلات البرمجيات والبنية التحتية وضمان استمرارية الخدمات الحرجة."
+      ],
+      "en": [
+        "Supervised the Health Information System, ensuring uninterrupted flow of medical data across departments.",
+        "Designed and launched a digital learning platform for hospital staff, streamlining access to training resources.",
+        "Supervised the Cooperative Training Program, mentoring interns in healthcare-IT technical skills.",
+        "Delivered advanced technical support, resolving software and infrastructure issues to maintain critical services."
       ]
     },
     "achievements": {
-      "ar": [],
-      "en": []
+      "ar": [
+        "تطبيق تحليل مدعوم بالذكاء الاصطناعي على بيانات الدعم التقني — تتبّع حجم التذاكر ومعدلات التأخير لكشف الأنماط وتحسين زمن الاستجابة."
+      ],
+      "en": [
+        "Applied AI-assisted analysis to IT support data — tracking ticket volume and delay rates to surface patterns and improve response times."
+      ]
     },
-    "stack": [
-      "[النظام / التقنية]"
-    ],
-    "placeholder": true
+    "stack": ["Health Information Systems", "AI-Assisted Data Analysis", "Web Development", "Technical Operations"]
+  },
+  {
+    "organization": { "ar": "عمل حر", "en": "Freelance" },
+    "role": { "ar": "تصميم ومحتوى مدعوم بالذكاء الاصطناعي", "en": "AI-Assisted Content & Web Design" },
+    "startDate": null,
+    "endDate": null,
+    "period": { "ar": "مستمر", "en": "Ongoing" },
+    "current": true,
+    "location": { "ar": "الرياض", "en": "Riyadh" },
+    "summary": {
+      "ar": "مشاريع تصميم مواقع ومحتوى بصري للعملاء باستخدام سير عمل مدعوم بالذكاء الاصطناعي.",
+      "en": "Website design and visual content projects for clients using AI-assisted workflows."
+    },
+    "responsibilities": {
+      "ar": [
+        "إنتاج محتوى بصري احترافي لتصوير المنتجات باستخدام Google Flow.",
+        "تنفيذ مشاريع تصميم مواقع تشمل التصميم البصري والمحتوى وتحسين الأداء."
+      ],
+      "en": [
+        "Produced professional product photoshoot visuals using Google Flow.",
+        "Delivered website design projects covering visual design, content and performance optimisation."
+      ]
+    },
+    "achievements": { "ar": [], "en": [] },
+    "stack": ["Google Flow", "AI-Assisted Design", "Web Development", "Content Production"]
+  },
+  {
+    "organization": { "ar": "شركة تميز التأهيل", "en": "Rehabilitation Excellence Company" },
+    "role": { "ar": "مديرة العلاقات العامة", "en": "Public Relations Manager" },
+    "startDate": "2021",
+    "endDate": "2022",
+    "period": { "ar": "2021 — 2022", "en": "2021 — 2022" },
+    "current": false,
+    "location": { "ar": "الرياض", "en": "Riyadh" },
+    "summary": {
+      "ar": "التخطيط والإشراف على الفعاليات والمبادرات الرسمية، مع إشراف تقني على البوابة الإلكترونية للشركة.",
+      "en": "Planned and supervised official events and initiatives, with technical oversight of the company's electronic portal."
+    },
+    "responsibilities": {
+      "ar": [
+        "التخطيط والإشراف على الفعاليات والمبادرات الرسمية بما يعزز صورة العلامة المؤسسية.",
+        "الإشراف التقني على البوابة الإلكترونية للشركة.",
+        "بناء علاقات استراتيجية مع الشركاء وإدارة قنوات التواصل الرسمية."
+      ],
+      "en": [
+        "Planned and supervised official events and initiatives, strengthening the corporate brand image.",
+        "Provided technical oversight of the company's electronic portal.",
+        "Built strategic partner relationships and managed official communication channels."
+      ]
+    },
+    "achievements": { "ar": [], "en": [] },
+    "stack": ["Digital Portals", "Stakeholder Management", "Communications"]
   }
 ]

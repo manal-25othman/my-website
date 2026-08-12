@@ -2,19 +2,16 @@
  * القالب العام  /  Base layout — <head>, header, footer, analytics
  */
 
-import { esc, attr, attrs, L, href, asset, absolute, jsonScript, classNames } from '../lib/html.js';
+import { esc, attr, attrs, L, href, asset, absolute, jsonScript, classNames, truncate } from '../lib/html.js';
 import { icon } from '../lib/icons.js';
 
 /* ── عناصر التنقل  /  Navigation model ────────────────────────────── */
 export const NAV = [
+  { key: 'projects', path: 'projects/', desktop: true },
   { key: 'about', path: 'about/', desktop: true },
   { key: 'experience', path: 'experience/', desktop: true },
-  { key: 'expertise', path: 'expertise/', desktop: false },
-  { key: 'articles', path: 'articles/', desktop: true },
-  { key: 'tools', path: 'ai-tools/', desktop: true, short: true },
-  { key: 'book', path: 'book/', desktop: true },
-  { key: 'projects', path: 'projects/', desktop: false },
-  { key: 'tiktok', path: 'tiktok/', desktop: true },
+  { key: 'expertise', path: 'expertise/', desktop: true },
+  { key: 'content', path: 'content/', desktop: true },
   { key: 'mediaKit', path: 'media-kit/', desktop: false },
 ];
 
@@ -44,17 +41,30 @@ export function primarySocial(site) {
   return site.profile.social.find((s) => s.primary && s.url) || null;
 }
 
-/** زر «تابعني على TikTok» — يظهر فقط عند وجود رابط حقيقي */
-export function tiktokButton(site, ui, lang, { variant = 'ghost', block = false } = {}) {
+/** زر TikTok — يظهر معطّلاً بوضوح إن لم يُضَف الرابط بعد */
+export function tiktokButton(site, ui, lang, { variant = 'ghost', block = false, label } = {}) {
   const tt = site.profile.social.find((s) => s.id === 'tiktok');
-  const label = L(ui.hero.ctaSecondary, lang);
+  const text = label || L(ui.content.follow, lang);
+  const cls = `btn btn--${variant}${block ? ' btn--block' : ''}`;
+
   if (!tt || !tt.url) {
-    return `<a class="btn btn--${variant}${block ? ' btn--block' : ''}" href="${href('tiktok/', lang)}">
-      ${icon('tiktok')}<span>${esc(label)}</span></a>`;
+    return `<span class="${cls} is-disabled" role="link" aria-disabled="true">
+      ${icon('tiktok')}<span>${esc(text)}</span></span>`;
   }
-  return `<a class="btn btn--${variant}${block ? ' btn--block' : ''}" href="${attr(tt.url)}"
-      target="_blank" rel="noopener noreferrer" data-track="tiktok_click">
-      ${icon('tiktok')}<span>${esc(label)}</span></a>`;
+  return `<a class="${cls}" href="${attr(tt.url)}" target="_blank" rel="noopener noreferrer"
+      data-track="tiktok_click">${icon('tiktok')}<span>${esc(text)}</span></a>`;
+}
+
+/** زر تحميل السيرة الذاتية — معطّل حتى يُرفع الملف */
+export function cvButton(site, ui, lang, { variant = 'ghost' } = {}) {
+  const label = L(ui.common.downloadCv, lang);
+  const url = site.profile.cvUrl;
+  if (!url) {
+    return `<span class="btn btn--${variant} is-disabled" role="link" aria-disabled="true">
+      ${icon('download')}<span>${esc(label)}</span></span>`;
+  }
+  return `<a class="btn btn--${variant}" href="${attr(url)}" target="_blank" rel="noopener noreferrer"
+      download>${icon('download')}<span>${esc(label)}</span></a>`;
 }
 
 /* ── مسار التنقل  /  Breadcrumbs ──────────────────────────────────── */
@@ -91,6 +101,9 @@ export function layout(ctx) {
     activeNav = '',
     printable = false,
   } = ctx;
+
+  /* وصف الميتا يُقتطع عند حد يعرضه محرك البحث كاملاً (~160 حرفاً) */
+  const metaDescription = truncate(description, 158);
 
   const langCfg = site.languages.find((l) => l.code === lang);
   const dir = langCfg.dir;
@@ -153,20 +166,17 @@ export function layout(ctx) {
         ${socialLinks(site, ui, lang, { className: 'social social--foot' })}
       </div>
       ${footerCol(L(ui.footer.explore, lang), [
+        { url: href('projects/', lang), label: L(ui.projects.title, lang) },
         { url: href('about/', lang), label: L(ui.nav.about, lang) },
         { url: href('experience/', lang), label: L(ui.nav.experience, lang) },
         { url: href('expertise/', lang), label: L(ui.nav.expertise, lang) },
-        { url: href('media-kit/', lang), label: L(ui.nav.mediaKit, lang) },
       ])}
       ${footerCol(L(ui.footer.content, lang), [
-        { url: href('articles/', lang), label: L(ui.nav.articles, lang) },
-        { url: href('ai-tools/', lang), label: L(ui.nav.tools, lang) },
-        { url: href('book/', lang), label: L(ui.nav.book, lang) },
-        { url: href('projects/', lang), label: L(ui.nav.projects, lang) },
-        { url: href('tiktok/', lang), label: L(ui.nav.tiktok, lang) },
+        { url: href('content/', lang), label: L(ui.content.eyebrow, lang) },
+        { url: href('media-kit/', lang), label: L(ui.nav.mediaKit, lang) },
+        { url: href('contact/', lang), label: L(ui.nav.contact, lang) },
       ])}
       ${footerCol(L(ui.footer.legal, lang), [
-        { url: href('contact/', lang), label: L(ui.nav.contact, lang) },
         { url: href('privacy/', lang), label: L(ui.nav.privacy, lang) },
         { url: href('terms/', lang), label: L(ui.nav.terms, lang) },
       ])}
@@ -203,7 +213,7 @@ export function layout(ctx) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>${esc(title)}</title>
-    <meta name="description" content="${attr(description)}">
+    <meta name="description" content="${attr(metaDescription)}">
     ${keywords ? `<meta name="keywords" content="${attr(keywords)}">` : ''}
     <meta name="author" content="${attr(name)}">
     ${noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robots" content="index, follow, max-image-preview:large">'}
@@ -216,14 +226,14 @@ export function layout(ctx) {
     <meta property="og:site_name" content="${attr(name)}">
     <meta property="og:locale" content="${attr(langCfg.locale)}">
     <meta property="og:title" content="${attr(title)}">
-    <meta property="og:description" content="${attr(description)}">
+    <meta property="og:description" content="${attr(metaDescription)}">
     <meta property="og:url" content="${attr(canonical)}">
     <meta property="og:image" content="${attr(ogImg)}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${attr(title)}">
-    <meta name="twitter:description" content="${attr(description)}">
+    <meta name="twitter:description" content="${attr(metaDescription)}">
     <meta name="twitter:image" content="${attr(ogImg)}">
 
     <meta name="theme-color" content="#0b0d12" media="(prefers-color-scheme: dark)">

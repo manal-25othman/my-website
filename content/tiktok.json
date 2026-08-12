@@ -2,62 +2,24 @@
   "enabled": true,
   "handle": "[@username]",
   "profileUrl": null,
+  "audience": { "ar": "20K+", "en": "20K+" },
+  "audienceLabel": {
+    "ar": "جمهور مهتم بالمحتوى التقني",
+    "en": "Technical Content Audience"
+  },
   "bio": {
-    "ar": "[نبذة حسابك على TikTok — يُفضَّل أن تطابق نبذة الموقع.]",
-    "en": "[Your TikTok bio — ideally matching the site biography.]"
+    "ar": "لا يقتصر اهتمامي بالتقنية على بناء المشاريع. أصنع محتوى تقنيًا حول الذكاء الاصطناعي والأدوات والتقنيات الحديثة، وأسعى إلى تقديم المعرفة التقنية بطريقة بسيطة وعملية تساعد الجمهور على فهم التقنية والاستفادة منها.",
+    "en": "My work with technology goes beyond building products. I create technical content around AI, emerging technologies and practical AI tools, focused on making complex technology easier to understand and apply."
   },
   "followers": null,
   "likes": null,
   "topics": [
-    {
-      "ar": "الذكاء الاصطناعي",
-      "en": "AI"
-    },
-    {
-      "ar": "التقنية",
-      "en": "Technology"
-    },
-    {
-      "ar": "أدوات الذكاء الاصطناعي",
-      "en": "AI tools"
-    },
-    {
-      "ar": "الإنتاجية",
-      "en": "Productivity"
-    },
-    {
-      "ar": "نصائح عملية",
-      "en": "Tips"
-    },
-    {
-      "ar": "شروحات",
-      "en": "Tutorials"
-    }
+    { "ar": "الذكاء الاصطناعي", "en": "AI" },
+    { "ar": "أدوات الذكاء الاصطناعي", "en": "AI Tools" },
+    { "ar": "التقنيات الحديثة", "en": "Emerging Tech" },
+    { "ar": "الإنتاجية", "en": "Productivity" },
+    { "ar": "شروحات عملية", "en": "Tutorials" },
+    { "ar": "نصائح تقنية", "en": "Tech Tips" }
   ],
-  "videos": [
-    {
-      "url": null,
-      "title": {
-        "ar": "[عنوان المقطع]",
-        "en": "[Video title]"
-      },
-      "topic": "AI"
-    },
-    {
-      "url": null,
-      "title": {
-        "ar": "[عنوان المقطع]",
-        "en": "[Video title]"
-      },
-      "topic": "AI tools"
-    },
-    {
-      "url": null,
-      "title": {
-        "ar": "[عنوان المقطع]",
-        "en": "[Video title]"
-      },
-      "topic": "Productivity"
-    }
-  ]
+  "videos": []
 }

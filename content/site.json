@@ -1,138 +1,129 @@
 {
   "profile": {
     "name": {
-      "ar": "[الاسم الكامل]",
-      "en": "[YOUR NAME]"
+      "ar": "منال عثمان",
+      "en": "Manal Othman"
     },
     "professionalTitle": {
-      "ar": "مختص في الذكاء الاصطناعي والتقنية",
-      "en": "AI & Technology Professional"
+      "ar": "مهندسة ذكاء اصطناعي توليدي",
+      "en": "Generative AI Engineer"
     },
     "secondaryTitle": {
-      "ar": "التحول الرقمي والمعلوماتية الصحية",
-      "en": "Digital Transformation & Health Informatics"
+      "ar": "AI Solutions Builder · AI Products · RAG · AI Agents",
+      "en": "AI Solutions Builder · AI Products · RAG · AI Agents"
     },
     "headline": {
-      "ar": "أشارك المعرفة والتجارب العملية في الذكاء الاصطناعي والتقنية.",
-      "en": "I share practical knowledge and hands-on experience in AI and technology."
+      "ar": "أبني حلولًا ذكية تجمع بين الذكاء الاصطناعي والمنتجات الرقمية.",
+      "en": "I build intelligent solutions at the intersection of Generative AI and digital products."
     },
     "supporting": {
-      "ar": "مساحة تجمع خبرتي المهنية، مقالاتي، كتابي، مشاريعي، وأدوات الذكاء الاصطناعي التي أستكشفها وأشارك تجربتي حولها.",
-      "en": "One place that brings together my professional experience, articles, book, projects, and the AI tools I explore and share my experience with."
+      "ar": "مهندسة ذكاء اصطناعي توليدي بخلفية في علوم الحاسب وإدارة الأعمال، أحوّل الأفكار والتحديات التقنية إلى حلول ومنتجات رقمية قابلة للاستخدام.",
+      "en": "A Generative AI Engineer with a background in Computer Science and Business Administration, turning ideas and technical challenges into practical, usable AI-powered products."
+    },
+    "keywordsLine": {
+      "ar": "Generative AI · RAG · AI Agents · SaaS · AI Products",
+      "en": "Generative AI · RAG · AI Agents · SaaS · AI Products"
     },
     "shortBio": {
-      "ar": "أستكشف أدوات الذكاء الاصطناعي والتقنيات الحديثة، أجرّبها بنفسي، ثم أشارك ما ينفع منها في العمل اليومي — بلغة عملية بعيدة عن التعقيد.",
-      "en": "I explore AI tools and emerging technologies, test them myself, then share what actually works in day-to-day professional work — in plain, practical language."
+      "ar": "أعمل في تقاطع الذكاء الاصطناعي والمنتجات الرقمية: أحوّل قدرات النماذج التوليدية إلى حلول عملية تُستخدم فعلاً داخل المنتجات وسير العمل اليومي.",
+      "en": "I work at the intersection of artificial intelligence and digital products — turning generative AI capabilities into practical solutions that are actually used inside real products and workflows."
     },
     "longBio": {
       "ar": [
-        "اهتمامي المهني يتركز على الذكاء الاصطناعي والتقنيات الناشئة وكيفية توظيفها بشكل عملي داخل بيئة العمل. أتابع ما يظهر من أدوات، أجرّبها على مهام حقيقية، ثم أكتب ما تعلّمته منها: ما الذي وفّر وقتاً فعلياً، وما الذي بقي وعداً تسويقياً.",
-        "إلى جانب ذلك، يمتد اهتمامي إلى التحول الرقمي وتحسين الإجراءات، وإلى تبسيط التقنية لمن ليست التقنية تخصصهم. أرى أن أكبر فجوة اليوم ليست في توفر الأدوات، بل في معرفة متى وكيف تُستخدم.",
-        "أنشر خلاصة هذه التجارب في صورة مقالات ومحتوى مرئي قصير، هدفها واحد: أن يخرج القارئ أو المشاهد بشيء قابل للتطبيق في نفس اليوم."
+        "أنا منال عثمان، مهندسة ذكاء اصطناعي توليدي بخلفية أكاديمية في علوم الحاسب، وأدرس حاليًا إدارة الأعمال.",
+        "أعمل في تقاطع الذكاء الاصطناعي والمنتجات الرقمية، وأهتم بتحويل تقنيات الذكاء الاصطناعي من مجرد إمكانيات تقنية إلى حلول عملية يمكن استخدامها داخل المنتجات والعمليات اليومية.",
+        "عملت على مشاريع تجمع بين Generative AI و RAG و AI Agents وتطوير الويب وبناء منتجات SaaS، مع اهتمام خاص بالهندسة العملية للمنتجات، وتجربة المستخدم، وأمن البيانات.",
+        "إلى جانب عملي التقني، أصنع محتوى تقنيًا أشارك من خلاله المعرفة حول الذكاء الاصطناعي والتقنيات الحديثة، وأسعى إلى تبسيط المفاهيم التقنية وتحويلها إلى معرفة قابلة للتطبيق."
       ],
       "en": [
-        "My professional focus is artificial intelligence and emerging technologies — specifically, how to put them to practical use inside real working environments. I follow the tools as they appear, test them on real tasks, then write up what I learned: what genuinely saved time, and what stayed a marketing promise.",
-        "Alongside that, my interests extend to digital transformation, process improvement, and making technology understandable for people whose field is not technology. The biggest gap today is not tool availability — it is knowing when and how to use them.",
-        "I publish what comes out of these experiments as articles and short-form video, with a single goal: that the reader or viewer leaves with something they can apply the same day."
+        "I'm Manal Othman, a Generative AI Engineer with an academic background in Computer Science and ongoing studies in Business Administration.",
+        "I work at the intersection of artificial intelligence and digital products, focusing on turning emerging AI capabilities into practical solutions that can be integrated into real products and workflows.",
+        "My work spans Generative AI, RAG, AI Agents, SaaS products, web development, and data security — with a strong interest in practical product engineering and user experience.",
+        "Alongside my technical work, I create technical content on AI and emerging technologies, making complex concepts easier to understand and apply."
       ]
     },
     "photo": "img/profile.png",
     "photoAlt": {
-      "ar": "الصورة الشخصية",
-      "en": "Professional portrait"
+      "ar": "منال عثمان — مهندسة ذكاء اصطناعي توليدي",
+      "en": "Manal Othman — Generative AI Engineer"
     },
     "ogImage": "img/og-cover.png",
-    "email": "[your@email.com]",
+    "email": "manal.alareqi@gmail.com",
     "location": {
-      "ar": "[المدينة، الدولة]",
-      "en": "[City, Country]"
+      "ar": "الرياض، المملكة العربية السعودية",
+      "en": "Riyadh, Saudi Arabia"
     },
     "availability": {
-      "ar": "مفتوح للتعاون المهني والمشاركات التقنية",
-      "en": "Open to professional collaboration and speaking about technology"
+      "ar": "مفتوحة لفرص العمل والتعاون في الذكاء الاصطناعي والمنتجات الرقمية",
+      "en": "Open to roles and collaboration in AI and digital products"
     },
+    "cvUrl": null,
     "social": [
       {
+        "id": "linkedin",
+        "label": { "ar": "LinkedIn", "en": "LinkedIn" },
+        "handle": "[in/username]",
+        "url": null,
+        "primary": false
+      },
+      {
         "id": "tiktok",
-        "label": {
-          "ar": "TikTok",
-          "en": "TikTok"
-        },
+        "label": { "ar": "TikTok", "en": "TikTok" },
         "handle": "[@username]",
         "url": null,
         "primary": true
       },
       {
-        "id": "linkedin",
-        "label": {
-          "ar": "LinkedIn",
-          "en": "LinkedIn"
-        },
-        "handle": "[in/username]",
-        "url": null
-      },
-      {
-        "id": "x",
-        "label": {
-          "ar": "X",
-          "en": "X"
-        },
-        "handle": "[@username]",
-        "url": null
+        "id": "github",
+        "label": { "ar": "GitHub", "en": "GitHub" },
+        "handle": "manal-25othman",
+        "url": "https://github.com/manal-25othman",
+        "primary": false
       },
       {
         "id": "email",
-        "label": {
-          "ar": "البريد الإلكتروني",
-          "en": "Email"
-        },
-        "handle": "[your@email.com]",
-        "url": null
+        "label": { "ar": "البريد الإلكتروني", "en": "Email" },
+        "handle": "manal.alareqi@gmail.com",
+        "url": "mailto:manal.alareqi@gmail.com",
+        "primary": false
       }
     ]
   },
   "url": "https://example.com",
   "basePath": "",
   "languages": [
-    {
-      "code": "ar",
-      "label": "العربية",
-      "dir": "rtl",
-      "locale": "ar_SA",
-      "prefix": ""
-    },
-    {
-      "code": "en",
-      "label": "English",
-      "dir": "ltr",
-      "locale": "en_US",
-      "prefix": "en"
-    }
+    { "code": "ar", "label": "العربية", "dir": "rtl", "locale": "ar_SA", "prefix": "" },
+    { "code": "en", "label": "English", "dir": "ltr", "locale": "en_US", "prefix": "en" }
   ],
   "seo": {
-    "homeTitle": null,
+    "homeTitle": {
+      "ar": "منال عثمان | مهندسة ذكاء اصطناعي توليدي",
+      "en": "Manal Othman | Generative AI Engineer"
+    },
     "description": {
-      "ar": "الموقع الرسمي — مختص في الذكاء الاصطناعي والتقنية. مقالات وتجارب عملية وأدوات ذكاء اصطناعي ومحتوى تقني، إضافة إلى الخبرة المهنية والمشاريع والكتاب.",
-      "en": "Official website — AI & technology professional. Articles, hands-on experiments, an AI tools directory, technology content, professional experience, projects and a book."
+      "ar": "منال عثمان — مهندسة ذكاء اصطناعي توليدي. أبني حلولًا ذكية ومنتجات رقمية باستخدام Generative AI و RAG و AI Agents. مشاريع، خبرة تقنية، ومحتوى تقني.",
+      "en": "Manal Othman — Generative AI Engineer building intelligent solutions and digital products with Generative AI, RAG and AI Agents. Projects, technical experience and content."
     },
     "keywords": {
       "ar": [
-        "الذكاء الاصطناعي",
-        "أدوات الذكاء الاصطناعي",
+        "منال عثمان",
+        "مهندسة ذكاء اصطناعي",
         "الذكاء الاصطناعي التوليدي",
-        "التقنية",
-        "التحول الرقمي",
-        "الإنتاجية",
-        "المعلوماتية الصحية"
+        "RAG",
+        "AI Agents",
+        "منتجات الذكاء الاصطناعي",
+        "SaaS",
+        "تطوير الويب"
       ],
       "en": [
-        "Artificial Intelligence",
-        "AI Tools",
-        "Generative AI",
-        "Technology",
-        "Digital Transformation",
-        "Productivity",
-        "Health Informatics"
+        "Manal Othman",
+        "Generative AI Engineer",
+        "AI Engineer",
+        "RAG",
+        "AI Agents",
+        "LLM Applications",
+        "SaaS",
+        "AI Products"
       ]
     },
     "googleSiteVerification": null

@@ -7,19 +7,15 @@ import { esc, attr, L, href, asset, DASH, orDash } from '../lib/html.js';
 import { icon } from '../lib/icons.js';
 import {
   sectionHead,
-  placeholderBadge,
   button,
-  rating,
   portrait,
   statCard,
   chip,
-  articleCard,
-  toolCard,
   projectCard,
   emptyNote,
   ph,
 } from './components.js';
-import { socialLinks, tiktokButton } from './layout.js';
+import { socialLinks, tiktokButton, cvButton } from './layout.js';
 
 /* ═════════════════════════════════════════════════════════════════════
  *  1 · الهيرو  /  Hero
@@ -36,25 +32,25 @@ export function hero(d) {
       <div class="hero__text">
         <p class="hero__eyebrow reveal">
           <span class="eyebrow__dot" aria-hidden="true"></span>
-          ${esc(L(p.professionalTitle, lang))}
+          ${esc(name)} · ${esc(L(p.professionalTitle, lang))}
         </p>
-        <h1 class="hero__name reveal${ph(name)}">${esc(name)}</h1>
-        <p class="hero__headline reveal">${esc(L(p.headline, lang))}</p>
+
+        <h1 class="hero__title reveal${ph(L(p.headline, lang))}">${esc(L(p.headline, lang))}</h1>
         <p class="hero__support reveal">${esc(L(p.supporting, lang))}</p>
 
+        ${
+          p.keywordsLine
+            ? `<p class="hero__keywords reveal">${esc(L(p.keywordsLine, lang))}</p>`
+            : ''
+        }
+
         <div class="hero__cta reveal">
-          ${button({ label: L(ui.hero.ctaPrimary, lang), url: href('articles/', lang), variant: 'solid', iconName: 'arrow' })}
-          ${tiktokButton(site, ui, lang, { variant: 'outline' })}
-          ${button({ label: L(ui.hero.ctaTertiary, lang), url: href('about/', lang), variant: 'ghost' })}
+          ${button({ label: L(ui.hero.ctaPrimary, lang), url: href('projects/', lang), variant: 'solid', iconName: 'arrow' })}
+          ${button({ label: L(ui.hero.ctaSecondary, lang), url: href('contact/', lang), variant: 'outline' })}
         </div>
 
         <div class="hero__social reveal">
           ${socialLinks(site, ui, lang, { size: 18 })}
-          ${
-            p.secondaryTitle
-              ? `<span class="hero__second">${esc(L(p.secondaryTitle, lang))}</span>`
-              : ''
-          }
         </div>
       </div>
 
@@ -70,10 +66,11 @@ export function hero(d) {
 }
 
 /* ═════════════════════════════════════════════════════════════════════
- *  2 · شريط المصداقية  /  Trust strip
+ *  2 · شريط الإثبات  /  Proof strip
  * ═══════════════════════════════════════════════════════════════════ */
 export function trustStrip(d) {
   const { ui, lang, about, computed } = d;
+  if (!about.stats || !about.stats.length) return '';
   return `
   <section class="trust">
     <div class="wrap">
@@ -86,7 +83,210 @@ export function trustStrip(d) {
 }
 
 /* ═════════════════════════════════════════════════════════════════════
- *  3 · من أنا  /  About
+ *  3 · المشروع الأبرز  /  Featured case study
+ * ═══════════════════════════════════════════════════════════════════ */
+export function featuredProject(d) {
+  const { ui, lang, projects } = d;
+  const p = projects.find((x) => x.featured);
+  if (!p) return '';
+
+  const name = L(p.name, lang);
+  const highlights = L(p.highlights, lang) || [];
+  const results = L(p.results, lang) || [];
+
+  return `
+  <section class="sec sec--dark sec--case" id="featured">
+    <div class="wrap">
+      <div class="case__head">
+        <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>${esc(L(ui.featured.eyebrow, lang))}</p>
+        <h2 class="case__name">${esc(name)}</h2>
+        <p class="case__tagline">${esc(L(p.tagline, lang))}</p>
+        <div class="chips case__cats">${(p.categories || []).map((c) => chip(c, { small: true })).join('')}</div>
+      </div>
+
+      ${
+        (p.metrics || []).length
+          ? `<div class="metrics reveal">
+              ${p.metrics
+                .map(
+                  (m) => `<div class="metric">
+                    <span class="metric__value" dir="auto">${esc(m.value)}</span>
+                    <span class="metric__label">${esc(L(m.label, lang))}</span>
+                  </div>`
+                )
+                .join('')}
+            </div>`
+          : ''
+      }
+
+      <div class="case__grid reveal">
+        <div class="case__block">
+          <h3 class="case__h">${esc(L(ui.featured.problem, lang))}</h3>
+          <p>${esc(L(p.problem, lang))}</p>
+        </div>
+        <div class="case__block">
+          <h3 class="case__h">${esc(L(ui.featured.solution, lang))}</h3>
+          <p>${esc(L(p.solution, lang))}</p>
+        </div>
+        <div class="case__block">
+          <h3 class="case__h">${esc(L(ui.featured.role, lang))}</h3>
+          <p>${esc(L(p.role, lang))}</p>
+        </div>
+      </div>
+
+      ${
+        highlights.length
+          ? `<div class="case__tech reveal">
+              <h3 class="case__h">${esc(L(ui.featured.highlights, lang))}</h3>
+              <ul class="ticks ticks--accent case__list">${highlights.map((h) => `<li>${esc(h)}</li>`).join('')}</ul>
+            </div>`
+          : ''
+      }
+
+      <div class="case__foot reveal">
+        <div>
+          <h3 class="case__h">${esc(L(ui.featured.stack, lang))}</h3>
+          <div class="chips">${(p.stack || []).map((s) => chip(L(s, lang), { small: true })).join('')}</div>
+        </div>
+        ${button({ label: L(ui.common.caseStudy, lang), url: href(`projects/${p.slug}/`, lang), variant: 'solid', iconName: 'arrow' })}
+      </div>
+
+      ${
+        results.length
+          ? `<p class="case__outcome reveal"><b>${esc(L(ui.featured.outcome, lang))}:</b> ${esc(results[0])}</p>`
+          : ''
+      }
+    </div>
+  </section>`;
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+ *  4 · المشاريع  /  Selected projects
+ * ═══════════════════════════════════════════════════════════════════ */
+export function projectsSection(d, { limit = null, excludeFeatured = true, showHead = true } = {}) {
+  const { ui, lang } = d;
+  let list = d.projects;
+  if (excludeFeatured) list = list.filter((p) => !p.featured);
+  if (limit) list = list.slice(0, limit);
+  if (!list.length) return '';
+
+  return `
+  <section class="sec" id="projects">
+    <div class="wrap">
+      ${
+        showHead
+          ? `<div class="sec__bar">
+              ${sectionHead({
+                eyebrow: L(ui.projects.eyebrow, lang),
+                title: L(ui.projects.title, lang),
+                lead: L(ui.projects.lead, lang),
+              })}
+              <a class="linkbtn linkbtn--arrow" href="${href('projects/', lang)}">${esc(L(ui.common.viewAll, lang))}${icon('chevron', { size: 16 })}</a>
+            </div>`
+          : `<h2 class="sr-only">${esc(L(ui.projects.title, lang))}</h2>`
+      }
+      <div class="pgrid reveal">${list.map((p) => projectCard(p, ui, lang)).join('')}</div>
+    </div>
+  </section>`;
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+ *  5 · ماذا أفعل  /  What I Do
+ * ═══════════════════════════════════════════════════════════════════ */
+export function whatIDoSection(d) {
+  const { ui, lang, about } = d;
+  const items = about.whatIDo || [];
+  if (!items.length) return '';
+
+  return `
+  <section class="sec sec--muted" id="what-i-do">
+    <div class="wrap">
+      ${sectionHead({
+        eyebrow: L(ui.whatIDo.eyebrow, lang),
+        title: L(ui.whatIDo.title, lang),
+        lead: L(ui.whatIDo.lead, lang),
+      })}
+      <div class="dgrid reveal">
+        ${items
+          .map(
+            (it, i) => `<article class="dcard">
+              <span class="dcard__num">${String(i + 1).padStart(2, '0')}</span>
+              <span class="dcard__icon">${icon(it.icon, { size: 20 })}</span>
+              <h3 class="dcard__title">${esc(L(it.label, lang))}</h3>
+              <p class="dcard__note">${esc(L(it.note, lang))}</p>
+            </article>`
+          )
+          .join('')}
+      </div>
+    </div>
+  </section>`;
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+ *  6 · المهارات  /  Skills
+ * ═══════════════════════════════════════════════════════════════════ */
+export function expertiseSection(d, { dark = true } = {}) {
+  const { ui, lang, expertise } = d;
+  if (!expertise.length) return '';
+  return `
+  <section class="sec ${dark ? 'sec--dark' : ''}" id="expertise">
+    <div class="wrap">
+      ${sectionHead({
+        eyebrow: L(ui.expertise.eyebrow, lang),
+        title: L(ui.expertise.title, lang),
+        lead: L(ui.expertise.lead, lang),
+      })}
+      <div class="xgrid reveal">
+        ${expertise
+          .map(
+            (g) => `<article class="xcard${g.feature ? ' xcard--feature' : ''}">
+              <span class="xcard__icon">${icon(g.icon, { size: 22 })}</span>
+              <h3 class="xcard__title">${esc(L(g.title, lang))}</h3>
+              <p class="xcard__intro">${esc(L(g.intro, lang))}</p>
+              <ul class="xcard__items">
+                ${g.items.map((i) => `<li>${esc(L(i, lang))}</li>`).join('')}
+              </ul>
+            </article>`
+          )
+          .join('')}
+      </div>
+    </div>
+  </section>`;
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+ *  7 · لماذا منال  /  Why me
+ * ═══════════════════════════════════════════════════════════════════ */
+export function whyMeSection(d) {
+  const { ui, lang, about } = d;
+  const w = about.whyMe;
+  if (!w) return '';
+  const lead = L(w.lead, lang) || [];
+
+  return `
+  <section class="sec" id="why">
+    <div class="wrap why__grid">
+      <div class="why__intro">
+        ${sectionHead({ eyebrow: L(ui.whyMe.eyebrow, lang), title: L(ui.whyMe.title, lang) })}
+        <div class="prose">${lead.map((t, i) => `<p${i === 0 ? ' class="why__lead"' : ''}>${esc(t)}</p>`).join('')}</div>
+      </div>
+      <div class="wgrid reveal">
+        ${(w.cards || [])
+          .map(
+            (c) => `<article class="wcard">
+              <span class="wcard__icon">${icon(c.icon, { size: 18 })}</span>
+              <h3 class="wcard__title">${esc(L(c.title, lang))}</h3>
+              <p class="wcard__note">${esc(L(c.note, lang))}</p>
+            </article>`
+          )
+          .join('')}
+      </div>
+    </div>
+  </section>`;
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+ *  8 · من أنا  /  About
  * ═══════════════════════════════════════════════════════════════════ */
 export function aboutSection(d, { full = false } = {}) {
   const { site, ui, lang, about } = d;
@@ -94,10 +294,13 @@ export function aboutSection(d, { full = false } = {}) {
   const [first, ...rest] = paras;
 
   return `
-  <section class="sec sec--about" id="about">
+  <section class="sec sec--muted sec--about" id="about">
     <div class="wrap about__grid">
+      <div class="about__media reveal">
+        ${portrait(site, lang, { size: 'md' })}
+      </div>
       <div class="about__main">
-        ${sectionHead({ eyebrow: L(ui.about.eyebrow, lang), title: L(ui.about.title, lang), lead: L(ui.about.lead, lang) })}
+        ${sectionHead({ eyebrow: L(ui.about.eyebrow, lang), title: L(ui.about.title, lang) })}
         <div class="prose reveal">
           <p class="about__lead">${esc(first || '')}</p>
           ${
@@ -112,116 +315,21 @@ export function aboutSection(d, { full = false } = {}) {
               : ''
           }
         </div>
-
-        <blockquote class="mission reveal">
-          ${icon('quote', { size: 18, className: 'mission__icon' })}
-          <p>${esc(L(about.mission, lang))}</p>
-          <cite>${esc(L(ui.about.mission, lang))}</cite>
-        </blockquote>
-      </div>
-
-      <div class="about__side">
-        <h3 class="about__sideh">${esc(L(ui.about.interests, lang))}</h3>
-        <ul class="ilist reveal">
-          ${about.interests
-            .map(
-              (it) => `<li class="ilist__item">
-                <span class="ilist__icon">${icon(it.icon, { size: 18 })}</span>
-                <span class="ilist__text">
-                  <span class="ilist__label">${esc(L(it.label, lang))}</span>
-                  <span class="ilist__note">${esc(L(it.note, lang))}</span>
-                </span>
-              </li>`
-            )
-            .join('')}
-        </ul>
         ${
-          full
-            ? ''
-            : `<a class="linkbtn linkbtn--arrow" href="${href('about/', lang)}">${esc(L(ui.common.readMore, lang))}${icon('chevron', { size: 16 })}</a>`
+          about.mission
+            ? `<blockquote class="mission reveal">
+                ${icon('quote', { size: 18, className: 'mission__icon' })}
+                <p>${esc(L(about.mission, lang))}</p>
+              </blockquote>`
+            : ''
         }
       </div>
     </div>
   </section>`;
 }
 
-/* ── التعليم والشهادات  /  Education & certifications ─────────────── */
-export function credentialsSection(d) {
-  const { ui, lang, about } = d;
-  const edu = about.education || [];
-  const certs = about.certifications || [];
-  if (!edu.length && !certs.length) return '';
-
-  const eduList = edu
-    .map(
-      (e) => `<li class="cred${e.placeholder ? ' is-placeholder' : ''}">
-        <span class="cred__icon">${icon('cap', { size: 18 })}</span>
-        <div class="cred__body">
-          <p class="cred__title">${esc(L(e.degree, lang))}</p>
-          <p class="cred__meta">${esc(L(e.institution, lang))} · ${esc(L(e.period, lang) || DASH)}</p>
-          ${L(e.note, lang) ? `<p class="cred__note">${esc(L(e.note, lang))}</p>` : ''}
-        </div>
-      </li>`
-    )
-    .join('');
-
-  const certList = certs
-    .map(
-      (c) => `<li class="cred${c.placeholder ? ' is-placeholder' : ''}">
-        <span class="cred__icon">${icon('award', { size: 18 })}</span>
-        <div class="cred__body">
-          <p class="cred__title">${esc(L(c.name, lang))}</p>
-          <p class="cred__meta">${esc(L(c.issuer, lang))} · ${esc(L(c.year, lang) || DASH)}</p>
-          ${
-            c.credentialUrl
-              ? `<a class="cred__link" href="${attr(c.credentialUrl)}" target="_blank" rel="noopener noreferrer">${esc(L(ui.about.verifyCredential, lang))}${icon('external', { size: 13 })}</a>`
-              : ''
-          }
-        </div>
-      </li>`
-    )
-    .join('');
-
-  return `
-  <section class="sec sec--muted">
-    <div class="wrap creds__grid">
-      ${edu.length ? `<div><h2 class="creds__h">${esc(L(ui.about.education, lang))}</h2><ul class="creds reveal">${eduList}</ul></div>` : ''}
-      ${certs.length ? `<div><h2 class="creds__h">${esc(L(ui.about.certifications, lang))}</h2><ul class="creds reveal">${certList}</ul></div>` : ''}
-    </div>
-  </section>`;
-}
-
-/* ── المسار المهني  /  Journey timeline ───────────────────────────── */
-export function journeySection(d) {
-  const { ui, lang, about } = d;
-  const items = about.journey || [];
-  if (!items.length) return '';
-  const iconFor = { work: 'briefcase', education: 'cap', milestone: 'milestone', content: 'share' };
-
-  return `
-  <section class="sec">
-    <div class="wrap">
-      ${sectionHead({ eyebrow: L(ui.about.eyebrow, lang), title: L(ui.about.journey, lang) })}
-      <ol class="tline tline--compact reveal">
-        ${items
-          .map(
-            (it) => `<li class="tline__item${it.placeholder ? ' is-placeholder' : ''}">
-              <span class="tline__marker">${icon(iconFor[it.type] || 'milestone', { size: 14 })}</span>
-              <div class="tline__body">
-                <span class="tline__year">${esc(L(it.year, lang))}</span>
-                <h3 class="tline__title">${esc(L(it.title, lang))}</h3>
-                <p class="tline__desc">${esc(L(it.description, lang))}</p>
-              </div>
-            </li>`
-          )
-          .join('')}
-      </ol>
-    </div>
-  </section>`;
-}
-
 /* ═════════════════════════════════════════════════════════════════════
- *  4 · الخبرة المهنية  /  Experience timeline
+ *  9 · الخبرة  /  Experience
  * ═══════════════════════════════════════════════════════════════════ */
 export function experienceSection(d, { limit = null, showHead = true } = {}) {
   const { ui, lang, experience } = d;
@@ -234,9 +342,8 @@ export function experienceSection(d, { limit = null, showHead = true } = {}) {
       const ach = L(job.achievements, lang) || [];
       const stack = job.stack || [];
       const hasDetail = resp.length || ach.length || stack.length;
-      const period = L(job.period, lang);
 
-      return `<li class="exp${job.placeholder ? ' is-placeholder' : ''}">
+      return `<li class="exp">
         <div class="exp__rail" aria-hidden="true"><span class="exp__dot${job.current ? ' is-current' : ''}"></span></div>
         <article class="exp__card">
           <div class="exp__head">
@@ -246,7 +353,7 @@ export function experienceSection(d, { limit = null, showHead = true } = {}) {
             </div>
             <div class="exp__when">
               ${job.current ? `<span class="tagpill tagpill--live">${esc(L(ui.experience.current, lang))}</span>` : ''}
-              <span class="exp__period">${esc(period)}</span>
+              <span class="exp__period">${esc(L(job.period, lang))}</span>
               <span class="exp__loc">${icon('location', { size: 13 })}${esc(L(job.location, lang))}</span>
             </div>
           </div>
@@ -306,28 +413,70 @@ export function experienceSection(d, { limit = null, showHead = true } = {}) {
 }
 
 /* ═════════════════════════════════════════════════════════════════════
- *  5 · التخصصات  /  Expertise
+ * 10 · المحتوى التقني  /  Technical content
  * ═══════════════════════════════════════════════════════════════════ */
-export function expertiseSection(d) {
-  const { ui, lang, expertise } = d;
+export function contentSection(d) {
+  const { site, ui, lang, tiktok } = d;
+  if (!tiktok.enabled) return '';
+  const hasLink = Boolean(tiktok.profileUrl);
+
   return `
-  <section class="sec sec--dark" id="expertise">
+  <section class="sec sec--muted" id="content">
+    <div class="wrap creator">
+      <div class="creator__body">
+        ${sectionHead({ eyebrow: L(ui.content.eyebrow, lang), title: L(ui.content.title, lang) })}
+        <p class="creator__text">${esc(L(tiktok.bio, lang))}</p>
+
+        <div class="creator__topics">
+          <p class="creator__th">${esc(L(ui.content.topics, lang))}</p>
+          <div class="chips">${(tiktok.topics || []).map((t) => chip(L(t, lang), { small: true })).join('')}</div>
+        </div>
+
+        <div class="creator__cta">
+          ${tiktokButton(site, ui, lang, { variant: 'solid', label: L(ui.content.follow, lang) })}
+          ${hasLink ? '' : `<span class="todo">${esc(L(ui.content.linkTodo, lang))}</span>`}
+        </div>
+      </div>
+
+      <aside class="creator__stat reveal">
+        <span class="creator__num" dir="auto">${esc(L(tiktok.audience, lang) || DASH)}</span>
+        <span class="creator__label">${esc(L(tiktok.audienceLabel, lang))}</span>
+        ${icon('tiktok', { size: 26, className: 'creator__brand' })}
+      </aside>
+    </div>
+  </section>`;
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+ * 11 · المنشورات  /  Publications
+ * ═══════════════════════════════════════════════════════════════════ */
+export function publicationsSection(d) {
+  const { ui, lang, publications } = d;
+  const items = publications?.items || [];
+  if (!items.length) return '';
+
+  return `
+  <section class="sec" id="publications">
     <div class="wrap">
       ${sectionHead({
-        eyebrow: L(ui.expertise.eyebrow, lang),
-        title: L(ui.expertise.title, lang),
-        lead: L(ui.expertise.lead, lang),
+        eyebrow: L(ui.publications.eyebrow, lang),
+        title: L(publications.title, lang),
+        lead: L(publications.lead, lang),
       })}
-      <div class="xgrid reveal">
-        ${expertise
+      <div class="pubgrid reveal">
+        ${items
           .map(
-            (g) => `<article class="xcard${g.feature ? ' xcard--feature' : ''}">
-              <span class="xcard__icon">${icon(g.icon, { size: 22 })}</span>
-              <h3 class="xcard__title">${esc(L(g.title, lang))}</h3>
-              <p class="xcard__intro">${esc(L(g.intro, lang))}</p>
-              <ul class="xcard__items">
-                ${g.items.map((i) => `<li>${esc(L(i, lang))}</li>`).join('')}
-              </ul>
+            (it) => `<article class="pub">
+              <span class="pub__icon">${icon(it.icon || 'quote', { size: 20 })}</span>
+              <p class="pub__type">${esc(L(it.type, lang))}</p>
+              <h3 class="pub__title">${esc(L(it.title, lang))}</h3>
+              <p class="pub__venue">${esc(L(it.venue, lang))}</p>
+              <p class="pub__desc">${esc(L(it.description, lang))}</p>
+              ${
+                it.url
+                  ? `<a class="linkbtn linkbtn--arrow" href="${attr(it.url)}" target="_blank" rel="noopener noreferrer">${esc(L(it.cta, lang))}${icon('external', { size: 15 })}</a>`
+                  : `<span class="todo">${esc(L(ui.publications.linkTodo, lang))}</span>`
+              }
             </article>`
           )
           .join('')}
@@ -337,374 +486,97 @@ export function expertiseSection(d) {
 }
 
 /* ═════════════════════════════════════════════════════════════════════
- *  6 · أبرز المحتوى  /  Featured content
+ * 12 · التعليم والشهادات  /  Education & certifications
  * ═══════════════════════════════════════════════════════════════════ */
-export function featuredSection(d) {
-  const { ui, lang, articles, tools, tiktok } = d;
-  const article = articles.find((a) => a.featured) || articles[0];
-  const tool = tools.find((t) => t.featured) || tools[0];
-  const video = (tiktok.videos || []).find((v) => v.url);
-  if (!article && !tool && !video) return '';
+export function credentialsSection(d, { muted = true } = {}) {
+  const { ui, lang, about } = d;
+  const edu = about.education || [];
+  const certs = about.certifications || [];
+  if (!edu.length && !certs.length) return '';
 
-  const cards = [];
+  const eduList = edu
+    .map(
+      (e) => `<li class="cred">
+        <span class="cred__icon">${icon('cap', { size: 18 })}</span>
+        <div class="cred__body">
+          <p class="cred__title">${esc(L(e.degree, lang))}</p>
+          <p class="cred__meta">${esc(L(e.institution, lang))}${L(e.period, lang) && L(e.period, lang) !== '—' ? ` · ${esc(L(e.period, lang))}` : ''}</p>
+          ${L(e.note, lang) ? `<p class="cred__note">${esc(L(e.note, lang))}</p>` : ''}
+        </div>
+      </li>`
+    )
+    .join('');
 
-  if (article) {
-    cards.push(`<article class="fcard">
-      <span class="fcard__type">${icon('book', { size: 14 })}${esc(L(ui.featured.typeArticle, lang))}</span>
-      <h3 class="fcard__title"><a href="${href(`articles/${article.slug}/`, lang)}">${esc(article.title)}</a></h3>
-      <p class="fcard__meta">${esc(article.category)} · ${esc(article.dateLabel)}</p>
-      <p class="fcard__desc">${esc(article.description)}</p>
-      <a class="linkbtn linkbtn--arrow" href="${href(`articles/${article.slug}/`, lang)}">${esc(L(ui.common.read, lang))}${icon('chevron', { size: 15 })}</a>
-      ${article.placeholder ? placeholderBadge(ui, lang) : ''}
-    </article>`);
-  }
+  const certList = certs
+    .map(
+      (c) => `<li class="cred">
+        <span class="cred__icon">${icon('award', { size: 18 })}</span>
+        <div class="cred__body">
+          <p class="cred__title">${esc(L(c.name, lang))}</p>
+          ${L(c.issuer, lang) && L(c.issuer, lang) !== '—' ? `<p class="cred__meta">${esc(L(c.issuer, lang))}</p>` : ''}
+          ${
+            c.credentialUrl
+              ? `<a class="cred__link" href="${attr(c.credentialUrl)}" target="_blank" rel="noopener noreferrer">${esc(L(ui.about.verifyCredential, lang))}${icon('external', { size: 13 })}</a>`
+              : ''
+          }
+        </div>
+      </li>`
+    )
+    .join('');
 
-  if (tool) {
-    cards.push(`<article class="fcard">
-      <span class="fcard__type">${icon('spark', { size: 14 })}${esc(L(ui.featured.typeTool, lang))}</span>
-      <h3 class="fcard__title"><a href="${href(`ai-tools/${tool.slug}/`, lang)}">${esc(L(tool.name, lang))}</a></h3>
-      <p class="fcard__meta">${esc(tool.categoryLabel)}</p>
-      <p class="fcard__desc">${esc(L(tool.summary, lang))}</p>
-      <div class="fcard__rating">${rating(tool.rating, ui, lang)}</div>
-      <a class="linkbtn linkbtn--arrow" href="${href(`ai-tools/${tool.slug}/`, lang)}">${esc(L(ui.common.details, lang))}${icon('chevron', { size: 15 })}</a>
-      ${tool.placeholder ? placeholderBadge(ui, lang) : ''}
-    </article>`);
-  }
+  return `
+  <section class="sec ${muted ? 'sec--muted' : ''}" id="education">
+    <div class="wrap creds__grid">
+      ${edu.length ? `<div><h2 class="creds__h">${esc(L(ui.about.education, lang))}</h2><ul class="creds reveal">${eduList}</ul></div>` : ''}
+      ${certs.length ? `<div><h2 class="creds__h">${esc(L(ui.about.certifications, lang))}</h2><ul class="creds reveal">${certList}</ul></div>` : ''}
+    </div>
+  </section>`;
+}
 
-  cards.push(`<article class="fcard fcard--tiktok">
-    <span class="fcard__type">${icon('tiktok', { size: 14 })}${esc(L(ui.featured.typeVideo, lang))}</span>
-    <h3 class="fcard__title">${esc(L(ui.tiktok.title, lang))}</h3>
-    <p class="fcard__desc">${esc(L(ui.tiktok.lead, lang))}</p>
-    <div class="fcard__chips">${(d.tiktok.topics || [])
-      .slice(0, 4)
-      .map((t) => chip(L(t, lang), { small: true }))
-      .join('')}</div>
-    <a class="linkbtn linkbtn--arrow" href="${href('tiktok/', lang)}">${esc(L(ui.common.watch, lang))}${icon('chevron', { size: 15 })}</a>
-  </article>`);
+/* ── محاضرات ومشاركات  /  Talks & contributions ───────────────────── */
+export function contributionsSection(d) {
+  const { ui, lang, about } = d;
+  const c = about.contributions;
+  if (!c || !(c.items || []).length) return '';
 
   return `
   <section class="sec">
     <div class="wrap">
       ${sectionHead({
-        eyebrow: L(ui.featured.eyebrow, lang),
-        title: L(ui.featured.title, lang),
-        lead: L(ui.featured.lead, lang),
+        eyebrow: L(ui.contributions.eyebrow, lang),
+        title: L(c.title, lang),
+        lead: L(c.lead, lang),
       })}
-      <div class="fgrid reveal">${cards.join('')}</div>
-    </div>
-  </section>`;
-}
-
-/* ═════════════════════════════════════════════════════════════════════
- *  7 · المقالات  /  Articles
- * ═══════════════════════════════════════════════════════════════════ */
-export function articlesSection(d, { limit = 3 } = {}) {
-  const { ui, lang, articles } = d;
-  if (!articles.length) return '';
-  const list = articles.slice(0, limit);
-
-  return `
-  <section class="sec sec--muted" id="articles">
-    <div class="wrap">
-      <div class="sec__bar">
-        ${sectionHead({
-          eyebrow: L(ui.articles.eyebrow, lang),
-          title: L(ui.articles.title, lang),
-          lead: L(ui.articles.lead, lang),
-        })}
-        <a class="linkbtn linkbtn--arrow" href="${href('articles/', lang)}">${esc(L(ui.common.viewAll, lang))}${icon('chevron', { size: 16 })}</a>
-      </div>
-      <div class="agrid reveal">${list.map((a) => articleCard(a, ui, lang)).join('')}</div>
-    </div>
-  </section>`;
-}
-
-/* ═════════════════════════════════════════════════════════════════════
- *  8 · أدوات الذكاء الاصطناعي  /  AI tools preview
- * ═══════════════════════════════════════════════════════════════════ */
-export function toolsSection(d, { limit = 3 } = {}) {
-  const { ui, lang, tools } = d;
-  if (!tools.length) return '';
-
-  return `
-  <section class="sec" id="ai-tools">
-    <div class="wrap">
-      <div class="sec__bar">
-        ${sectionHead({
-          eyebrow: L(ui.tools.eyebrow, lang),
-          title: L(ui.tools.title, lang),
-          lead: L(ui.tools.lead, lang),
-        })}
-        <a class="linkbtn linkbtn--arrow" href="${href('ai-tools/', lang)}">${esc(L(ui.common.viewAll, lang))}${icon('chevron', { size: 16 })}</a>
-      </div>
-      <div class="tgrid reveal">${tools.slice(0, limit).map((t) => toolCard(t, ui, lang)).join('')}</div>
-    </div>
-  </section>`;
-}
-
-/* ═════════════════════════════════════════════════════════════════════
- *  9 · الكتاب  /  Book
- * ═══════════════════════════════════════════════════════════════════ */
-export function bookSection(d, { full = false } = {}) {
-  const { ui, lang, book } = d;
-  if (!book || !book.enabled) return '';
-
-  const links = (book.links || [])
-    .filter((l) => l.url)
-    .map((l) =>
-      button({
-        label: L(l.label, lang),
-        url: l.url,
-        variant: l.primary ? 'solid' : 'outline',
-        external: true,
-        iconName: l.primary ? 'arrow' : 'download',
-      })
-    )
-    .join('');
-
-  const pub = book.publication || {};
-  const pubRows = [
-    [L(ui.book.publisher, lang), L(pub.publisher, lang)],
-    [L(ui.book.year, lang), pub.year],
-    [L(ui.book.pages, lang), pub.pages],
-    [L(ui.book.lang, lang), L(pub.language, lang)],
-    [L(ui.book.isbn, lang), pub.isbn],
-    [L(ui.book.format, lang), L(pub.format, lang)],
-  ];
-
-  const cover = `
-    <div class="bookshot reveal">
-      <div class="bookshot__book">
-        <div class="bookshot__cover${book.coverIsPlaceholder ? ' is-empty' : ''}">
-          <img src="${asset(book.cover)}" alt="${attr(L(book.coverAlt, lang))}" width="400" height="600"
-            loading="lazy" decoding="async"
-            onerror="this.closest('.bookshot__cover').classList.add('is-empty');this.remove();">
-          <div class="bookshot__fallback">
-            <span class="bookshot__ftitle">${esc(L(book.title, lang))}</span>
-            <span class="bookshot__fauthor">${esc(L(d.site.profile.name, lang))}</span>
-          </div>
-        </div>
-        <span class="bookshot__spine" aria-hidden="true"></span>
-      </div>
-      <span class="bookshot__shadow" aria-hidden="true"></span>
-    </div>`;
-
-  return `
-  <section class="sec sec--dark sec--book" id="book">
-    <div class="wrap book__grid">
-      ${cover}
-      <div class="book__body">
-        ${sectionHead({ eyebrow: L(ui.book.eyebrow, lang), title: L(ui.book.title, lang) })}
-        ${!book.published ? `<span class="tagpill tagpill--soon">${esc(L(ui.common.comingSoon, lang))}</span>` : ''}
-        <h3 class="book__title${ph(L(book.title, lang))}">${esc(L(book.title, lang))}</h3>
-        ${L(book.subtitle, lang) ? `<p class="book__sub">${esc(L(book.subtitle, lang))}</p>` : ''}
-        <p class="book__tag">${esc(L(book.tagline, lang))}</p>
-        <div class="prose prose--invert">
-          ${(L(book.description, lang) || []).slice(0, full ? 99 : 1).map((t) => `<p>${esc(t)}</p>`).join('')}
-        </div>
-
-        ${
-          full
-            ? `
-          <div class="book__cols">
-            <div>
-              <h4 class="book__h">${esc(L(ui.book.why, lang))}</h4>
-              ${(L(book.why, lang) || []).map((t) => `<p class="book__p">${esc(t)}</p>`).join('')}
-            </div>
-            <div>
-              <h4 class="book__h">${esc(L(ui.book.topics, lang))}</h4>
-              <ul class="ticks ticks--accent">${(L(book.topics, lang) || []).map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
-            </div>
-            <div>
-              <h4 class="book__h">${esc(L(ui.book.audience, lang))}</h4>
-              <ul class="ticks">${(L(book.audience, lang) || []).map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
-            </div>
-          </div>
-          <div class="book__pub">
-            <h4 class="book__h">${esc(L(ui.book.publication, lang))}</h4>
-            <dl class="deflist">
-              ${pubRows.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(orDash(v))}</dd></div>`).join('')}
-            </dl>
-          </div>`
-            : ''
-        }
-
-        <div class="book__cta">
-          ${links}
-          ${
-            full
-              ? ''
-              : button({ label: L(ui.book.learnMore, lang), url: href('book/', lang), variant: links ? 'ghost' : 'outline', iconName: 'arrow' })
-          }
-        </div>
-        ${book.placeholder ? placeholderBadge(ui, lang) : ''}
-      </div>
-    </div>
-  </section>`;
-}
-
-/* ═════════════════════════════════════════════════════════════════════
- * 10 · المشاريع  /  Projects
- * ═══════════════════════════════════════════════════════════════════ */
-export function projectsSection(d, { limit = 2 } = {}) {
-  const { ui, lang, projects } = d;
-  if (!projects.length) return '';
-  return `
-  <section class="sec sec--muted" id="projects">
-    <div class="wrap">
-      <div class="sec__bar">
-        ${sectionHead({
-          eyebrow: L(ui.projects.eyebrow, lang),
-          title: L(ui.projects.title, lang),
-          lead: L(ui.projects.lead, lang),
-        })}
-        <a class="linkbtn linkbtn--arrow" href="${href('projects/', lang)}">${esc(L(ui.common.viewAll, lang))}${icon('chevron', { size: 16 })}</a>
-      </div>
-      <div class="pgrid reveal">${projects.slice(0, limit).map((p) => projectCard(p, ui, lang)).join('')}</div>
-    </div>
-  </section>`;
-}
-
-/* ═════════════════════════════════════════════════════════════════════
- * 11 · TikTok
- * ═══════════════════════════════════════════════════════════════════ */
-export function tiktokSection(d, { full = false } = {}) {
-  const { site, ui, lang, tiktok } = d;
-  if (!tiktok.enabled) return '';
-  const p = site.profile;
-  const videos = (tiktok.videos || []).filter((v) => v.videoId);
-
-  const embeds = videos.length
-    ? `<div class="ttgrid reveal">
-        ${videos
+      <ul class="talks reveal">
+        ${c.items
           .map(
-            (v) => `<div class="ttvid">
-              <div class="ttvid__frame" data-tiktok="${attr(v.videoId)}" data-url="${attr(v.url)}">
-                <button class="ttvid__load" type="button" data-tiktok-load
-                  data-track="tiktok_click" aria-label="${attr(L(ui.tiktok.loadEmbed, lang))}">
-                  ${icon('play', { size: 26 })}<span>${esc(L(ui.tiktok.loadEmbed, lang))}</span>
-                </button>
+            (t) => `<li class="talk">
+              <span class="talk__icon">${icon('mic', { size: 16 })}</span>
+              <div>
+                <p class="talk__title">${esc(L(t.title, lang))}</p>
+                <p class="talk__org">${esc(L(t.org, lang))}</p>
               </div>
-              <p class="ttvid__title">${esc(L(v.title, lang))}</p>
-            </div>`
+            </li>`
           )
           .join('')}
-      </div>`
-    : `<p class="empty reveal">${esc(L(ui.tiktok.noVideos, lang))}</p>`;
-
-  return `
-  <section class="sec sec--tiktok" id="tiktok">
-    <div class="wrap">
-      ${sectionHead({
-        eyebrow: L(ui.tiktok.eyebrow, lang),
-        title: L(ui.tiktok.title, lang),
-        lead: L(ui.tiktok.lead, lang),
-      })}
-
-      <div class="ttprofile reveal">
-        ${portrait(site, lang, { size: 'md', className: 'ttprofile__photo' })}
-        <div class="ttprofile__body">
-          <p class="ttprofile__name">${esc(L(p.name, lang))}</p>
-          <p class="ttprofile__handle handle${ph(tiktok.handle)}">${esc(tiktok.handle)}</p>
-          <p class="ttprofile__bio">${esc(L(tiktok.bio, lang))}</p>
-          <div class="ttprofile__stats">
-            <span><b>${esc(orDash(tiktok.followers))}</b>${esc(L(ui.tiktok.followers, lang))}</span>
-            <span><b>${esc(orDash(tiktok.likes))}</b>${esc(L(ui.tiktok.likes, lang))}</span>
-          </div>
-          <div class="ttprofile__cta">${tiktokButton(site, ui, lang, { variant: 'solid' })}</div>
-        </div>
-        <div class="ttprofile__topics">
-          <p class="ttprofile__th">${esc(L(ui.tiktok.topics, lang))}</p>
-          <div class="chips">${(tiktok.topics || []).map((t) => chip(L(t, lang), { small: true })).join('')}</div>
-        </div>
-      </div>
-
-      <h3 class="tt__h">${esc(L(ui.tiktok.latest, lang))}</h3>
-      ${embeds}
-      ${full ? '' : `<div class="sec__more">${button({ label: L(ui.common.viewAll, lang), url: href('tiktok/', lang), variant: 'ghost', iconName: 'arrow' })}</div>`}
+      </ul>
     </div>
   </section>`;
 }
 
 /* ═════════════════════════════════════════════════════════════════════
- * 12 · الحضور الرقمي الرسمي  /  Official digital presence
+ * 13 · إلى أين أتجه  /  Where I'm heading
  * ═══════════════════════════════════════════════════════════════════ */
-export function presenceSection(d) {
-  const { site, ui, lang } = d;
-  const p = site.profile;
-  const accounts = p.social.filter((s) => s.url);
-
+export function careerSection(d) {
+  const { ui, lang, about } = d;
+  const c = about.career;
+  if (!c) return '';
   return `
-  <section class="sec sec--presence" id="presence">
-    <div class="wrap presence__grid">
-      <div>
-        ${sectionHead({
-          eyebrow: L(ui.presence.eyebrow, lang),
-          title: L(ui.presence.title, lang),
-          lead: L(ui.presence.lead, lang),
-        })}
-        <p class="presence__note">${icon('shield', { size: 16 })}${esc(L(ui.presence.note, lang))}</p>
-      </div>
-      <div class="presence__card reveal">
-        <div class="presence__id">
-          ${portrait(site, lang, { size: 'sm' })}
-          <div>
-            <p class="presence__name">${esc(L(p.name, lang))}</p>
-            <p class="presence__role">${esc(L(p.professionalTitle, lang))}</p>
-          </div>
-        </div>
-        <ul class="presence__list">
-          ${
-            accounts.length
-              ? accounts
-                  .map(
-                    (s) => `<li>
-                      <a href="${attr(s.url)}"${s.id === 'email' ? '' : ' target="_blank" rel="noopener noreferrer"'}
-                        data-track="social_click" data-track-label="${attr(s.id)}">
-                        <span class="presence__icon">${icon(s.id, { size: 18 })}</span>
-                        <span class="presence__meta">
-                          <b>${esc(typeof s.label === 'string' ? s.label : L(s.label, lang))}</b>
-                          <span class="handle">${esc(s.handle)}</span>
-                        </span>
-                        ${icon('external', { size: 15, className: 'presence__ext' })}
-                      </a>
-                    </li>`
-                  )
-                  .join('')
-              : p.social
-                  .map(
-                    (s) => `<li class="is-placeholder">
-                      <span class="presence__row">
-                        <span class="presence__icon">${icon(s.id, { size: 18 })}</span>
-                        <span class="presence__meta">
-                          <b>${esc(typeof s.label === 'string' ? s.label : L(s.label, lang))}</b>
-                          <span class="handle">${esc(s.handle)}</span>
-                        </span>
-                      </span>
-                    </li>`
-                  )
-                  .join('')
-          }
-        </ul>
-      </div>
-    </div>
-  </section>`;
-}
-
-/* ═════════════════════════════════════════════════════════════════════
- * 13 · الملف التعريفي (تمهيد)  /  Media kit teaser
- * ═══════════════════════════════════════════════════════════════════ */
-export function mediaKitTeaser(d) {
-  const { ui, lang } = d;
-  return `
-  <section class="sec sec--muted">
-    <div class="wrap teaser">
-      <div>
-        <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>${esc(L(ui.mediaKit.eyebrow, lang))}</p>
-        <h2 class="teaser__title">${esc(L(ui.mediaKit.title, lang))}</h2>
-        <p class="teaser__lead">${esc(L(ui.mediaKit.lead, lang))}</p>
-      </div>
-      ${button({ label: L(ui.mediaKit.title, lang), url: href('media-kit/', lang), variant: 'outline', iconName: 'arrow' })}
+  <section class="sec sec--dark sec--career">
+    <div class="wrap wrap--narrow career">
+      <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>${esc(L(ui.career.eyebrow, lang))}</p>
+      <h2 class="career__title">${esc(L(c.title, lang))}</h2>
+      <p class="career__body">${esc(L(c.body, lang))}</p>
     </div>
   </section>`;
 }
@@ -716,7 +588,6 @@ export function contactSection(d) {
   const { site, ui, lang } = d;
   const p = site.profile;
   const mode = site.contactForm.mode;
-  const emailReal = p.email && !/^\[/.test(p.email);
 
   return `
   <section class="sec sec--contact" id="contact">
@@ -728,13 +599,15 @@ export function contactSection(d) {
           lead: L(ui.contact.lead, lang),
         })}
         <ul class="contact__meta">
-          <li>${icon('email', { size: 17 })}
-            ${emailReal ? `<a class="handle" href="mailto:${attr(p.email)}">${esc(p.email)}</a>` : `<span class="handle is-placeholder">${esc(p.email)}</span>`}
-          </li>
-          <li>${icon('location', { size: 17 })}<span class="${ph(L(p.location, lang)).trim()}">${esc(L(p.location, lang))}</span></li>
+          <li>${icon('email', { size: 17 })}<a class="handle" href="mailto:${attr(p.email)}">${esc(p.email)}</a></li>
+          <li>${icon('location', { size: 17 })}<span>${esc(L(p.location, lang))}</span></li>
           <li>${icon('check', { size: 17 })}<span>${esc(L(p.availability, lang))}</span></li>
         </ul>
-        ${socialLinks(site, ui, lang, { className: 'social social--lg', labelled: false })}
+        <div class="contact__actions">
+          ${button({ label: L(ui.contact.emailMe, lang), url: `mailto:${p.email}`, variant: 'outline', iconName: 'email' })}
+          ${cvButton(site, ui, lang)}
+        </div>
+        ${socialLinks(site, ui, lang, { className: 'social social--lg' })}
       </div>
 
       <form class="cform reveal" data-contact-form
@@ -791,14 +664,18 @@ export function contactSection(d) {
   </section>`;
 }
 
-/* ═════════════════════════════════════════════════════════════════════
- * 15 · دعوة المتابعة  /  Follow CTA (نهاية المقالات وصفحات الأدوات)
- * ═══════════════════════════════════════════════════════════════════ */
-export function followCta(d) {
-  const { site, ui, lang } = d;
+/* ── تمهيد الملف التعريفي  /  Media kit teaser ────────────────────── */
+export function mediaKitTeaser(d) {
+  const { ui, lang } = d;
   return `
-  <aside class="followcta">
-    <p class="followcta__text">${esc(L(ui.articles.ctaTitle, lang))}</p>
-    ${tiktokButton(site, ui, lang, { variant: 'solid' })}
-  </aside>`;
+  <section class="sec sec--muted">
+    <div class="wrap teaser">
+      <div>
+        <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>${esc(L(ui.mediaKit.eyebrow, lang))}</p>
+        <h2 class="teaser__title">${esc(L(ui.mediaKit.title, lang))}</h2>
+        <p class="teaser__lead">${esc(L(ui.mediaKit.lead, lang))}</p>
+      </div>
+      ${button({ label: L(ui.mediaKit.title, lang), url: href('media-kit/', lang), variant: 'outline', iconName: 'arrow' })}
+    </div>
+  </section>`;
 }
