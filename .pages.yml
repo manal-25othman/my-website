@@ -472,6 +472,10 @@ content:
                 fields:
                   - { name: ar, label: بالعربية, type: string }
                   - { name: en, label: بالإنجليزية, type: string }
+              - name: url
+                label: رابط التغطية الإعلامية
+                type: string
+                description: رابط خبر أو تغطية للمشاركة — اختياري
 
   # ─────────────────────────────────────────────────────────────────────
   #  ٤ · الخبرة المهنية

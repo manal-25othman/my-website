@@ -1986,6 +1986,15 @@ html[dir='rtl'] .author__link svg { transform: scaleX(-1); }
 }
 .talk__title { font-weight: 600; font-size: 0.96rem; }
 .talk__org { font-size: var(--t-sm); color: var(--muted); }
+.talk__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-block-start: 0.35rem;
+  font-size: var(--t-xs);
+  font-weight: 700;
+  color: var(--accent);
+}
 
 /* ── إلى أين أتجه  /  Career direction ── */
 .sec--career { text-align: center; }

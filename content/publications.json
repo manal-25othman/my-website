@@ -1,28 +1,42 @@
 {
-  "title": { "ar": "منشورات", "en": "Publications" },
+  "title": {
+    "ar": "منشورات",
+    "en": "Publications"
+  },
   "lead": {
     "ar": "كتابات منشورة في الذكاء الاصطناعي والتقنية.",
     "en": "Published writing on artificial intelligence and technology."
   },
   "items": [
     {
-      "type": { "ar": "مقال تقني منشور", "en": "Published Technical Article" },
+      "type": {
+        "ar": "مقال تقني منشور",
+        "en": "Published Technical Article"
+      },
       "title": {
         "ar": "حين تتعلم الآلة نبرتك: الوجه الآخر لرفقة الذكاء الاصطناعي",
         "en": "When Machines Learn Your Tone: The Other Side of Our Relationship with AI"
       },
-      "venue": { "ar": "صحيفة واكب الاقتصادية", "en": "Wakeb Economic" },
+      "venue": {
+        "ar": "صحيفة واكب الاقتصادية",
+        "en": "Wakeb Economic"
+      },
       "description": {
         "ar": "مقال يستكشف الجانب الإنساني في علاقتنا المتزايدة مع الذكاء الاصطناعي، ويتناول كيف يمكن للأنظمة الذكية أن تتفاعل مع أسلوبنا ونبرتنا وطريقة تواصلنا، وما الذي يعنيه ذلك لمستقبل علاقتنا بالتقنية.",
         "en": "An exploration of the human side of our evolving relationship with AI — how intelligent systems respond to our tone and individual patterns of communication, and what that means for the future of that relationship."
       },
       "icon": "quote",
-      "cta": { "ar": "اقرأ المقال", "en": "Read Article" },
-      "url": null,
-      "urlTodo": "WAKEB_ARTICLE_URL"
+      "cta": {
+        "ar": "اقرأ المقال",
+        "en": "Read Article"
+      },
+      "url": "https://wakebeconomic.com/?p=821643"
     },
     {
-      "type": { "ar": "إصدار", "en": "Publication" },
+      "type": {
+        "ar": "إصدار",
+        "en": "Publication"
+      },
       "title": {
         "ar": "الذكاء الاصطناعي: مفتاح المستقبل",
         "en": "Artificial Intelligence: The Key to the Future"
@@ -36,7 +50,10 @@
         "en": "An authored publication introducing artificial intelligence and its impact for a general Arabic-speaking reader."
       },
       "icon": "book",
-      "cta": { "ar": "التفاصيل", "en": "Details" },
+      "cta": {
+        "ar": "التفاصيل",
+        "en": "Details"
+      },
       "url": null,
       "urlTodo": "BOOK_URL"
     }

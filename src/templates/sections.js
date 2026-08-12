@@ -555,6 +555,11 @@ export function contributionsSection(d) {
               <div>
                 <p class="talk__title">${esc(L(t.title, lang))}</p>
                 <p class="talk__org">${esc(L(t.org, lang))}</p>
+                ${
+                  t.url
+                    ? `<a class="talk__link" href="${attr(t.url)}" target="_blank" rel="noopener noreferrer">${esc(L(ui.contributions.coverage, lang))}${icon('external', { size: 13 })}</a>`
+                    : ''
+                }
               </div>
             </li>`
           )

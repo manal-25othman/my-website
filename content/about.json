@@ -300,7 +300,8 @@
         "org": {
           "ar": "اليوم السيبراني للفتيات — محاضِرة",
           "en": "Girls Cyber Day — Instructor"
-        }
+        },
+        "url": null
       },
       {
         "title": {
@@ -310,7 +311,8 @@
         "org": {
           "ar": "اليوم السيبراني العربي — محاضِرة",
           "en": "Arab Cyber Day — Instructor"
-        }
+        },
+        "url": null
       },
       {
         "title": {
@@ -320,7 +322,8 @@
         "org": {
           "ar": "وزارة التعليم — محاضِرة",
           "en": "Ministry of Education — Instructor"
-        }
+        },
+        "url": null
       },
       {
         "title": {
@@ -330,7 +333,8 @@
         "org": {
           "ar": "وزارة التعليم — للمعلمين والطلاب",
           "en": "Ministry of Education — for educators and students"
-        }
+        },
+        "url": null
       },
       {
         "title": {
@@ -340,7 +344,8 @@
         "org": {
           "ar": "جمعية صعوبات التعلم — محاضِرة",
           "en": "Learning Difficulties Association — Instructor"
-        }
+        },
+        "url": "https://www.almajd-ksa.com/?p=150923"
       }
     ]
   }

@@ -1,8 +1,11 @@
 {
   "enabled": true,
-  "handle": "[@username]",
-  "profileUrl": null,
-  "audience": { "ar": "20K+", "en": "20K+" },
+  "handle": "@manalothman8",
+  "profileUrl": "https://www.tiktok.com/@manalothman8",
+  "audience": {
+    "ar": "20K+",
+    "en": "20K+"
+  },
   "audienceLabel": {
     "ar": "جمهور مهتم بالمحتوى التقني",
     "en": "Technical Content Audience"
@@ -14,12 +17,30 @@
   "followers": null,
   "likes": null,
   "topics": [
-    { "ar": "الذكاء الاصطناعي", "en": "AI" },
-    { "ar": "أدوات الذكاء الاصطناعي", "en": "AI Tools" },
-    { "ar": "التقنيات الحديثة", "en": "Emerging Tech" },
-    { "ar": "الإنتاجية", "en": "Productivity" },
-    { "ar": "شروحات عملية", "en": "Tutorials" },
-    { "ar": "نصائح تقنية", "en": "Tech Tips" }
+    {
+      "ar": "الذكاء الاصطناعي",
+      "en": "AI"
+    },
+    {
+      "ar": "أدوات الذكاء الاصطناعي",
+      "en": "AI Tools"
+    },
+    {
+      "ar": "التقنيات الحديثة",
+      "en": "Emerging Tech"
+    },
+    {
+      "ar": "الإنتاجية",
+      "en": "Productivity"
+    },
+    {
+      "ar": "شروحات عملية",
+      "en": "Tutorials"
+    },
+    {
+      "ar": "نصائح تقنية",
+      "en": "Tech Tips"
+    }
   ],
   "videos": []
 }
