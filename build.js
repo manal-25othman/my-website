@@ -48,6 +48,36 @@ const LEGAL = readJson('legal.json');
 const DIST = path.join(ROOT, 'dist');
 const CHECK_ONLY = process.argv.includes('--check-only');
 
+/* ── قيم افتراضية دفاعية  /  Defensive defaults ─────────────────────
+ *  لوحة التحكم تحذف أي حقل قيمته null عند الحفظ. نعيد المفاتيح الناقصة
+ *  هنا حتى لا يتأثر البناء أبدًا بحفظة من اللوحة.
+ * ─────────────────────────────────────────────────────────────────── */
+{
+  const d = (obj, key, val) => {
+    if (obj && obj[key] === undefined) obj[key] = val;
+  };
+  d(SITE, 'url', 'https://example.com');
+  d(SITE, 'basePath', '');
+  d(SITE, 'copyrightStartYear', new Date().getFullYear());
+  d(SITE, 'seo', {});
+  d(SITE.seo, 'homeTitle', null);
+  d(SITE.seo, 'description', '');
+  d(SITE.seo, 'keywords', []);
+  d(SITE.seo, 'googleSiteVerification', null);
+  d(SITE, 'analytics', {});
+  d(SITE.analytics, 'googleAnalyticsId', null);
+  d(SITE.analytics, 'tiktokPixelId', null);
+  d(SITE.analytics, 'respectDoNotTrack', true);
+  d(SITE, 'contactForm', {});
+  d(SITE.contactForm, 'mode', 'mailto');
+  d(SITE.contactForm, 'endpoint', null);
+  d(SITE, 'languages', [{ code: 'ar', label: 'العربية', dir: 'rtl', locale: 'ar_SA' }]);
+  d(SITE, 'profile', {});
+  d(SITE.profile, 'cvUrl', null);
+  d(SITE.profile, 'social', []);
+  for (const acc of SITE.profile.social) d(acc, 'url', null);
+}
+
 const trimSlashes = (s) => String(s || '').replace(/^\/+|\/+$/g, '');
 const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
