@@ -107,6 +107,96 @@ export function projectCard(project, ui, lang) {
   </article>`;
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+ *  المقالات  /  Articles
+ * ═══════════════════════════════════════════════════════════════════ */
+
+/**
+ * صورة مقال متجاوبة.
+ * تُصدَّر كل صورة بثلاثة عروض: {name}-800.jpg و -1200 و -1600
+ * صورة الغلاف هي عنصر LCP في صفحة المقال، فلا تُحمَّل بكسل أبداً.
+ */
+export function articleImage(cover, alt, { priority = false, className = '' } = {}) {
+  if (!cover) return '';
+  const src = (w) => asset(`img/articles/${cover}-${w}.jpg`);
+  return `<img class="${attr(className)}"
+    src="${attr(src(1200))}"
+    srcset="${attr(`${src(800)} 800w, ${src(1200)} 1200w, ${src(1600)} 1600w`)}"
+    sizes="${attr(ARTICLE_IMG_SIZES)}"
+    alt="${attr(alt || '')}" width="1200" height="675" decoding="async"
+    ${priority ? 'fetchpriority="high" loading="eager"' : 'loading="lazy"'}>`;
+}
+
+export const ARTICLE_IMG_SIZES = '(max-width: 780px) 100vw, 760px';
+
+/** مصادر صورة الغلاف — تُستخدم في preload داخل <head> */
+export function articleImageSources(cover) {
+  if (!cover) return null;
+  const src = (w) => asset(`img/articles/${cover}-${w}.jpg`);
+  return {
+    preloadImage: src(1200),
+    preloadSrcset: `${src(800)} 800w, ${src(1200)} 1200w, ${src(1600)} 1600w`,
+    preloadSizes: ARTICLE_IMG_SIZES,
+  };
+}
+
+/** بطاقة مقال في الفهرس */
+export function articleCard(article, ui, lang, formatDate, { category = null } = {}) {
+  const url = href(`articles/${article.slug}/`, lang);
+  return `<article class="acard">
+    <a class="acard__media" href="${url}" tabindex="-1" aria-hidden="true">
+      ${
+        article.cover
+          ? articleImage(article.cover, '')
+          : `<span class="acard__pattern" data-seed="${attr(article.slug)}"></span>`
+      }
+    </a>
+    <div class="acard__body">
+      <div class="acard__meta">
+        ${category ? `<span class="acard__cat">${esc(L(category.name, lang))}</span><span class="dot" aria-hidden="true"></span>` : ''}
+        <time datetime="${attr(article.date)}">${esc(formatDate(article.date, lang))}</time>
+        <span class="dot" aria-hidden="true"></span>
+        <span>${esc(readingLabel(article.readMinutes, lang))}</span>
+      </div>
+      <h3 class="acard__title"><a href="${url}">${esc(article.title)}</a></h3>
+      <p class="acard__desc">${esc(article.description)}</p>
+      <a class="acard__more" href="${url}">${esc(L(ui.articles.readArticle, lang))}${icon('chevron', { size: 15 })}</a>
+    </div>
+  </article>`;
+}
+
+/** ترقيم الصفحات — بلا rel=next/prev، فجوجل توقّف عن استخدامهما */
+export function pagination({ pageNum, pageCount, ui, lang }) {
+  if (pageCount < 2) return '';
+  const url = (n) => (n === 1 ? href('articles/', lang) : href(`articles/page/${n}/`, lang));
+
+  const numbers = Array.from({ length: pageCount }, (_, i) => i + 1)
+    .map((n) =>
+      n === pageNum
+        ? `<span class="pager__n is-current" aria-current="page">${esc(n)}</span>`
+        : `<a class="pager__n" href="${url(n)}">${esc(n)}</a>`
+    )
+    .join('');
+
+  return `<nav class="pager" aria-label="${attr(L(ui.articles.pagination, lang))}">
+    ${pageNum > 1 ? `<a class="pager__edge" href="${url(pageNum - 1)}" rel="prev">${esc(L(ui.articles.prev, lang))}</a>` : '<span class="pager__edge is-off" aria-hidden="true"></span>'}
+    <div class="pager__nums">${numbers}</div>
+    ${pageNum < pageCount ? `<a class="pager__edge" href="${url(pageNum + 1)}" rel="next">${esc(L(ui.articles.next, lang))}</a>` : '<span class="pager__edge is-off" aria-hidden="true"></span>'}
+  </nav>`;
+}
+
+/** فهرس محتويات المقال — يُبنى من عناوين ## و ### */
+export function articleToc(toc, ui, lang) {
+  if (!toc || toc.length < 3) return '';
+  const items = toc
+    .map((t) => `<li class="toc__l${t.level}"><a href="#${attr(t.id)}">${esc(t.text)}</a></li>`)
+    .join('');
+  return `<nav class="toc" aria-labelledby="toc-h">
+    <h2 class="toc__h" id="toc-h">${esc(L(ui.articles.toc, lang))}</h2>
+    <ol>${items}</ol>
+  </nav>`;
+}
+
 /** أزرار المشاركة */
 export function shareRow(ui, lang, { url, title }) {
   const enc = encodeURIComponent;

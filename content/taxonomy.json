@@ -1,0 +1,37 @@
+{
+  "categories": [
+    {
+      "slug": "generative-ai",
+      "name": {
+        "ar": "الذكاء الاصطناعي التوليدي",
+        "en": "Generative AI"
+      },
+      "description": {
+        "ar": "مقالات عن النماذج اللغوية وكيفية توظيفها داخل منتجات حقيقية — من هندسة التعليمات إلى حدود ما تستطيع النماذج فعله.",
+        "en": "Articles on language models and how to put them to work inside real products — from prompt design to the limits of what these models can actually do."
+      }
+    },
+    {
+      "slug": "ai-engineering",
+      "name": {
+        "ar": "هندسة الذكاء الاصطناعي",
+        "en": "AI Engineering"
+      },
+      "description": {
+        "ar": "الجانب الهندسي من بناء أنظمة الذكاء الاصطناعي: RAG، والوكلاء، وقواعد البيانات المتجهية، وأمن البيانات، وما الذي ينكسر عند التشغيل الفعلي.",
+        "en": "The engineering side of building AI systems: RAG, agents, vector stores, data security, and what actually breaks in production."
+      }
+    },
+    {
+      "slug": "digital-products",
+      "name": {
+        "ar": "المنتجات الرقمية",
+        "en": "Digital Products"
+      },
+      "description": {
+        "ar": "كيف تتحوّل الفكرة إلى منتج رقمي قابل للاستخدام — البنية، وتجربة المستخدم، والقرارات التي تُتخذ بين التصور والتنفيذ.",
+        "en": "How an idea becomes a usable digital product — architecture, user experience, and the decisions made between concept and delivery."
+      }
+    }
+  ]
+}

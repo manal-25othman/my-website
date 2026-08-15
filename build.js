@@ -23,7 +23,8 @@ import { fileURLToPath } from 'node:url';
 
 import UI from './content/ui.js';
 
-import { setBasePath, href, asset, absolute, L, formatDate, isPlaceholderText } from './src/lib/html.js';
+import { setBasePath, href, asset, absolute, L, esc, slugify, formatDate, isPlaceholderText } from './src/lib/html.js';
+import { parseFrontmatter, renderMarkdown, readingTime, plainExcerpt } from './src/lib/markdown.js';
 import { ogCover, appIcon, photoPlaceholder } from './src/lib/png.js';
 import { layout } from './src/templates/layout.js';
 import * as P from './src/templates/pages.js';
@@ -45,6 +46,7 @@ const PROJECTS = readJson('projects.json');
 const PUBLICATIONS = readJson('publications.json');
 const TIKTOK = readJson('tiktok.json');
 const LEGAL = readJson('legal.json');
+const TAXONOMY = readJson('taxonomy.json');
 const DIST = path.join(ROOT, 'dist');
 const CHECK_ONLY = process.argv.includes('--check-only');
 
@@ -117,6 +119,79 @@ const hasAsset = (rel) => rel && fs.existsSync(path.join(ROOT, 'src', 'assets', 
 SITE.profile.photoIsPlaceholder = !hasAsset(SITE.profile.photo);
 
 /* ═══════════════════════════════════════════════════════════════════
+ *  المقالات  /  Articles
+ * ═══════════════════════════════════════════════════════════════════
+ *  كل مقال ملف Markdown في  content/articles/<lang>/<slug>.md
+ *  اسم الملف هو الـ slug، والاسم نفسه في لغتين يعني أنهما ترجمتان.
+ *  الملفات التي تبدأ بـ _ قوالب، والمسوّدات (draft) لا تدخل البناء.
+ * ═══════════════════════════════════════════════════════════════════ */
+const PER_PAGE = 10;
+
+function loadArticles(lang) {
+  const dir = path.join(ROOT, 'content', 'articles', lang);
+  if (!fs.existsSync(dir)) return [];
+
+  return fs
+    .readdirSync(dir)
+    .filter((f) => f.endsWith('.md') && !f.startsWith('_'))
+    .map((file) => {
+      const where = `content/articles/${lang}/${file}`;
+      const slug = file.replace(/\.md$/, '');
+      const { data, body } = parseFrontmatter(fs.readFileSync(path.join(dir, file), 'utf8'));
+
+      /* الفشل المبكر خير من إشارة SEO خاطئة تُنشر بصمت */
+      if (!data.title) throw new Error(`[${where}] ينقصه title`);
+      if (!data.date) throw new Error(`[${where}] ينقصه date — التاريخ يحدّد الترتيب و lastmod`);
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(String(data.date)))
+        throw new Error(`[${where}] صيغة date يجب أن تكون YYYY-MM-DD`);
+      if (data.cover && !data.coverAlt)
+        throw new Error(`[${where}] صورة بلا نص بديل — coverAlt مطلوب للوصولية`);
+      if (data.category && !TAXONOMY.categories.some((c) => c.slug === data.category))
+        throw new Error(`[${where}] تصنيف غير معروف: "${data.category}" — راجع content/taxonomy.json`);
+      if (/^#\s/m.test(body))
+        throw new Error(`[${where}] استخدم ## بدل # — العنوان الرئيسي يأتي من title`);
+
+      const { html, toc, words } = renderMarkdown(body);
+
+      return {
+        ...data,
+        slug,
+        lang,
+        html,
+        toc,
+        words,
+        tags: Array.isArray(data.tags) ? data.tags.filter(Boolean) : [],
+        readMinutes: readingTime(words),
+        description: data.description || plainExcerpt(body, 158),
+      };
+    })
+    .filter((a) => a.draft !== true)
+    .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+}
+
+const ARTICLES = Object.fromEntries(LANGS.map((l) => [l, loadArticles(l)]));
+
+/** اللغات التي يتوفر فيها هذا المقال فعلاً — تغذّي hreflang ومبدّل اللغة */
+const langsForSlug = (slug) => LANGS.filter((l) => ARTICLES[l].some((a) => a.slug === slug));
+
+/**
+ * الوسوم المستخدمة فعلاً في لغة ما، مع slug لكل وسم.
+ * لا نستخدم encodeURIComponent في المسار: اسم المجلد على القرص سيصير
+ * حرفياً «%D9%86…» بينما يفكّ الخادم ترميز الرابط إلى النص العربي،
+ * فلا يتطابقان. slugify يُبقي الحروف كما هي ويستبدل المسافات بشرطات.
+ */
+function tagsFor(lang) {
+  const map = new Map();
+  for (const a of ARTICLES[lang]) {
+    for (const tag of a.tags) {
+      const slug = slugify(tag);
+      if (slug && !map.has(slug)) map.set(slug, tag);
+    }
+  }
+  return [...map.entries()].map(([slug, tag]) => ({ slug, tag }));
+}
+
+/* ═══════════════════════════════════════════════════════════════════
  *  تجهيز البيانات لكل لغة  /  Per-language data bundle
  * ═══════════════════════════════════════════════════════════════════ */
 function tiktokVideoId(url) {
@@ -141,6 +216,14 @@ function buildData(lang) {
     publications: PUBLICATIONS,
     tiktok: TIKTOK,
     legal: LEGAL,
+    articles: ARTICLES[lang],
+    /* مقالات كل اللغات — تحتاجها صفحات الفهرس والتصنيف والوسم لتحديد
+       اللغات التي توجد فيها فعلاً، ويحتاجها مبدّل اللغة ليعرف إلى أين
+       يعود حين لا تكون هذه الصفحة مترجمة. */
+    articlesByLang: ARTICLES,
+    articleCounts: Object.fromEntries(LANGS.map((l) => [l, ARTICLES[l].length])),
+    taxonomy: TAXONOMY,
+    langsForSlug,
     computed,
     formatDate,
   };
@@ -165,6 +248,36 @@ function pagesFor(d) {
   ];
 
   for (const pr of d.projects) list.push(P.projectPage(d, pr));
+
+  /* ── المقالات ──────────────────────────────────────────────────────
+   *  لا تُولَّد أي صفحة مقالات قبل وجود مقال واحد منشور على الأقل،
+   *  حتى لا يظهر في الموقع قسم فارغ يوحي بأنه غير مكتمل.
+   * ───────────────────────────────────────────────────────────────── */
+  if (!d.articles.length) return list;
+
+  const pageCount = Math.max(1, Math.ceil(d.articles.length / PER_PAGE));
+  for (let n = 1; n <= pageCount; n++) {
+    list.push(
+      P.articlesPage(d, {
+        items: d.articles.slice((n - 1) * PER_PAGE, n * PER_PAGE),
+        pageNum: n,
+        pageCount,
+      })
+    );
+  }
+
+  for (const a of d.articles) list.push(P.articlePage(d, a));
+
+  /* التصنيفات — تُفهرَس فقط عند بلوغ ثلاثة مقالات، وإلا عُدّت صفحة ضعيفة */
+  for (const cat of d.taxonomy.categories) {
+    const items = d.articles.filter((a) => a.category === cat.slug);
+    if (items.length) list.push(P.categoryPage(d, cat, items));
+  }
+
+  /* الوسوم — noindex دائمًا: تكرارها مع التصنيفات يولّد صفحات متشابهة */
+  for (const { slug, tag } of tagsFor(d.lang)) {
+    list.push(P.tagPage(d, { slug, tag }, d.articles.filter((a) => a.tags.includes(tag))));
+  }
 
   return list;
 }
@@ -256,11 +369,16 @@ function build() {
       write(outPath, html);
       count++;
 
-      if (!page.noindex && !page.isFile) {
+      if (!page.noindex && !page.isFile && !page.excludeFromSitemap) {
+        /* اللغات التي توجد فيها هذه الصفحة فعلاً — لا نعلن بديلاً يرجع 404 */
+        const avail = page.availableLangs || LANGS;
         urls.push({
           loc: absolute(SITE.url, href(page.path, lang)),
-          alternates: LANGS.map((l) => ({ lang: l, loc: absolute(SITE.url, href(page.path, l)) })),
-          priority: page.path === '' ? '1.0' : page.path.includes('/') ? '0.6' : '0.8',
+          lastmod: page.lastmod || null,
+          alternates: LANGS.filter((l) => avail.includes(l)).map((l) => ({
+            lang: l,
+            loc: absolute(SITE.url, href(page.path, l)),
+          })),
         });
       }
     }
@@ -285,27 +403,39 @@ function build() {
     fs.writeFileSync(path.join(imgDir, path.basename(SITE.profile.photo)), photoPlaceholder());
   }
 
-  /* ── sitemap · robots · manifest ── */
+  /* ── sitemap · robots · manifest · feeds ── */
   write('sitemap.xml', sitemap(urls));
   write('robots.txt', robots());
+  for (const lang of LANGS) {
+    if (ARTICLES[lang].length) {
+      write(lang === LANGS[0] ? 'feed.xml' : path.join(lang, 'feed.xml'), feed(lang));
+    }
+  }
   write('assets/site.webmanifest', manifest());
   write('.nojekyll', ''); // يمنع GitHub Pages من تجاهل الملفات التي تبدأ بـ _
 
   printReport(report);
   console.log(`\n✅  ${count} ${'صفحة'} — ${((Date.now() - started) / 1000).toFixed(2)}s → dist/`);
+  const counts = LANGS.map((l) => `${l}: ${ARTICLES[l].length}`).join(' · ');
+  console.log(`    📝  المقالات — ${counts}`);
+  if (!LANGS.some((l) => ARTICLES[l].length)) {
+    console.log('        لا مقالات بعد. أضف ملف .md في content/articles/ar/ ليظهر القسم.');
+  }
   console.log(`    ${SITE.url}${SITE.basePath || ''}`);
 }
 
 
-/* ── sitemap ── */
+/* ── sitemap ──────────────────────────────────────────────────────────
+ *  <lastmod> يُكتب فقط حين نعرف تاريخاً حقيقياً (المقالات). ختمُ تاريخ
+ *  اليوم على كل الروابط في كل نشر يجعل جوجل يتجاهل الإشارة كلياً.
+ *  <priority> محذوف — جوجل لا يستخدمه منذ 2017.
+ * ─────────────────────────────────────────────────────────────────── */
 function sitemap(urls) {
-  const today = new Date().toISOString().slice(0, 10);
   const body = urls
     .map(
       (u) => `  <url>
     <loc>${u.loc}</loc>
-    <lastmod>${today}</lastmod>
-    <priority>${u.priority}</priority>
+${u.lastmod ? `    <lastmod>${u.lastmod}</lastmod>\n` : ''}\
 ${u.alternates.map((a) => `    <xhtml:link rel="alternate" hreflang="${a.lang}" href="${a.loc}"/>`).join('\n')}
   </url>`
     )
@@ -318,10 +448,44 @@ ${body}
 }
 
 function robots() {
+  /* صفحات الوسوم تكرّر التصنيفات ولا تستحق ميزانية زحف على موقع بهذا الحجم */
+  const disallow = LANGS.map((l) => `Disallow: ${href('articles/tag/', l)}`).join('\n');
   return `User-agent: *
 Allow: /
+${disallow}
 
 Sitemap: ${absolute(SITE.url, (SITE.basePath ? '/' + trimSlashes(SITE.basePath) : '') + '/sitemap.xml')}
+`;
+}
+
+/* ── تغذية RSS  /  RSS feed ─────────────────────────────────────────── */
+function feed(lang) {
+  const items = ARTICLES[lang].slice(0, 20);
+  const self = absolute(SITE.url, href('feed.xml', lang));
+  const body = items
+    .map((a) => {
+      const url = absolute(SITE.url, href(`articles/${a.slug}/`, lang));
+      return `    <item>
+      <title>${esc(a.title)}</title>
+      <link>${url}</link>
+      <guid isPermaLink="true">${url}</guid>
+      <pubDate>${new Date(`${a.date}T00:00:00Z`).toUTCString()}</pubDate>
+      <description>${esc(a.description)}</description>
+${a.category ? `      <category>${esc(a.category)}</category>\n` : ''}    </item>`;
+    })
+    .join('\n');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>${esc(L(SITE.profile.name, lang))}</title>
+    <link>${absolute(SITE.url, href('articles/', lang))}</link>
+    <description>${esc(L(SITE.seo.description, lang))}</description>
+    <language>${lang}</language>
+    <atom:link href="${self}" rel="self" type="application/rss+xml"/>
+${body}
+  </channel>
+</rss>
 `;
 }
 

@@ -12,6 +12,7 @@ import {
   statCard,
   chip,
   projectCard,
+  articleCard,
   emptyNote,
   ph,
 } from './components.js';
@@ -450,6 +451,35 @@ export function contentSection(d) {
 /* ═════════════════════════════════════════════════════════════════════
  * 11 · المنشورات  /  Publications
  * ═══════════════════════════════════════════════════════════════════ */
+/* ── أحدث المقالات  /  Latest articles ────────────────────────────────
+ *  يبقى القسم غائبًا تمامًا قبل نشر أول مقال. وجوده في الرئيسية يجعل
+ *  كل مقال على بُعد نقرة واحدة من الجذر — وهذا ما يسرّع فهرسته.
+ * ─────────────────────────────────────────────────────────────────── */
+export function articlesSection(d, { limit = 3 } = {}) {
+  const { ui, lang, articles, taxonomy, formatDate } = d;
+  if (!articles || !articles.length) return '';
+
+  const items = articles.slice(0, limit);
+  const catOf = (a) => taxonomy.categories.find((c) => c.slug === a.category) || null;
+
+  return `
+  <section class="sec sec--muted" id="articles">
+    <div class="wrap">
+      <div class="sec__bar">
+        ${sectionHead({
+          eyebrow: L(ui.articles.eyebrow, lang),
+          title: L(ui.articles.latest, lang),
+          lead: L(ui.articles.lead, lang),
+        })}
+        <a class="linkbtn linkbtn--arrow" href="${href('articles/', lang)}">${esc(L(ui.articles.all, lang))}${icon('chevron', { size: 16 })}</a>
+      </div>
+      <div class="agrid reveal">
+        ${items.map((a) => articleCard(a, ui, lang, formatDate, { category: catOf(a) })).join('')}
+      </div>
+    </div>
+  </section>`;
+}
+
 export function publicationsSection(d) {
   const { ui, lang, publications } = d;
   const items = publications?.items || [];

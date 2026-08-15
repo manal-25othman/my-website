@@ -4,9 +4,12 @@
  * ثم يمرّرها build.js إلى القالب العام.
  */
 
-import { esc, attr, L, href, asset, absolute, DASH, orDash } from '../lib/html.js';
+import { esc, attr, L, href, asset, absolute, DASH, orDash, truncate, readingLabel, slugify } from '../lib/html.js';
 import { icon } from '../lib/icons.js';
-import { sectionHead, button, portrait, chip, shareRow, emptyNote, projectCard } from './components.js';
+import {
+  sectionHead, button, portrait, chip, shareRow, emptyNote, projectCard,
+  articleCard, articleImage, articleImageSources, articleToc, pagination,
+} from './components.js';
 import { breadcrumbs, socialLinks, tiktokButton, cvButton } from './layout.js';
 import * as S from './sections.js';
 import * as Schema from '../lib/seo.js';
@@ -59,6 +62,7 @@ export function homePage(d) {
       S.whyMeSection(d),
       S.aboutSection(d),
       S.contentSection(d),
+      S.articlesSection(d),
       S.publicationsSection(d),
       S.credentialsSection(d, { muted: false }),
       S.careerSection(d),
@@ -333,6 +337,284 @@ export function contentPage(d) {
 /* ═════════════════════════════════════════════════════════════════════
  *  الملف التعريفي  /  Media kit
  * ═══════════════════════════════════════════════════════════════════ */
+/* ═════════════════════════════════════════════════════════════════════
+ *  المقالات  /  Articles
+ * ═══════════════════════════════════════════════════════════════════ */
+
+/** يجد تصنيف مقال من الـ taxonomy */
+function catOf(d, article) {
+  return d.taxonomy.categories.find((c) => c.slug === article.category) || null;
+}
+
+/**
+ * اللغات التي توجد فيها صفحة مقالات ما فعلاً.
+ * صفحات الفهرس والتصنيف والوسم تُولَّد فقط حيث توجد مقالات مطابقة،
+ * فإعلان بديل بلغة لا مقالات فيها يعني رابطاً يرجع 404.
+ */
+function langsWhere(d, predicate) {
+  return Object.entries(d.articlesByLang)
+    .filter(([, list]) => list.some(predicate))
+    .map(([code]) => code);
+}
+
+/** شريط التصنيفات — يظهر أعلى الفهرس */
+function categoryBar(d, activeSlug = null) {
+  const { ui, lang, articles, taxonomy } = d;
+  const used = taxonomy.categories.filter((c) => articles.some((a) => a.category === c.slug));
+  if (used.length < 2) return '';
+
+  const link = (label, url, active) =>
+    `<a class="catbar__link${active ? ' is-active' : ''}" href="${url}"${active ? ' aria-current="page"' : ''}>${esc(label)}</a>`;
+
+  return `<nav class="catbar" aria-label="${attr(L(ui.articles.categories, lang))}">
+    ${link(L(ui.articles.all, lang), href('articles/', lang), !activeSlug)}
+    ${used.map((c) => link(L(c.name, lang), href(`articles/category/${c.slug}/`, lang), c.slug === activeSlug)).join('')}
+  </nav>`;
+}
+
+/**
+ * شبكة بطاقات مقالات.
+ * عناوين البطاقات h3، فتحتاج الشبكة إلى h2 قبلها وإلا انكسر تسلسل
+ * العناوين (h1 ثم h3). حين لا يوجد عنوان مرئي نضع واحداً لقارئ الشاشة.
+ */
+function articleGrid(d, items, { srHeading = null } = {}) {
+  const { ui, lang, formatDate } = d;
+  return `${srHeading ? `<h2 class="sr-only">${esc(srHeading)}</h2>` : ''}
+    <div class="agrid">${items
+      .map((a) => articleCard(a, ui, lang, formatDate, { category: catOf(d, a) }))
+      .join('')}</div>`;
+}
+
+/* ── فهرس المقالات (مع الترقيم)  /  Articles index ────────────────── */
+export function articlesPage(d, { items, pageNum, pageCount }) {
+  const { site, ui, lang, articles } = d;
+  const first = pageNum === 1;
+  const path = first ? 'articles/' : `articles/page/${pageNum}/`;
+  const crumbs = crumb(d, [
+    { label: L(ui.articles.title, lang), url: href('articles/', lang) },
+    ...(first ? [] : [{ label: `${L(ui.articles.page, lang)} ${pageNum}`, url: href(path, lang) }]),
+  ]);
+
+  const pageSuffix = first ? '' : ` — ${L(ui.articles.page, lang)} ${pageNum}`;
+
+  return {
+    path,
+    activeNav: 'articles',
+    availableLangs: langsWhere(d, () => true),
+    /* صفحة 2 فأكثر: canonical ذاتية (لا تُوجَّه لصفحة 1 أبداً — ذلك
+       يخفي مقالاتها عن الفهرسة) لكنها تبقى خارج sitemap. */
+    excludeFromSitemap: !first,
+    title: `${L(ui.articles.title, lang)}${pageSuffix} — ${L(site.profile.name, lang)}`,
+    description: L(ui.articles.lead, lang),
+    schema: first
+      ? [
+          Schema.breadcrumbSchema(site, lang, crumbs),
+          Schema.collectionSchema(site, lang, {
+            name: L(ui.articles.title, lang),
+            description: L(ui.articles.lead, lang),
+            url: href('articles/', lang),
+            items: articles.map((a) => ({ name: a.title, url: href(`articles/${a.slug}/`, lang) })),
+          }),
+        ]
+      : [Schema.breadcrumbSchema(site, lang, crumbs)],
+    content: [
+      pageHero({
+        eyebrow: L(ui.articles.eyebrow, lang),
+        title: `${L(ui.articles.title, lang)}${pageSuffix}`,
+        lead: first ? L(ui.articles.lead, lang) : '',
+        crumbs,
+        ui,
+        lang,
+        extra: `<p class="phero__sub"><a class="rsslink" href="${href('feed.xml', lang)}">${icon('rss', { size: 15 })}<span>${esc(L(ui.articles.subscribe, lang))}</span></a></p>`,
+      }),
+      `<section class="sec"><div class="wrap">
+        ${first ? categoryBar(d) : ''}
+        ${items.length ? articleGrid(d, items, { srHeading: L(ui.articles.all, lang) }) : emptyNote(L(ui.articles.empty, lang))}
+        ${pagination({ pageNum, pageCount, ui, lang })}
+      </div></section>`,
+      S.contactSection(d),
+    ].join('\n'),
+  };
+}
+
+/* ── صفحة مقال  /  Article ────────────────────────────────────────── */
+export function articlePage(d, a) {
+  const { site, ui, lang, articles, langsForSlug, formatDate } = d;
+  const cat = catOf(d, a);
+  const crumbs = crumb(d, [
+    { label: L(ui.articles.title, lang), url: href('articles/', lang) },
+    ...(cat ? [{ label: L(cat.name, lang), url: href(`articles/category/${cat.slug}/`, lang) }] : []),
+    { label: a.title, url: href(`articles/${a.slug}/`, lang) },
+  ]);
+  const url = absolute(site.url, href(`articles/${a.slug}/`, lang));
+
+  /* ذات صلة: نفس التصنيف أولاً، ثم الأحدث — بلا تكرار */
+  const related = [
+    ...articles.filter((x) => x.slug !== a.slug && x.category === a.category),
+    ...articles.filter((x) => x.slug !== a.slug && x.category !== a.category),
+  ].slice(0, 3);
+
+  const cover = a.cover ? articleImageSources(a.cover) : null;
+
+  return {
+    path: `articles/${a.slug}/`,
+    activeNav: 'articles',
+    lastmod: a.updated || a.date,
+    availableLangs: langsForSlug(a.slug),
+    title: truncate(`${a.title} — ${L(site.profile.name, lang)}`, 60),
+    description: a.description,
+    ogType: 'article',
+    ogImage: a.cover ? `img/articles/${a.cover}-1200.jpg` : null,
+    bodyClass: 'page-article',
+    articleMeta: {
+      published: a.date,
+      modified: a.updated || null,
+      section: cat ? L(cat.name, lang) : null,
+      tags: a.tags,
+      ...(cover || {}),
+    },
+    schema: [
+      Schema.articleSchema(site, lang, {
+        ...a,
+        category: cat ? L(cat.name, lang) : null,
+        cover: a.cover ? `img/articles/${a.cover}-1200.jpg` : null,
+      }),
+      Schema.breadcrumbSchema(site, lang, crumbs),
+      /* Person لازم في الصفحة نفسها، وإلا بقيت author تشير إلى @id غير موجود */
+      Schema.personSchema(site, lang),
+    ],
+    content: `
+    <article class="post">
+      <header class="post__head">
+        <div class="wrap wrap--narrow">
+          ${breadcrumbs(crumbs, ui, lang)}
+          ${cat ? `<p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span><a href="${href(`articles/category/${cat.slug}/`, lang)}">${esc(L(cat.name, lang))}</a></p>` : ''}
+          <h1 class="post__title">${esc(a.title)}</h1>
+          <p class="post__desc">${esc(a.description)}</p>
+          <div class="post__meta">
+            <time datetime="${attr(a.date)}">${esc(formatDate(a.date, lang))}</time>
+            <span class="dot" aria-hidden="true"></span>
+            <span>${esc(readingLabel(a.readMinutes, lang))}</span>
+            ${a.updated ? `<span class="dot" aria-hidden="true"></span><span>${esc(L(ui.articles.updated, lang))} ${esc(formatDate(a.updated, lang))}</span>` : ''}
+          </div>
+        </div>
+      </header>
+
+      ${
+        a.cover
+          ? `<figure class="post__cover"><div class="wrap wrap--narrow">
+              ${articleImage(a.cover, L(a.coverAlt, lang) || a.coverAlt, { priority: true })}
+            </div></figure>`
+          : ''
+      }
+
+      <div class="wrap wrap--narrow post__body">
+        ${articleToc(a.toc, ui, lang)}
+        <div class="prose prose--article" data-track="article_view" data-track-label="${attr(a.slug)}" data-scroll-depth>
+          ${a.html}
+        </div>
+
+        <footer class="post__foot">
+          ${a.tags.length ? `<div class="post__tags">${a.tags.map((t) => chip(t, { url: href(`articles/tag/${slugify(t)}/`, lang), small: true })).join('')}</div>` : ''}
+          ${shareRow(ui, lang, { url, title: a.title })}
+        </footer>
+      </div>
+    </article>
+
+    ${
+      related.length
+        ? `<section class="sec sec--muted"><div class="wrap">
+            <h2 class="sec__h">${esc(L(ui.articles.related, lang))}</h2>
+            ${articleGrid(d, related)}
+          </div></section>`
+        : ''
+    }
+
+    ${S.contactSection(d)}`,
+  };
+}
+
+/* ── صفحة تصنيف  /  Category ──────────────────────────────────────── */
+export function categoryPage(d, cat, items) {
+  const { site, ui, lang } = d;
+  const name = L(cat.name, lang);
+  const path = `articles/category/${cat.slug}/`;
+  const crumbs = crumb(d, [
+    { label: L(ui.articles.title, lang), url: href('articles/', lang) },
+    { label: name, url: href(path, lang) },
+  ]);
+
+  /* أقل من ثلاثة مقالات = صفحة ضعيفة المحتوى. تبقى قابلة للتصفّح
+     ولروابطها قيمة، لكنها لا تنافس في الفهرسة. */
+  const thin = items.length < 3;
+
+  return {
+    path,
+    activeNav: 'articles',
+    availableLangs: langsWhere(d, (a) => a.category === cat.slug),
+    noindex: thin,
+    title: `${name} — ${L(ui.articles.title, lang)} — ${L(site.profile.name, lang)}`,
+    description: L(cat.description, lang) || L(ui.articles.lead, lang),
+    schema: [
+      Schema.breadcrumbSchema(site, lang, crumbs),
+      Schema.collectionSchema(site, lang, {
+        name,
+        description: L(cat.description, lang),
+        url: href(path, lang),
+        items: items.map((a) => ({ name: a.title, url: href(`articles/${a.slug}/`, lang) })),
+      }),
+    ],
+    content: [
+      pageHero({
+        eyebrow: L(ui.articles.inCategory, lang),
+        title: name,
+        lead: L(cat.description, lang),
+        crumbs,
+        ui,
+        lang,
+      }),
+      `<section class="sec"><div class="wrap">
+        ${categoryBar(d, cat.slug)}
+        ${articleGrid(d, items, { srHeading: `${L(ui.articles.inCategory, lang)} ${name}` })}
+      </div></section>`,
+      S.contactSection(d),
+    ].join('\n'),
+  };
+}
+
+/* ── صفحة وسم  /  Tag ─────────────────────────────────────────────── */
+export function tagPage(d, { slug, tag }, items) {
+  const { site, ui, lang } = d;
+  const path = `articles/tag/${slug}/`;
+  const crumbs = crumb(d, [
+    { label: L(ui.articles.title, lang), url: href('articles/', lang) },
+    { label: tag, url: href(path, lang) },
+  ]);
+
+  return {
+    path,
+    activeNav: 'articles',
+    availableLangs: langsWhere(d, (a) => a.tags.some((t) => slugify(t) === slug)),
+    /* صفحات الوسوم تكرّر التصنيفات دائماً — noindex مع follow يحفظ
+       انتقال قيمة الروابط دون منافسة داخلية على الفهرسة. */
+    noindex: true,
+    title: `${tag} — ${L(ui.articles.title, lang)} — ${L(site.profile.name, lang)}`,
+    description: `${L(ui.articles.taggedWith, lang)} ${tag}`,
+    schema: [Schema.breadcrumbSchema(site, lang, crumbs)],
+    content: [
+      pageHero({
+        eyebrow: L(ui.articles.taggedWith, lang),
+        title: tag,
+        lead: '',
+        crumbs,
+        ui,
+        lang,
+      }),
+      `<section class="sec"><div class="wrap">${articleGrid(d, items, { srHeading: `${L(ui.articles.taggedWith, lang)} ${tag}` })}</div></section>`,
+    ].join('\n'),
+  };
+}
+
 export function mediaKitPage(d) {
   const { site, ui, lang, expertise, projects, publications } = d;
   const p = site.profile;

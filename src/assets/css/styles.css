@@ -2037,3 +2037,118 @@ html[dir='rtl'] .pcard__more svg { transform: scaleX(-1); }
   .dgrid { grid-template-columns: repeat(4, 1fr); }
   .pgrid { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* ═══ المقالات — ما ينقص المكوّنات الجديدة  ══════════════════════════
+   .agrid / .acard / .toc / .prose--article / .post__* موجودة أعلاه.
+   ما يلي يغطي الفهرس والترقيم وشريط التصنيفات فقط. */
+
+.post__desc { margin-block-start: 0.9rem; color: var(--muted); font-size: var(--t-lead); max-width: 62ch; }
+.post__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  margin-block-start: 1.5rem;
+  padding-block-start: 1.3rem;
+  border-block-start: 1px solid var(--line-2);
+  font-size: var(--t-xs);
+  color: var(--faint);
+}
+.post__head .eyebrow a { color: inherit; }
+.post__head .eyebrow a:hover { color: var(--accent); }
+.post__cover img { display: block; width: 100%; height: auto; }
+.post__body { padding-block-end: var(--sec-y); }
+.post__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-block-start: 2.4rem;
+  padding-block-start: 1.4rem;
+  border-block-start: 1px solid var(--line-2);
+}
+.post__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+.acard__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-block-start: auto;
+  padding-block-start: 0.35rem;
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--accent);
+}
+.acard__more svg { transition: transform 0.18s var(--ease); }
+.acard:hover .acard__more svg { transform: translateX(3px); }
+[dir='rtl'] .acard__more svg { transform: scaleX(-1); }
+[dir='rtl'] .acard:hover .acard__more svg { transform: scaleX(-1) translateX(3px); }
+
+/* شريط التصنيفات */
+.catbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-block-end: 1.9rem;
+  padding-block-end: 1.2rem;
+  border-block-end: 1px solid var(--line-2);
+}
+.catbar__link {
+  padding: 0.42rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: var(--t-sm);
+  color: var(--muted);
+  transition: color 0.18s var(--ease), border-color 0.18s var(--ease), background 0.18s var(--ease);
+}
+.catbar__link:hover { color: var(--accent); border-color: var(--accent-line); }
+.catbar__link.is-active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+
+/* رابط RSS */
+.rsslink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: var(--t-sm);
+  color: var(--muted);
+}
+.rsslink:hover { color: var(--accent); }
+
+/* الترقيم */
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-block-start: 2.6rem;
+  padding-block-start: 1.5rem;
+  border-block-start: 1px solid var(--line-2);
+}
+.pager__nums { display: flex; gap: 0.35rem; }
+.pager__n {
+  display: inline-grid;
+  place-items: center;
+  min-width: 36px;
+  height: 36px;
+  padding-inline: 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  font-size: var(--t-sm);
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  transition: color 0.18s var(--ease), border-color 0.18s var(--ease);
+}
+.pager__n:hover { color: var(--accent); border-color: var(--accent-line); }
+.pager__n.is-current { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; }
+.pager__edge { font-size: var(--t-sm); font-weight: 600; color: var(--muted); }
+.pager__edge:hover { color: var(--accent); }
+.pager__edge.is-off { visibility: hidden; }
+
+@media (max-width: 30rem) {
+  .pager { flex-direction: column-reverse; gap: 0.9rem; }
+  .pager__edge.is-off { display: none; }
+}
+
+/* مراسي قياس عمق القراءة — تُحقن بـ JS وهي خارج التدفق تماماً */
+[data-scroll-depth] { position: relative; }

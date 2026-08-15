@@ -423,6 +423,45 @@
 
     var view = doc.querySelector('[data-track="article_view"]');
     if (view) track('article_view', view.getAttribute('data-track-label'));
+
+    initScrollDepth();
+    initOutbound();
+  }
+
+  /* عمق القراءة — يفرّق بين قارئ فعلي وزيارة عابرة.
+     كل عتبة تُرسَل مرة واحدة فقط في الصفحة. */
+  function initScrollDepth() {
+    var el = doc.querySelector('[data-scroll-depth]');
+    if (!el || !('IntersectionObserver' in window)) return;
+    var label = el.getAttribute('data-track-label') || location.pathname;
+    var sent = {};
+
+    [25, 50, 75, 100].forEach(function (pct) {
+      var marker = doc.createElement('span');
+      marker.setAttribute('aria-hidden', 'true');
+      marker.style.cssText = 'position:absolute;width:1px;height:1px;pointer-events:none';
+      marker.style.top = pct + '%';
+      el.appendChild(marker);
+
+      new IntersectionObserver(function (entries, obs) {
+        if (!entries[0].isIntersecting || sent[pct]) return;
+        sent[pct] = true;
+        track('scroll_depth', label + ' — ' + pct + '%');
+        obs.disconnect();
+      }).observe(marker);
+    });
+  }
+
+  /* النقرات الخارجة — تكشف إلى أين يذهب القارئ بعد المقال */
+  function initOutbound() {
+    doc.addEventListener('click', function (e) {
+      var a = e.target.closest('a[target="_blank"]');
+      if (!a || a.hasAttribute('data-track')) return; /* المتتبَّع مسبقاً لا يُكرَّر */
+      var host = '';
+      try { host = new URL(a.href, location.href).hostname; } catch (err) { return; }
+      if (!host || host === location.hostname) return;
+      track('outbound_click', host);
+    });
   }
 
   function track(event, label) {

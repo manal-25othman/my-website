@@ -16,6 +16,7 @@ export default {
     experience: { ar: 'الخبرة', en: 'Experience' },
     expertise: { ar: 'المهارات', en: 'Skills' },
     content: { ar: 'المحتوى', en: 'Content' },
+    articles: { ar: 'المقالات', en: 'Articles' },
     mediaKit: { ar: 'الملف التعريفي', en: 'Media Kit' },
     contact: { ar: 'تواصل معي', en: 'Contact' },
     privacy: { ar: 'سياسة الخصوصية', en: 'Privacy Policy' },
@@ -161,6 +162,34 @@ export default {
       ar: 'أضيفي رابط حساب TikTok في لوحة التحكم ليعمل هذا الزر.',
       en: 'Add the TikTok profile link in the control panel to activate this button.',
     },
+  },
+
+  /* ── المقالات ───────────────────────────────────────────────────── */
+  articles: {
+    eyebrow: { ar: 'الكتابة', en: 'Writing' },
+    title: { ar: 'المقالات', en: 'Articles' },
+    lead: {
+      ar: 'أكتب عمّا أبنيه وأتعلّمه — الذكاء الاصطناعي التوليدي، وهندسة الأنظمة، والمنتجات الرقمية.',
+      en: 'I write about what I build and learn — generative AI, systems engineering, and digital products.',
+    },
+    latest: { ar: 'أحدث المقالات', en: 'Latest Articles' },
+    all: { ar: 'كل المقالات', en: 'All articles' },
+    readArticle: { ar: 'اقرأ المقال', en: 'Read article' },
+    toc: { ar: 'محتويات المقال', en: 'In this article' },
+    related: { ar: 'مقالات ذات صلة', en: 'Related articles' },
+    categories: { ar: 'التصنيفات', en: 'Categories' },
+    tags: { ar: 'الوسوم', en: 'Tags' },
+    inCategory: { ar: 'مقالات في', en: 'Articles in' },
+    taggedWith: { ar: 'مقالات موسومة بـ', en: 'Articles tagged' },
+    published: { ar: 'نُشر', en: 'Published' },
+    updated: { ar: 'حُدّث', en: 'Updated' },
+    count: { ar: 'مقال', en: 'articles' },
+    page: { ar: 'صفحة', en: 'Page' },
+    prev: { ar: 'السابق', en: 'Previous' },
+    next: { ar: 'التالي', en: 'Next' },
+    pagination: { ar: 'تصفّح الصفحات', en: 'Pagination' },
+    subscribe: { ar: 'اشترك عبر RSS', en: 'Subscribe via RSS' },
+    empty: { ar: 'لم تُنشر مقالات بعد.', en: 'No articles published yet.' },
   },
 
   /* ── المنشورات ──────────────────────────────────────────────────── */

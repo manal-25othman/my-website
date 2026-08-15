@@ -8,6 +8,7 @@ import { icon } from '../lib/icons.js';
 /* ── عناصر التنقل  /  Navigation model ────────────────────────────── */
 export const NAV = [
   { key: 'projects', path: 'projects/', desktop: true },
+  { key: 'articles', path: 'articles/', desktop: true, needsArticles: true },
   { key: 'about', path: 'about/', desktop: true },
   { key: 'experience', path: 'experience/', desktop: true },
   { key: 'expertise', path: 'expertise/', desktop: true },
@@ -100,7 +101,16 @@ export function layout(ctx) {
     bodyClass = '',
     activeNav = '',
     printable = false,
+    articles = [],
+    articleCounts = {},
+    /* اللغات التي توجد فيها هذه الصفحة فعلاً. صفحات المقالات قد توجد
+       بلغة واحدة فقط، وإعلان بديل غير موجود خطأ يوقف إشارات اللغة كلها. */
+    availableLangs,
+    /* بيانات إضافية لصفحات المقالات فقط */
+    articleMeta = null,
   } = ctx;
+
+  const hasArticles = articles.length > 0;
 
   /* وصف الميتا يُقتطع عند حد يعرضه محرك البحث كاملاً (~160 حرفاً) */
   const metaDescription = truncate(description, 158);
@@ -114,8 +124,13 @@ export function layout(ctx) {
   const canonical = absolute(site.url, pagePath);
   const ogImg = absolute(site.url, asset(ogImage || profile.ogImage));
 
-  /* بدائل اللغة  /  hreflang alternates */
+  /* بدائل اللغة  /  hreflang alternates
+     شرط الصحة: كل زوج متبادل، وكل رابط يرجع 200. لذلك نرشّح باللغات
+     المتاحة فعلاً، ولا نضيف x-default إلا إن كانت العربية موجودة. */
+  const langCodes = availableLangs && availableLangs.length ? availableLangs : site.languages.map((l) => l.code);
+
   const alternates = site.languages
+    .filter((l) => langCodes.includes(l.code))
     .map(
       (l) =>
         `<link rel="alternate" hreflang="${l.code}" href="${attr(absolute(site.url, href(path, l.code)))}">`
@@ -130,12 +145,22 @@ export function layout(ctx) {
       href="${href(item.path, lang)}"${active ? ' aria-current="page"' : ''}>${esc(label)}</a>`;
   };
 
-  const desktopNav = NAV.filter((n) => n.desktop).map((n) => navLink(n)).join('');
-  const mobileNav = NAV.map((n) => navLink(n, true)).join('');
+  /* رابط المقالات لا يظهر قبل نشر أول مقال — لا نعرض قسماً فارغاً */
+  const navItems = NAV.filter((n) => !n.needsArticles || hasArticles);
+  const desktopNav = navItems.filter((n) => n.desktop).map((n) => navLink(n)).join('');
+  const mobileNav = navItems.map((n) => navLink(n, true)).join('');
 
-  /* مبدّل اللغة */
+  /* مبدّل اللغة — حين لا تكون هذه الصفحة مترجمة نعود إلى فهرس المقالات
+     في اللغة الأخرى، وإن لم يكن فيها مقالات أصلاً فإلى الرئيسية.
+     المهم ألا يقود الزر إلى 404 في أي حال. */
   const otherLang = site.languages.find((l) => l.code !== lang);
-  const langSwitch = `<a class="langswitch" href="${href(path, otherLang.code)}"
+  const otherExists = langCodes.includes(otherLang.code);
+  const otherHref = otherExists
+    ? href(path, otherLang.code)
+    : articleCounts[otherLang.code]
+      ? href('articles/', otherLang.code)
+      : href('', otherLang.code);
+  const langSwitch = `<a class="langswitch" href="${otherHref}"
       hreflang="${otherLang.code}" lang="${otherLang.code}"
       aria-label="${attr(L(ui.common.language, lang))}: ${attr(otherLang.label)}">
       ${icon('globe', { size: 16 })}<span>${esc(otherLang.label)}</span></a>`;
@@ -172,6 +197,7 @@ export function layout(ctx) {
         { url: href('expertise/', lang), label: L(ui.nav.expertise, lang) },
       ])}
       ${footerCol(L(ui.footer.content, lang), [
+        ...(hasArticles ? [{ url: href('articles/', lang), label: L(ui.articles.title, lang) }] : []),
         { url: href('content/', lang), label: L(ui.content.eyebrow, lang) },
         { url: href('media-kit/', lang), label: L(ui.nav.mediaKit, lang) },
         { url: href('contact/', lang), label: L(ui.nav.contact, lang) },
@@ -219,7 +245,8 @@ export function layout(ctx) {
     ${noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robots" content="index, follow, max-image-preview:large">'}
     <link rel="canonical" href="${attr(canonical)}">
     ${alternates}
-    <link rel="alternate" hreflang="x-default" href="${attr(absolute(site.url, href(path, 'ar')))}">
+    ${langCodes.includes('ar') ? `<link rel="alternate" hreflang="x-default" href="${attr(absolute(site.url, href(path, 'ar')))}">` : ''}
+    ${hasArticles ? `<link rel="alternate" type="application/rss+xml" title="${attr(name)}" href="${href('feed.xml', lang)}">` : ''}
     ${site.seo.googleSiteVerification ? `<meta name="google-site-verification" content="${attr(site.seo.googleSiteVerification)}">` : ''}
 
     <meta property="og:type" content="${attr(ogType)}">
@@ -231,10 +258,20 @@ export function layout(ctx) {
     <meta property="og:image" content="${attr(ogImg)}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    ${
+      articleMeta
+        ? `<meta property="article:published_time" content="${attr(articleMeta.published)}">
+    ${articleMeta.modified ? `<meta property="article:modified_time" content="${attr(articleMeta.modified)}">` : ''}
+    ${articleMeta.section ? `<meta property="article:section" content="${attr(articleMeta.section)}">` : ''}
+    ${(articleMeta.tags || []).map((t) => `<meta property="article:tag" content="${attr(t)}">`).join('\n    ')}
+    <meta property="article:author" content="${attr(name)}">`
+        : ''
+    }
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${attr(title)}">
     <meta name="twitter:description" content="${attr(metaDescription)}">
     <meta name="twitter:image" content="${attr(ogImg)}">
+    ${articleMeta && articleMeta.preloadImage ? `<link rel="preload" as="image" href="${attr(articleMeta.preloadImage)}" imagesrcset="${attr(articleMeta.preloadSrcset)}" imagesizes="${attr(articleMeta.preloadSizes)}" fetchpriority="high">` : ''}
 
     <meta name="theme-color" content="#0b0d12" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
