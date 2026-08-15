@@ -54,8 +54,22 @@
         "ar": "التفاصيل",
         "en": "Details"
       },
-      "url": null,
       "urlTodo": "BOOK_URL"
+    },
+    {
+      "type": {
+        "ar": "مقال توعوي تحليلي",
+        "en": "Educational and Analytical Article"
+      },
+      "title": {
+        "ar": "التزييف العميق والذكاء الاصطناعي: كيف تكتشف الفيديو المزيف؟",
+        "en": "Deepfakes and Artificial Intelligence: How to Detect Fake Videos"
+      },
+      "description": {
+        "ar": "قد يبدو الفيديو حقيقيًا، وقد يبدو الصوت مألوفًا، لكن ذلك لا يعني أن الشخص قال أو فعل ما يظهر أمامك. أصبحت تقنيات التزييف العميق قادرة على تقليد الوجوه والأصوات بدرجة تجعل التحقق من المصدر أكثر أهمية من الاعتماد على المظهر وحده.\n\nوتشير دراسات واختبارات حديثة إلى أن البشر لا ينجحون دائمًا في اكتشاف التزييفات العميقة عالية الجودة، ما يرفع مخاطر الاحتيال وانتحال الهوية ونشر المعلومات المضللة.\n\nما التزييف العميق؟\nالتزييف العميق هو محتوى رقمي يُنشأ أو يُعدّل باستخدام الذكاء الاصطناعي ليبدو كأنه حقيقي. ويمكن أن يكون صورة أو فيديو أو تسجيلًا صوتيًا يقلد شخصًا معروفًا أو فردًا عاديًا.\n\nكيف يُستخدم في الاحتيال؟\nيستطيع المحتال استنساخ صوت قريب أو مسؤول في شركة، ثم إرسال طلب عاجل لتحويل الأموال أو مشاركة معلومات حساسة. لذلك يُنصح بالتحقق عبر قناة اتصال مستقلة، وعدم الاعتماد على الرسالة أو الرقم الذي أرسل الطلب.\n\nكيف تكتشف الفيديو المزيف؟\nتحقق من الحساب الذي نشره أولًا.\n\nابحث عن الخبر في مصادر مستقلة.\n\nراقب توافق حركة الفم مع الصوت.\n\nاستخدم البحث العكسي عن الصور.\n\nلا تعتمد على أداة كشف واحدة.\n\nلا تشارك الفيديو قبل التحقق من سياقه.\n\nالخلاصة\nلم يعد اكتشاف التزييف العميق مهمة بصرية بسيطة. أفضل طريقة للحماية هي الجمع بين أدوات التقنية، والتحقق من المصدر، ومقارنة المعلومات، والتواصل المباشر مع الشخص المعني عند وجود طلب مالي أو حساس.",
+        "en": "A video may look real and a voice may sound familiar, but that does not prove that the person actually said or did what appears on screen. Deepfake technology has become advanced enough to imitate faces and voices, making source verification more important than visual appearance alone.\n\nRecent studies and detection tests suggest that people do not consistently identify high-quality deepfakes, increasing the risks of fraud, identity theft, and misinformation.\n\nWhat Is a Deepfake?\nA deepfake is digital content created or altered with artificial intelligence to make it appear authentic. It may take the form of an image, video, or audio recording that imitates a public figure, employee, family member, or another real person.\n\nHow Are Deepfakes Used in Fraud?\nCriminals can clone a relative’s or executive’s voice and send an urgent request for money or confidential information. The safest response is to verify the request through an independent communication channel instead of relying on the number or account used to send it.\n\nHow Can You Detect a Fake Video?\nCheck the original publishing account.\n\nSearch for independent reporting.\n\nLook for lip-sync or lighting inconsistencies.\n\nUse reverse-image search.\n\nAvoid relying on a single detection tool.\n\nDo not share the content before checking its context.\n\nConclusion\nDeepfake detection is no longer a simple visual task. The strongest defense combines technical tools, source verification, independent reporting, and direct communication whenever a video or voice message involves money, identity, or sensitive information."
+      },
+      "icon": "share"
     }
   ]
 }
