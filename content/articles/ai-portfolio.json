@@ -1,0 +1,51 @@
+{
+  "title": {
+    "ar": "كيف تبنين ملف أعمال مقنعًا في الذكاء الاصطناعي",
+    "en": "How to Build a Convincing AI Portfolio"
+  },
+  "description": {
+    "ar": "ما الذي يبحث عنه مسؤول التوظيف فعلًا في ملف أعمال تقني، ولماذا المشروع الواحد العميق أقوى من عشرة سطحية، وكيف تعرضينه.",
+    "en": "What hiring managers actually look for in a technical portfolio, why one deep project beats ten shallow ones, and how to present it."
+  },
+  "date": "2026-08-16",
+  "updated": null,
+  "category": "ai-career",
+  "tags": {
+    "ar": [
+      "ملف أعمال",
+      "توظيف",
+      "مشاريع",
+      "مسار مهني",
+      "عرض"
+    ],
+    "en": [
+      "portfolio",
+      "hiring",
+      "projects",
+      "career",
+      "presentation"
+    ]
+  },
+  "keywords": [
+    "AI portfolio",
+    "machine learning portfolio",
+    "technical portfolio"
+  ],
+  "cover": "img/articles/ai-portfolio.jpg",
+  "coverAlt": {
+    "ar": "غلاف المقال: كيف تبنين ملف أعمال مقنعًا في الذكاء الاصطناعي",
+    "en": "Article cover: How to Build a Convincing AI Portfolio"
+  },
+  "draft": false,
+  "slug": null,
+  "references": [
+    {
+      "label": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Portfolio_(finance)"
+    }
+  ],
+  "body": {
+    "ar": "ملف الأعمال في المجال التقني ليس معرض صور لما بنيتِه، بل دليل على طريقة تفكيرك. مسؤول التوظيف لا يسأل «كم مشروعًا أنجزت؟» بل «هل تستطيع هذه المرشّحة تفكيك مشكلة غامضة والوصول بها إلى حل يعمل؟». الفرق بين الملفين شاسع.\n\n## مشروع واحد عميق يتفوّق على عشرة سطحية\n\nعشرة مشاريع تعليمية مكرّرة من دروس جاهزة تقول شيئًا واحدًا: أنكِ تستطيعين اتباع تعليمات. مشروع واحد حللتِ فيه مشكلة حقيقية، واصطدمتِ فيه بقيود، واتخذتِ فيه قرارات ودافعتِ عنها — يقول إنك مهندسة. اختاري القلّة العميقة دائمًا.\n\n## اعرضي كل مشروع كدراسة حالة\n\n- **المشكلة** — ما الذي لم يكن يعمل؟ لمن؟ وما تكلفة بقائه كما هو؟\n- **القيود** — ميزانية، وقت، بيانات محدودة، خصوصية. القيود تجعل القرارات مفهومة.\n- **الحل والبدائل** — ما الذي اخترته ولماذا، وما الذي رفضته ولماذا. هذا الجزء تحديدًا هو ما يقرؤه المهندسون بعناية.\n- **دورك بال[ضبط](/articles/fine-tuning-vs-rag/)** — إن كان عملًا جماعيًا فكوني دقيقة. المبالغة تُكتشف في أول مقابلة تقنية.\n- **النتيجة** — ما الذي تحسّن؟ إن لم تتوفر أرقام، فاذكري النتيجة النوعية بصدق ولا تخترعي رقمًا.\n- **ما الذي كنت ستفعلينه بشكل مختلف** — النضج المهني يظهر هنا أكثر من أي مكان آخر.\n\n## أخطاء تُضعف الملف\n\n- **لقطات شاشة بلا شرح** — [الصور](/articles/multimodal-ai/)ة لا تحكي قرارًا.\n- **قائمة تقنيات طويلة** — ذكر عشرين أداة يوحي بسطحية لا سعة.\n- **مشاريع بلا رابط ولا كود** — إن لم يستطع أحد رؤيتها، فهي ادّعاء.\n- **أرقام بلا سياق** — «حسّنت الأداء ٤٠٪» بلا ذكر خط الأساس وطريقة القياس تثير الشك لا الإعجاب.\n- **إخفاء الإخفاقات** — مشروع لم ينجح مع تحليل صادق لسببه قد يكون أقوى من نجاح سهل.\n\n## أين تعرضينه\n\nموقع شخصي تملكينه أفضل من منصة تتغيّر سياساتها. اربطيه بمستودع كودك، واجعلي كل مشروع صفحة مستقلة برابط ثابت يمكن لصقه في سيرة ذاتية أو رسالة. واحرصي أن تُقرأ الصفحة في دقيقتين — من يقرأ يفحص عشرات الملفات في جلسة واحدة.\n\n## الخلاصة\n\nملف الأعمال المقنع يبيع طريقة تفكيرك لا قائمة أدواتك. اختاري مشاريع قليلة، واشرحي قراراتها بصدق، واجعلها سهلة القراءة والوصول.\n\n## من أين تبدأ\n\nخذي أقوى مشروع لديك وأعيدي كتابته بالبنية أعلاه في صفحة واحدة. اقرئيها بعين مسؤول توظيف لديه دقيقتان — واحذفي كل ما لا يخدم قراره.",
+    "en": "A technical portfolio is not a gallery of what you built; it is evidence of how you think. A [hiring manager](/en/articles/ai-career-path/) is not asking \"how many projects have you finished?\" but \"can this candidate take an ambiguous problem apart and drive it to something that works?\" The gap between those two portfolios is enormous.\n\n## One deep project beats ten shallow ones\n\nTen tutorial projects copied from ready-made courses say one thing: you can follow instructions. One project where you solved a real problem, hit real constraints, made decisions and defended them says you are an engineer. Always choose the deep few.\n\n## Present every project as a case study\n\n- **The problem** — what was not working? for whom? what did leaving it [cost](/en/articles/ai-cost-management/)?\n- **The constraints** — budget, time, limited data, [privacy](/en/articles/ai-privacy-training-data/). Constraints make decisions legible.\n- **The solution and the alternatives** — what you chose and why, and what you rejected and why. Engineers read this part most closely.\n- **Your exact role** — if it was teamwork, be precise. Overstatement surfaces in the first technical interview.\n- **The outcome** — what improved? If numbers are unavailable, state the qualitative result honestly and do not invent a figure.\n- **What you would do differently** — professional maturity shows here more than anywhere else.\n\n## Mistakes that weaken a portfolio\n\n- **Screenshots without explanation** — an image does not narrate a decision.\n- **A long technology list** — naming twenty tools suggests shallowness, not breadth.\n- **Projects with no link and no code** — if nobody can see it, it is a claim.\n- **Numbers without context** — \"improved performance by 40%\" without a baseline and a measurement method invites doubt, not admiration.\n- **Hiding failures** — a project that did not work, with an honest analysis of why, can be stronger than an easy success.\n\n## Where to present it\n\nA personal site you own beats a platform whose policies change. Link it to your code repository, give every project its own page with a stable URL you can paste into a CV or a message, and make sure the page reads in two minutes — reviewers scan dozens of portfolios in one sitting.\n\n## Conclusion\n\nA convincing portfolio sells your thinking, not your tool list. Choose few projects, explain their decisions honestly, and make them easy to read and reach.\n\n## Where to start\n\nTake your strongest project and rewrite it with the structure above on a single page. Read it as a hiring manager with two minutes — and delete everything that does not serve their decision."
+  }
+}

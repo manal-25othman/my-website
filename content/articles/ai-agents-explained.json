@@ -1,0 +1,51 @@
+{
+  "title": {
+    "ar": "وكلاء الذكاء الاصطناعي: متى تحتاجهم ومتى يكونون مبالغة",
+    "en": "AI Agents: When You Need Them and When They Are Overkill"
+  },
+  "description": {
+    "ar": "ما الذي يميّز الوكيل عن استدعاء نموذج عادي، وكيف يستخدم الأدوات ويخطّط، ولماذا تفشل أغلب أنظمة الوكلاء في الإنتاج.",
+    "en": "What separates an agent from a plain model call, how agents use tools and plan, and why most agent systems struggle in production."
+  },
+  "date": "2026-08-16",
+  "updated": null,
+  "category": "generative-ai",
+  "tags": {
+    "ar": [
+      "وكلاء",
+      "أتمتة",
+      "نماذج لغوية",
+      "هندسة الذكاء الاصطناعي",
+      "أدوات"
+    ],
+    "en": [
+      "AI agents",
+      "automation",
+      "LLM",
+      "AI engineering",
+      "tools"
+    ]
+  },
+  "keywords": [
+    "AI agents",
+    "what is an AI agent",
+    "agent tools"
+  ],
+  "cover": "img/articles/ai-agents-explained.jpg",
+  "coverAlt": {
+    "ar": "غلاف المقال: وكلاء الذكاء الاصطناعي: متى تحتاجهم ومتى يكونون مبالغة",
+    "en": "Article cover: AI Agents: When You Need Them and When They Are Overkill"
+  },
+  "draft": false,
+  "slug": null,
+  "references": [
+    {
+      "label": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Intelligent_agent"
+    }
+  ],
+  "body": {
+    "ar": "استدعاء [نموذج لغوي](/articles/what-is-artificial-intelligence/) عادي يأخذ نصًا ويعيد نصًا. الوكيل يفعل أكثر: يقرّر ما الخطوة التالية، وينفّذها بأداة خارجية، ويقرأ النتيجة، ثم يقرّر مجددًا — ويكرّر حتى يصل إلى هدف. هذه الحلقة هي الفرق الجوهري، وهي أيضًا مصدر أغلب المشاكل.\n\n## مكوّنات الوكيل\n\n- **الهدف** — وصف ما يجب إنجازه، لا الخطوات المطلوبة للوصول إليه.\n- **الأدوات** — دوال يستطيع استدعاءها: بحث، قراءة ملف، استعلام قاعدة بيانات، إرسال طلب شبكة. كل أداة لها وصف ومعاملات محددة.\n- **الذاكرة** — سجل ما جرى في الجولات السابقة، وإلا كرّر الوكيل الخطوة نفسها بلا نهاية.\n- **حلقة التحكم** — الكود الذي ينفّذ الدورة ويقرّر متى تتوقف.\n\n## متى يستحق الوكيل التعقيد\n\nالوكيل مناسب حين تكون الخطوات غير معروفة مسبقًا وتعتمد على نتائج بعضها. مثال: «ابحث في هذه المستندات عن سبب تكرار شكوى معيّنة، ثم لخّص النتائج» — عدد عمليات البحث ومحتواها يعتمد على ما ستجدينه في الطريق.\n\n## متى يكون مبالغة\n\nإن كنتِ تعرفين الخطوات مسبقًا، فأنتِ لا تحتاجين وكيلًا بل [سير عمل](/articles/deploying-ai-models/). سلسلة استدعاءات ثابتة أرخص وأسرع وأسهل في التنقيح والاختبار، ونتائجها قابلة للتكرار. القاعدة العملية: **لا تمنحي النموذج حرية القرار في خطوة تعرفين إجابتها.**\n\n## لماذا تتعثّر أنظمة الوكلاء\n\n- **تراكم الخطأ** — احتمال نجاح ٩٥٪ في الخطوة الواحدة يصبح أقل من ٦٠٪ بعد عشر خطوات.\n- **الحلقات اللانهائية** — وكيل بلا حدّ أقصى للجولات قد يدور إلى ما لا نهاية ويستهلك ميزانيتك.\n- **أدوات غامضة الوصف** — وصف الأداة هو واجهتها الوحيدة أمام النموذج؛ وصف مبهم يعني استدعاءً خاطئًا.\n- **غياب الملاحظة** — بلا تسجيل لكل خطوة، يصبح تشخيص فشل بعد عشرين جولة شبه مستحيل.\n\n## ضوابط لا غنى عنها\n\n- حدّ أقصى صارم لعدد الجولات وللتكلفة.\n- صلاحيات ضيقة لكل أداة — لا تعطي أداة صلاحية الحذف إن كانت القراءة تكفي.\n- موافقة بشرية قبل أي إجراء غير قابل للتراجع: إرسال بريد، دفع مبلغ، تعديل بيانات إنتاجية.\n- تسجيل كامل لكل قرار واستدعاء ونتيجة.\n\n## الخلاصة\n\nالوكلاء أداة قوية لمسائل محدّدة، لا ترقية تلقائية لكل مشروع. ابدئي بسير عمل ثابت، وانتقلي إلى وكيل فقط حين يعجز الثابت عن التعامل مع تفرّع الحالات الحقيقي.\n\n## من أين تبدأ\n\nابني وكيلًا بأداتين فقط وحدّ أقصى خمس جولات، وسجّلي كل خطوة في ملف. شغّليه على عشر حالات واقرئي السجلات. ستكتشفين أن أغلب الأعطال في وصف الأدوات لا في ذكاء النموذج.",
+    "en": "A plain language-model call takes text and returns text. An agent does more: it decides the next step, executes it with an external tool, reads the result, then decides again — looping until it reaches a goal. That loop is the essential difference, and also the source of most problems.\n\n## What an agent is made of\n\n- **A goal** — a description of what must be achieved, not the steps to get there.\n- **Tools** — functions it can call: search, read a file, query a database, make a network request. Each tool has a description and defined parameters.\n- **Memory** — a record of previous turns; without it the agent repeats the same step forever.\n- **A control loop** — the code that runs the cycle and decides when to stop.\n\n## When an agent earns its complexity\n\nAgents fit when the steps are not known in advance and each depends on the last result. Example: \"search these documents for why a particular complaint keeps recurring, then summarise the findings\" — how many searches and what they contain depends on what you find along the way.\n\n## When it is overkill\n\nIf you already know the steps, you do not need an agent; you need a workflow. A fixed chain of calls is cheaper, faster, easier to debug and test, and its results are reproducible. The practical rule: **do not give the model discretion over a step whose answer you already know.**\n\n## Why agent systems stumble\n\n- **Error compounding** — a 95% success rate per step falls below 60% after ten steps.\n- **Infinite loops** — an agent without a turn limit can spin indefinitely and burn your budget.\n- **Vaguely described tools** — the tool description is the model's only [interface](/en/articles/ai-product-ux/) to it; a fuzzy description means a wrong call.\n- **No observability** — without a log of every step, diagnosing a failure after twenty turns is nearly impossible.\n\n## Non-negotiable guardrails\n\n- Hard caps on both turn count and [cost](/en/articles/ai-cost-management/).\n- Narrow permissions per tool — do not grant delete rights when read is enough.\n- Human approval before anything irreversible: sending mail, making a payment, changing [production](/en/articles/deploying-ai-models/) data.\n- Full logging of every decision, call, and result.\n\n## Conclusion\n\nAgents are a powerful tool for specific problems, not an automatic upgrade for every project. Start with a fixed workflow and move to an agent only when the fixed version cannot handle the real branching of cases.\n\n## Where to start\n\nBuild an agent with exactly two tools and a five-turn cap, and log every step to a file. Run it on ten cases and read the logs. You will find most failures live in the tool descriptions, not in the model's intelligence."
+  }
+}

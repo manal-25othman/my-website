@@ -469,7 +469,6 @@ export function articlesSection(d, { limit = 3 } = {}) {
         ${sectionHead({
           eyebrow: L(ui.articles.eyebrow, lang),
           title: L(ui.articles.latest, lang),
-          lead: L(ui.articles.lead, lang),
         })}
         <a class="linkbtn linkbtn--arrow" href="${href('articles/', lang)}">${esc(L(ui.articles.all, lang))}${icon('chevron', { size: 16 })}</a>
       </div>

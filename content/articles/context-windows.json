@@ -1,0 +1,51 @@
+{
+  "title": {
+    "ar": "نوافذ السياق: لماذا ينسى النموذج ما قلته له",
+    "en": "Context Windows: Why the Model Forgets What You Told It"
+  },
+  "description": {
+    "ar": "ما نافذة السياق وكيف تُحسب بالرموز، ولماذا لا تحلّ النافذة الكبيرة كل شيء، وكيف تدير محادثة طويلة دون فقدان المهم.",
+    "en": "What a context window is, how tokens are counted, why a bigger window does not solve everything, and how to manage long conversations."
+  },
+  "date": "2026-08-16",
+  "updated": null,
+  "category": "generative-ai",
+  "tags": {
+    "ar": [
+      "نافذة السياق",
+      "رموز",
+      "نماذج لغوية",
+      "تكلفة",
+      "أداء"
+    ],
+    "en": [
+      "context window",
+      "tokens",
+      "LLM",
+      "cost",
+      "performance"
+    ]
+  },
+  "keywords": [
+    "context window",
+    "LLM tokens",
+    "long context"
+  ],
+  "cover": "img/articles/context-windows.jpg",
+  "coverAlt": {
+    "ar": "غلاف المقال: نوافذ السياق: لماذا ينسى النموذج ما قلته له",
+    "en": "Article cover: Context Windows: Why the Model Forgets What You Told It"
+  },
+  "draft": false,
+  "slug": null,
+  "references": [
+    {
+      "label": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Large_language_model"
+    }
+  ],
+  "body": {
+    "ar": "النموذج اللغوي لا يملك ذاكرة بين الطلبات. كل ما «يعرفه» في لحظة الإجابة هو ما أرسلتِه إليه في هذا الطلب بالذات. المساحة القصوى لهذا المحتوى تُسمى نافذة السياق، وفهم حدودها يفسّر أغلب السلوك الغريب الذي تصادفينه.\n\n## الرمز لا الكلمة\n\nتُقاس النافذة بالرموز لا بالكلمات. الرمز قد يكون كلمة كاملة أو جزءًا منها أو علامة ترقيم. النصوص العربية غالبًا تستهلك رموزًا أكثر من الإنجليزية لنفس المعنى، لأن أغلب النماذج جرى تقطيعها بتحيّز نحو الإنجليزية. هذا يعني عمليًا: نص عربي بالطول نفسه يكلّف أكثر ويملأ النافذة أسرع.\n\n## ماذا يدخل في النافذة\n\n- [تعليمة](/articles/prompt-engineering/) النظام.\n- تاريخ المحادثة السابق كاملًا إن أرسلتِه.\n- المقاطع المسترجَعة إن كنتِ تستخدمين [RAG](/articles/what-is-rag/).\n- سؤال المستخدم الحالي.\n- **ومساحة الإجابة نفسها** — وهذه يغفل عنها كثيرون. المخرَج يُحسب من النافذة أيضًا.\n\n## لماذا لا تحلّ النافذة الكبيرة كل شيء\n\n- **[التكلفة](/articles/ai-cost-management/)** — تدفعين مقابل كل رمز مُرسَل، في كل طلب. حشو النافذة بكل شيء «تحسّبًا» يضاعف الفاتورة بلا مقابل.\n- **البطء** — كلما زاد المحتوى، زاد زمن الاستجابة.\n- **الضياع في المنتصف** — الانتباه ليس موزّعًا بالتساوي؛ ما يقع في وسط سياق طويل يُهمَل أكثر مما يقع في أوله أو آخره.\n- **الضجيج** — إضافة عشرة مقاطع غير ذات صلة تضرّ أكثر مما تنفع، لأنها تشتّت النموذج عن المقطع الصحيح.\n\nالقاعدة العملية: **السياق الصحيح أفضل من السياق الكثير.**\n\n## إدارة المحادثات الطويلة\n\n- **التلخيص المتدرّج** — استبدلي الرسائل القديمة بملخّص مضغوط يحتفظ بالقرارات لا بالتفاصيل.\n- **نافذة منزلقة** — احتفظي بآخر عدد من الرسائل واستغني عن الأقدم.\n- **حقائق ثابتة** — احفظي المعلومات الدائمة (اسم المستخدم، تفضيلاته، قرارات متفق عليها) في مكان منفصل وأدخليها عند الحاجة فقط.\n- **استرجاع من المحادثة** — عاملي التاريخ الطويل كقاعدة معرفة وابحثي فيه بدل إرساله كاملًا.\n\n## أخطاء تتكرّر\n\n- إرسال المحادثة كاملة في كل طلب حتى تمتلئ النافذة فجأة ويُقتطع أول ما فيها — وهو غالبًا تعليمة النظام.\n- نسيان حجز مساحة للإجابة، فتُقطع الإجابة في منتصفها.\n- افتراض أن النموذج «يتذكّر» جلسة أمس. لا يتذكّر شيئًا ما لم ترسليه أنتِ.\n\n## الخلاصة\n\nنافذة السياق ميزانية لا مستودع. أنفقيها على ما يخدم الإجابة الحالية فقط، وستحصلين على نتائج أدق وأسرع وأرخص في آن واحد.\n\n## من أين تبدأ\n\nاطبعي عدد الرموز المُرسَل في كل طلب داخل نظامك. أغلب المطوّرين يُصدَمون بالرقم أول مرة، ويكتشفون أن نصفه محتوى لا يؤثّر في الإجابة إطلاقًا.",
+    "en": "A language model has no memory between requests. Everything it \"knows\" at answer time is what you sent in that specific request. The maximum size of that content is the context window, and understanding its limits explains most of the strange behaviour you run into.\n\n## Tokens, not words\n\nThe window is measured in tokens, not words. A token may be a whole word, part of one, or a punctuation mark. Arabic text usually consumes more tokens than English for the same meaning, because most tokenizers were built with an English bias. Practically: Arabic text of the same length [cost](/en/articles/ai-cost-management/)s more and fills the window faster.\n\n## What goes into the window\n\n- The system [prompt](/en/articles/prompt-engineering/).\n- The entire prior conversation, if you send it.\n- Retrieved passages, if you use [RAG](/en/articles/what-is-rag/).\n- The user's current question.\n- **And the answer itself** — this one is widely overlooked. Output counts against the window too.\n\n## Why a bigger window does not solve everything\n\n- **Cost** — you pay for every token sent, on every request. Stuffing the window \"just in case\" multiplies the bill for nothing.\n- **Latency** — more content means slower responses.\n- **Lost in the middle** — attention is not evenly distributed; material in the middle of a long context is neglected more than material at either end.\n- **Noise** — adding ten irrelevant passages hurts more than it helps, because it distracts the model from the right one.\n\nThe working rule: **the right context beats more context.**\n\n## Managing long conversations\n\n- **Rolling summarisation** — replace old messages with a compact summary that preserves decisions, not details.\n- **Sliding window** — keep the last N messages and drop older ones.\n- **Persistent facts** — store durable information (user name, preferences, agreed decisions) separately and inject only when needed.\n- **Retrieve from history** — treat a long transcript as a knowledge base and search it rather than resending it whole.\n\n## Recurring mistakes\n\n- Sending the full conversation on every request until the window suddenly overflows and the earliest content is truncated — usually the system prompt.\n- Forgetting to reserve room for the answer, so the answer is cut mid-sentence.\n- Assuming the model \"remembers\" yesterday's session. It remembers nothing you do not resend.\n\n## Conclusion\n\nA context window is a budget, not a warehouse. Spend it only on what serves the current answer, and you get results that are simultaneously more accurate, faster, and cheaper.\n\n## Where to start\n\nLog the token count sent on every request in your system. Most developers are startled the first time, and discover half of it is content with no effect on the answer at all."
+  }
+}

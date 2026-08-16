@@ -1,0 +1,51 @@
+{
+  "title": {
+    "ar": "أمن البيانات في تطبيقات الذكاء الاصطناعي",
+    "en": "Data Security in AI Applications"
+  },
+  "description": {
+    "ar": "أين تتسرّب البيانات في أنظمة الذكاء الاصطناعي، ولماذا لا يكفي تأمين قاعدة البيانات وحدها، وضوابط عملية تحمي بيانات مستخدميك.",
+    "en": "Where data leaks in AI systems, why securing the database alone is not enough, and practical controls that protect user data."
+  },
+  "date": "2026-08-16",
+  "updated": null,
+  "category": "cybersecurity",
+  "tags": {
+    "ar": [
+      "أمن البيانات",
+      "خصوصية",
+      "صلاحيات",
+      "RAG",
+      "حماية"
+    ],
+    "en": [
+      "data security",
+      "privacy",
+      "permissions",
+      "RAG",
+      "protection"
+    ]
+  },
+  "keywords": [
+    "AI data security",
+    "securing AI applications",
+    "RAG security"
+  ],
+  "cover": "img/articles/ai-data-security.jpg",
+  "coverAlt": {
+    "ar": "غلاف المقال: أمن البيانات في تطبيقات الذكاء الاصطناعي",
+    "en": "Article cover: Data Security in AI Applications"
+  },
+  "draft": false,
+  "slug": null,
+  "references": [
+    {
+      "label": "owasp.org",
+      "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+    }
+  ],
+  "body": {
+    "ar": "تأمين تطبيق ذكاء اصطناعي أوسع من تأمين تطبيق عادي، لأن البيانات تمرّ بمسارات جديدة: تُرسَل إلى نموذج، وتُخزَّن كمتجهات، وتظهر في سجلات، وقد تُستخدم في تدريب لاحق. كل مسار من هذه نقطة تسرّب محتملة.\n\n## أين تتسرّب البيانات فعلًا\n\n- **إرسالها إلى خدمة خارجية** — قد تُسجَّل عند مزوّد الخدمة حسب شروطه.\n- **السجلات** — تسجيل [التعليمة](/articles/prompt-engineering/) كاملة للتنقيح يعني نسخة من بيانات المستخدم في ملفات السجل.\n- **[الفهرس المتجهي](/articles/vector-databases/)** — يحتوي نصوصك مقطّعة، وهو هدف حسّاس كقاعدة البيانات تمامًا.\n- **الذاكرة المؤقتة** — إجابة محفوظة لمستخدم قد تُقدَّم لآخر إن كان مفتاح التخزين لا يشمل هوية المستخدم.\n- **مخرجات النموذج** — قد يعيد صياغة معلومة استرجعها من مستند لا يحق للسائل الاطلاع عليه.\n\n## الصلاحيات تُطبَّق عند الاسترجاع لا بعده\n\nالخطأ الشائع: استرجاع كل المقاطع المشابهة ثم ترشيحها بعد وصولها. هذا يعني أن بيانات لا يحق للمستخدم رؤيتها دخلت مسار المعالجة أصلًا. الصحيح أن يكون الترشيح جزءًا من الاستعلام نفسه: ابحثي فقط فيما يملك هذا المستخدم صلاحية عليه.\n\nفي الأنظمة متعددة المستأجرين، اجعلي العزل على مستوى قاعدة البيانات لا على مستوى الاستعلام في الكود — سطر منسي واحد يكفي لكسر الحماية.\n\n## ضوابط عملية\n\n- **أقل صلاحية ممكنة** — لا تمنحي أداة صلاحية الكتابة إن كانت القراءة تكفي.\n- **إخفاء المعرّفات قبل الإرسال** — استبدلي الأسماء والأرقام الوطنية والهواتف برموز بديلة حيثما لا تؤثّر في المهمة.\n- **تنقية السجلات** — سجّلي البيانات الوصفية والمقاييس، لا نصوص المستخدمين الكاملة. وإن لزم تسجيل عيّنة، فبمدة احتفاظ قصيرة ووصول محدود.\n- **مفاتيح ذاكرة مؤقتة تتضمن هوية المستخدم** — وإلا سرّبت الذاكرة إجابات بين الحسابات.\n- **مدد احتفاظ صريحة** — للمتجهات والسجلات والملفات المرفوعة.\n\n## اقرئي شروط المزوّد\n\nقبل إرسال أي بيانات عملاء إلى خدمة خارجية، تأكّدي: هل تُستخدم المدخلات في التدريب؟ هل يمكن تعطيل ذلك؟ كم مدة الاحتفاظ؟ أين تُخزَّن جغرافيًا؟ هذه أسئلة تعاقدية تسبق أي قرار تقني.\n\n## الخلاصة\n\nأمن تطبيقات [الذكاء الاصطناعي](/articles/what-is-artificial-intelligence/) لا يُضاف في النهاية بل يُصمَّم من البداية. ارسمي مسار البيانات كاملًا من المستخدم إلى النموذج والعودة، وضعي ضابطًا عند كل نقطة عبور.\n\n## من أين تبدأ\n\nارسمي مخططًا بسيطًا لمسار بيانات مستخدم واحد في نظامك، وضعي علامة عند كل موضع تُكتب فيه أو تُرسَل خارجًا. أغلب الفرق تكتشف موضعًا أو اثنين لم تكن تعرف بوجودهما.",
+    "en": "Securing an AI application is broader than securing an ordinary one, because data travels new paths: it is sent to a model, stored as [vector](/en/articles/embeddings-explained/)s, appears in logs, and may be used in later training. Each of those paths is a potential leak.\n\n## Where data actually leaks\n\n- **Sending it to an external service** — it may be retained by the provider depending on their terms.\n- **Logs** — logging the full [prompt](/en/articles/prompt-engineering/) for debugging means a copy of user data sits in log files.\n- **The [vector index](/en/articles/vector-databases/)** — it holds your text in chunks and is as sensitive a target as the database itself.\n- **Caches** — one user's stored answer can be served to another if the cache key does not include user identity.\n- **Model output** — it may paraphrase information retrieved from a document the asker was never allowed to see.\n\n## Apply permissions at retrieval, not after\n\nThe common mistake is retrieving all similar passages and filtering them once they arrive. That means data the user is not entitled to has already entered the processing path. The correct approach makes filtering part of the query itself: search only what this user is authorised to see.\n\nIn multi-tenant systems, enforce isolation at the database level rather than in application query code — one forgotten line is enough to break it.\n\n## Practical controls\n\n- **Least privilege** — do not grant a tool write access when read is sufficient.\n- **Mask identifiers before sending** — replace names, national IDs, and phone numbers with placeholders wherever it does not affect the task.\n- **Sanitise logs** — record metadata and metrics, not full user text. If a sample must be kept, keep it briefly and restrict access.\n- **Cache keys that include user identity** — otherwise the cache leaks answers between accounts.\n- **Explicit retention periods** — for vectors, logs, and uploaded files.\n\n## Read the provider's terms\n\nBefore sending any customer data to an external service, confirm: are inputs used for training? can that be disabled? what is the retention period? where is it stored geographically? These are contractual questions that precede any technical decision.\n\n## Conclusion\n\nSecurity in AI applications is not appended at the end; it is designed from the start. Map the full data path from user to model and back, and place a control at every crossing point.\n\n## Where to start\n\nDraw a simple diagram of one user's data path through your system and mark every place it is written or sent outward. Most teams discover one or two places they did not know existed."
+  }
+}

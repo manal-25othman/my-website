@@ -1,0 +1,51 @@
+{
+  "title": {
+    "ar": "الخصوصية وبيانات التدريب: ما الذي يحدث لبياناتك",
+    "en": "Privacy and Training Data: What Happens to Your Data"
+  },
+  "description": {
+    "ar": "ماذا يعني أن تُستخدم بياناتك في تدريب نموذج، وما الفرق بين الاستخدام والاحتفاظ، وكيف تحمين بيانات مستخدميك عمليًا.",
+    "en": "What it means for your data to train a model, the difference between use and retention, and how to protect your users in practice."
+  },
+  "date": "2026-08-16",
+  "updated": null,
+  "category": "cybersecurity",
+  "tags": {
+    "ar": [
+      "خصوصية",
+      "بيانات تدريب",
+      "امتثال",
+      "حماية",
+      "سياسات"
+    ],
+    "en": [
+      "privacy",
+      "training data",
+      "compliance",
+      "protection",
+      "policy"
+    ]
+  },
+  "keywords": [
+    "AI privacy",
+    "training data privacy",
+    "data retention AI"
+  ],
+  "cover": "img/articles/ai-privacy-training-data.jpg",
+  "coverAlt": {
+    "ar": "غلاف المقال: الخصوصية وبيانات التدريب: ما الذي يحدث لبياناتك",
+    "en": "Article cover: Privacy and Training Data: What Happens to Your Data"
+  },
+  "draft": false,
+  "slug": null,
+  "references": [
+    {
+      "label": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Information_privacy"
+    }
+  ],
+  "body": {
+    "ar": "حين ترسلين نصًا إلى نموذج تستضيفه جهة أخرى، يغادر النص حدودك. ما يحدث بعد ذلك ليس أمرًا تقنيًا غامضًا بل بند في اتفاقية، ويختلف اختلافًا كبيرًا بين مزوّد وآخر وبين خطة وأخرى لدى المزوّد نفسه.\n\n## ثلاثة مفاهيم لا يصح خلطها\n\n- **المعالجة** — النص يمرّ عبر النموذج لإنتاج إجابة. هذا يحدث دائمًا وهو جوهر الخدمة.\n- **الاحتفاظ** — تخزين النص مدة معيّنة، غالبًا لأغراض التشغيل ومنع الإساءة.\n- **التدريب** — استخدام النص لتعديل أوزان نموذج مستقبلي. هذا هو الأبعد أثرًا، ولا يمكن التراجع عنه بعد حدوثه.\n\nكثير من الخدمات تفصل بين الثلاثة وتسمح بتعطيل التدريب مع بقاء احتفاظ قصير. اعرفي أي وضع ينطبق عليك بالضبط.\n\n## لماذا يهمّ التدريب تحديدًا\n\nالنموذج المُدرَّب على نص قد يعيد إنتاج أجزاء منه في سياق آخر. الاحتمال منخفض لنص عادي وأعلى للنصوص الفريدة المتكرّرة — مثل مفتاح، أو عقد بصياغة مميّزة، أو بيانات شخصية غير شائعة. والأهم أن حذف البيانات من قاعدة بيانات ممكن، أما إخراجها من أوزان نموذج فليس كذلك.\n\n## ضوابط عملية\n\n- **قلّلي قبل الإرسال** — لا ترسلي المستند كاملًا إن كان المطلوب فقرة منه.\n- **أخفي المعرّفات** — استبدلي الأسماء والأرقام الوطنية والهواتف والحسابات برموز بديلة قبل الإرسال، وأعيديها بعد الاستلام إن لزم.\n- **افصلي البيانات الحسّاسة** — بعض الفئات لا يجب أن تغادر بيئتك مهما كانت الشروط؛ عالجيها بنموذج محلي.\n- **عطّلي التدريب صراحة** — لا تفترضيه معطّلًا لأن الخطة مدفوعة؛ تحقّقي من الإعداد.\n- **حدّدي مدد احتفاظ** — عندك أنتِ أيضًا: السجلات، والملفات المرفوعة، و[الفهرس المتجهي](/articles/vector-databases/).\n\n## كوني صريحة مع مستخدميك\n\nسياسة الخصوصية ليست إجراءً شكليًا. اذكري بوضوح: ما البيانات التي تُرسَل إلى طرف ثالث، ولأي غرض، وكم تُحفظ، وكيف يطلب المستخدم حذفها. الوضوح هنا يبني ثقة، والغموض يكلّف أكثر بكثير حين يُكتشف.\n\n## حق الحذف\n\nإن وعدتِ بالحذف فنفّذيه فعليًا في كل مكان: قاعدة البيانات، والفهرس ال[متجه](/articles/embeddings-explained/)ي، والنسخ الاحتياطية، والذاكرة المؤقتة، والسجلات. الفهرس المتجهي تحديدًا هو الموضع الذي تنساه أغلب الفرق.\n\n## الخلاصة\n\nالخصوصية في [الذكاء الاصطناعي](/articles/what-is-artificial-intelligence/) قرار معماري وتعاقدي معًا. اعرفي أين تذهب بياناتك، وقلّلي ما يغادر، ووثّقي ما تفعلينه لمستخدميك بوضوح.\n\n## من أين تبدأ\n\nراجعي إعدادات كل خدمة ذكاء اصطناعي تستخدمينها اليوم وتحقّقي من وضع التدريب والاحتفاظ. عشر دقائق قد تكشف إعدادًا افتراضيًا لا يناسب بياناتك.",
+    "en": "When you send text to a model hosted by someone else, that text leaves your boundary. What happens next is not a mysterious technical matter but a clause in an agreement, and it varies widely between providers and even between plans at the same provider.\n\n## Three concepts that must not be conflated\n\n- **Processing** — the text passes through the model to produce an answer. This always happens; it is the service itself.\n- **Retention** — storing the text for a period, usually for operations and abuse prevention.\n- **Training** — using the text to adjust the weights of a [future](/en/articles/future-of-ai-2030/) model. This has the longest reach, and it cannot be undone afterwards.\n\nMany services separate the three and allow training to be disabled while short retention continues. Know exactly which regime applies to you.\n\n## Why training specifically matters\n\nA model trained on text can reproduce parts of it in another context. The probability is low for ordinary prose and higher for unique, repeated text — a key, a distinctively worded contract, uncommon personal data. More importantly, deleting data from a database is possible; extracting it from model weights is not.\n\n## Practical controls\n\n- **Minimise before sending** — do not send a whole document when one pa[rag](/en/articles/what-is-rag/)raph is needed.\n- **Mask identifiers** — replace names, national IDs, phone numbers, and account numbers with placeholders before sending, and restore them afterwards if required.\n- **Segregate sensitive data** — some categories should not leave your environment under any terms; handle them with a local model.\n- **Disable training explicitly** — do not assume it is off because the plan is paid; verify the setting.\n- **Set retention periods** — on your side too: logs, uploaded files, and the vector index.\n\n## Be explicit with your users\n\nA privacy policy is not a formality. State plainly: what data goes to a third party, for what purpose, how long it is kept, and how a user requests deletion. Clarity builds trust; vagueness [cost](/en/articles/ai-cost-management/)s far more when discovered.\n\n## The right to deletion\n\nIf you promise deletion, execute it everywhere: database, vector index, backups, caches, and logs. The vector index specifically is the place most teams forget.\n\n## Conclusion\n\nPrivacy in AI is an architectural and contractual decision at once. Know where your data goes, minimise what leaves, and document clearly what you do for your users.\n\n## Where to start\n\nReview the settings of every AI service you use today and check the training and retention status. Ten minutes may reveal a default that does not suit your data."
+  }
+}

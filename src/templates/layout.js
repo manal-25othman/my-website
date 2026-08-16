@@ -7,12 +7,12 @@ import { icon } from '../lib/icons.js';
 
 /* ── عناصر التنقل  /  Navigation model ────────────────────────────── */
 export const NAV = [
-  { key: 'projects', path: 'projects/', desktop: true },
-  { key: 'articles', path: 'articles/', desktop: true, needsArticles: true },
   { key: 'about', path: 'about/', desktop: true },
   { key: 'experience', path: 'experience/', desktop: true },
   { key: 'expertise', path: 'expertise/', desktop: true },
+  { key: 'articles', path: 'articles/', desktop: true, needsArticles: true },
   { key: 'content', path: 'content/', desktop: true },
+  { key: 'projects', path: 'projects/', desktop: true },
   { key: 'mediaKit', path: 'media-kit/', desktop: false },
 ];
 

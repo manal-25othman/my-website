@@ -421,11 +421,10 @@ export function articlesPage(d, { items, pageNum, pageCount }) {
       pageHero({
         eyebrow: L(ui.articles.eyebrow, lang),
         title: `${L(ui.articles.title, lang)}${pageSuffix}`,
-        lead: first ? L(ui.articles.lead, lang) : '',
+        lead: '',
         crumbs,
         ui,
         lang,
-        extra: `<p class="phero__sub"><a class="rsslink" href="${href('feed.xml', lang)}">${icon('rss', { size: 15 })}<span>${esc(L(ui.articles.subscribe, lang))}</span></a></p>`,
       }),
       `<section class="sec"><div class="wrap">
         ${first ? categoryBar(d) : ''}

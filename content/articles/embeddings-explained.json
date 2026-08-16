@@ -1,0 +1,51 @@
+{
+  "title": {
+    "ar": "التضمينات: اللبنة التي يقوم عليها البحث الذكي",
+    "en": "Embeddings: The Building Block Behind Smart Search"
+  },
+  "description": {
+    "ar": "ما التضمينات ولماذا تجعل الآلة تقيس التشابه بين النصوص، وكيف تختارين نموذجًا مناسبًا للعربية، وأين تفشل هذه التقنية عمليًا.",
+    "en": "What embeddings are and why they let machines measure similarity, how to choose a model, and where the technique breaks down."
+  },
+  "date": "2026-08-16",
+  "updated": null,
+  "category": "ai-engineering",
+  "tags": {
+    "ar": [
+      "تضمينات",
+      "بحث دلالي",
+      "نماذج",
+      "هندسة الذكاء الاصطناعي",
+      "بيانات"
+    ],
+    "en": [
+      "embeddings",
+      "semantic search",
+      "models",
+      "AI engineering",
+      "data"
+    ]
+  },
+  "keywords": [
+    "embeddings",
+    "text embeddings",
+    "vector similarity"
+  ],
+  "cover": "img/articles/embeddings-explained.jpg",
+  "coverAlt": {
+    "ar": "غلاف المقال: التضمينات: اللبنة التي يقوم عليها البحث الذكي",
+    "en": "Article cover: Embeddings: The Building Block Behind Smart Search"
+  },
+  "draft": false,
+  "slug": null,
+  "references": [
+    {
+      "label": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Word_embedding"
+    }
+  ],
+  "body": {
+    "ar": "التضمين هو تمثيل رقمي للمعنى. تعطينه نصًا فيعيد لك قائمة أرقام، وهذه القائمة تحمل خاصية واحدة مهمة: كلما اقترب معنى نصّين، اقتربت قائمتاهما. هذه الخاصية البسيطة هي أساس البحث الدلالي والتصنيف والتوصية وأنظمة [RAG](/articles/what-is-rag/) كلها.\n\n## لماذا تعمل الفكرة\n\nالنماذج تتعلّم من كميات هائلة من النصوص أن كلمات معيّنة تظهر في سياقات متشابهة. «طبيب» و«ممرضة» و«مستشفى» تتكرّر معًا، فتنتهي متقاربة في الفضاء. لا يعني هذا أن النموذج «يفهم» الطب، بل أنه التقط بنية إحصائية في اللغة قوية بما يكفي لتكون مفيدة.\n\n## ماذا تستطيعين بناءه بها\n\n- **بحث دلالي** — إيجاد المستند المناسب حتى بصياغة مختلفة تمامًا.\n- **تصنيف** — مقارنة نص بأمثلة كل فئة واختيار الأقرب، بلا تدريب مصنّف كامل.\n- **إزالة التكرار** — كشف الشكاوى أو التذاكر المكرّرة بصياغات مختلفة.\n- **توصية** — اقتراح مقالات قريبة من مقال يقرأه المستخدم.\n- **تجميع** — اكتشاف المواضيع المتكرّرة في آلاف الردود دون تحديدها مسبقًا.\n\n## كيف تختارين نموذجًا\n\n- **دعم لغتك** — كثير من النماذج مُحسَّنة للإنجليزية وأداؤها بالعربية أضعف بوضوح. اختبري على نصوصك أنت.\n- **طول المدخل** — لكل نموذج حد أقصى؛ النص الأطول يُقتطع بصمت وتضيع نهايته.\n- **حجم المتجه** — الأكبر ليس دائمًا أفضل، لكنه دائمًا أغلى في التخزين والبحث.\n- **الاستضافة** — نموذج يعمل محليًا يبقي بياناتك عندك؛ خدمة سحابية أسهل لكنها ترسل نصوصك خارجًا.\n\n## أين تفشل التضمينات\n\n- **النفي** — «العقد ساري» و«العقد غير ساري» متقاربان في الفضاء رغم تناقضهما. هذا فخ خطير في المجالات القانونية والطبية.\n- **ال[رموز](/articles/context-windows/) الدقيقة** — أرقام الطلبات وأكواد المنتجات لا يفيد فيها التشابه المعنوي.\n- **المجالات المتخصصة** — نموذج عام قد لا يميّز فروقًا دقيقة في مصطلحات تخصصية.\n- **النصوص القصيرة جدًا** — كلمة واحدة بلا سياق تنتج متجهًا ضعيف الدلالة.\n\n## قاعدة تشغيلية مهمة\n\nنموذج التضمين جزء من عقد بياناتك. تغييره يعني إعادة فهرسة كل شيء [من الصفر](/articles/ai-for-beginners/) — لا يمكن خلط متجهات من نموذجين. سجّلي اسم النموذج وإصداره مع كل متجه تخزّنينه، وستوفّرين على نفسك يومًا سيئًا لاحقًا.\n\n## الخلاصة\n\nالتضمينات تحوّل «هل هذان النصان متشابهان؟» من سؤال لغوي صعب إلى عملية حسابية بسيطة. قوّتها في بساطتها، وحدودها في أنها تقيس التشابه لا الصحة.\n\n## من أين تبدأ\n\nخذي خمسين نصًا من مجالك واحسبي التشابه بين كل زوج. اقرئي أعلى عشرة أزواج وأدناها. ستفهمين في دقائق ما يلتقطه النموذج وما يفوته على بياناتك تحديدًا.",
+    "en": "An embedding is a numeric representation of meaning. You give it text, it returns a list of numbers, and that list has one important property: the closer two texts are in meaning, the closer their lists. This simple property underpins semantic search, classification, recommendation, and every [RAG](/en/articles/what-is-rag/) system.\n\n## Why the idea works\n\nModels [learn](/en/articles/learning-ai-effectively/) from enormous amounts of text that certain words appear in similar contexts. \"Doctor,\" \"nurse,\" and \"hospital\" co-occur, so they end up near each other in the space. This does not mean the model understands medicine — it captured a statistical structure in language strong enough to be useful.\n\n## What you can build with them\n\n- **Semantic search** — finding the right document even under completely different phrasing.\n- **Classification** — comparing text against examples of each class and picking the nearest, without training a full classifier.\n- **Deduplication** — spotting complaints or tickets that repeat under different wording.\n- **Recommendation** — suggesting articles close to the one a reader is on.\n- **Clustering** — discovering recurring themes across thousands of responses without defining them first.\n\n## How to choose a model\n\n- **Your language** — many models are tuned for English and perform noticeably worse in Arabic. Test on your own text.\n- **Input length** — every model has a cap; longer text is silently truncated and its ending is lost.\n- **Vector size** — bigger is not always better, but it is always more expensive to store and search.\n- **Hosting** — a local model keeps data with you; a cloud service is easier but sends your text out.\n\n## Where embeddings fail\n\n- **Negation** — \"the contract is valid\" and \"the contract is not valid\" sit close together despite contradicting each other. That is a dangerous trap in legal and medical domains.\n- **Exact [tokens](/en/articles/context-windows/)** — order numbers and product codes gain nothing from semantic similarity.\n- **Specialist domains** — a general model may miss fine distinctions in technical terminology.\n- **Very short text** — a single word without context yields a weakly meaningful vector.\n\n## One operational rule\n\nThe embedding model is part of your data contract. Changing it means reindexing everything from scratch — vectors from two models cannot be mixed. Store the model name and version alongside every vector, and you will save yourself a bad day later.\n\n## Conclusion\n\nEmbeddings turn \"are these two texts similar?\" from a hard linguistic question into simple arithmetic. Their power is their simplicity; their limit is that they measure similarity, not correctness.\n\n## Where to start\n\nTake fifty texts from your domain and compute similarity for every pair. Read the ten highest and ten lowest pairs. Within minutes you will understand what the model captures and what it misses on your specific data."
+  }
+}

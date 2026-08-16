@@ -1,0 +1,51 @@
+{
+  "title": {
+    "ar": "هندسة التعليمات: كيف تطلب من النموذج ما تريده فعلًا",
+    "en": "Prompt Engineering: Asking for What You Want"
+  },
+  "description": {
+    "ar": "مبادئ عملية لكتابة تعليمات فعّالة للنماذج اللغوية — تحديد الدور، وبنية المخرجات، والأمثلة، ولماذا تفشل أغلب التعليمات الطويلة.",
+    "en": "Practical principles for writing effective prompts — defining role, structuring output, using examples, and why most long prompts fail."
+  },
+  "date": "2026-08-16",
+  "updated": null,
+  "category": "generative-ai",
+  "tags": {
+    "ar": [
+      "هندسة التعليمات",
+      "نماذج لغوية",
+      "ذكاء اصطناعي توليدي",
+      "إنتاجية",
+      "أدوات"
+    ],
+    "en": [
+      "prompt engineering",
+      "LLM",
+      "generative AI",
+      "productivity",
+      "tools"
+    ]
+  },
+  "keywords": [
+    "prompt engineering",
+    "how to write prompts",
+    "LLM prompting"
+  ],
+  "cover": "img/articles/prompt-engineering.jpg",
+  "coverAlt": {
+    "ar": "غلاف المقال: هندسة التعليمات: كيف تطلب من النموذج ما تريده فعلًا",
+    "en": "Article cover: Prompt Engineering: Asking a Model for What You Actually Want"
+  },
+  "draft": false,
+  "slug": null,
+  "references": [
+    {
+      "label": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Prompt_engineering"
+    }
+  ],
+  "body": {
+    "ar": "أغلب الإحباط من النماذج اللغوية سببه سوء الطلب لا ضعف النموذج. التعليمة ليست سؤالًا عابرًا، بل مواصفة عمل: من أنت، وما المطلوب، وبأي شكل، وضمن أي قيود. حين تُكتب المواصفة بوضوح، يتحسّن الناتج فورًا ودون أي تغيير في النموذج.\n\n## ابدئي بالمخرَج لا بالسؤال\n\nاسألي نفسك أولًا: كيف تبدو الإجابة المثالية؟ فقرة؟ جدول؟ قائمة من خمسة عناصر؟ كود جاهز للتشغيل؟ ثم اكتبي هذا الشكل صراحة في التعليمة. النموذج لا يقرأ نيّتك، ووصف الشكل المطلوب يوفّر عليك جولات تصحيح كثيرة.\n\n## أربعة عناصر تصنع تعليمة جيدة\n\n- **الدور و[السياق](/articles/context-windows/)** — «أنت مراجع كود يعمل على مشروع Node بلا اعتماديات خارجية». الدور يضيّق فضاء الإجابات المحتملة.\n- **المهمة بفعل واحد واضح** — لخّص، قارن، صنّف، أعد الصياغة. المهام المركّبة تُقسَّم إلى تعليمات متتابعة.\n- **القيود** — الطول، اللغة، ما يجب تجنّبه، الجمهور المستهدف.\n- **مثال واحد على الأقل** — مثال واحد على المدخل والمخرَج المتوقع أقوى من فقرة كاملة من الشرح.\n\n## لماذا تفشل التعليمات الطويلة\n\nالتعليمة الطويلة ليست بالضرورة أفضل. الأخطاء الشائعة:\n\n- **تعليمات متناقضة** — «اختصر» و«اشرح بالتفصيل» في النص نفسه. النموذج سيرجّح إحداهما عشوائيًا.\n- **دفن المطلوب في المنتصف** — ما يأتي في أول التعليمة وآخرها يحظى بانتباه أكبر. ضعي المهمة الأساسية في أحد الطرفين.\n- **الغموض المهذّب** — «اكتب شيئًا جيدًا عن هذا» ليست مواصفة.\n- **الأمثلة المتضاربة** — مثالان بأسلوبين مختلفين يعلّمان النموذج التذبذب.\n\n## تقنيات تستحق الإتقان\n\n- **التفكير خطوة بخطوة** — طلب تفصيل الخطوات قبل الإجابة يحسّن المسائل المنطقية والحسابية.\n- **الأمثلة القليلة** — إعطاء مثال إلى ثلاثة ي[ضبط](/articles/fine-tuning-vs-rag/) الأسلوب والصيغة أسرع من أي شرح.\n- **تحديد صيغة الإخراج** — طلب JSON بمفاتيح محددة يجعل الناتج قابلًا للمعالجة برمجيًا بدل استخراجه بالتعبيرات النمطية.\n- **إذن قول لا أعرف** — منح النموذج مخرجًا صريحًا عند الجهل يقلّل [الاختراع](/articles/llm-hallucination/) بوضوح.\n\n## من التجربة إلى النظام\n\nالتعليمة التي ستُستخدم داخل منتج ليست نصًا تكتبينه مرة. عامليها كأي كود: احفظيها في ملف، وأعطيها رقم إصدار، وجهّزي مجموعة اختبار من عشرة مدخلات تعرفين مخرجاتها الصحيحة، وشغّليها بعد كل تعديل. بلا هذا، أي تحسين في حالة يكسر حالات أخرى دون أن تلاحظي.\n\n## الخلاصة\n\nهندسة التعليمات ليست حيلًا سرية بل انضباط في التواصل: قولي من أنت، وماذا تريدين، وبأي شكل، وما الممنوع. أغلب المكاسب تأتي من الوضوح لا من الذكاء.\n\n## من أين تبدأ\n\nخذي تعليمة تستخدمينها فعلًا وأعيدي كتابتها بالعناصر الأربعة أعلاه. شغّلي النسختين على المدخلات نفسها وقارني. الفرق عادة أكبر مما تتوقعين.",
+    "en": "Most frustration with language models comes from a badly written request, not a weak model. A prompt is not a passing question — it is a work specification: who you are, what is required, in what form, and under which constraints. When the specification is clear, output improves immediately with no change to the model.\n\n## Start from the output, not the question\n\nAsk yourself first: what does the ideal answer look like? A pa[rag](/en/articles/what-is-rag/)raph? A table? A list of five items? Runnable code? Then state that shape explicitly in the prompt. The model cannot read your intent, and describing the required form saves you many correction rounds.\n\n## Four elements of a good prompt\n\n- **Role and context** — \"you are a code reviewer working on a dependency-free Node project.\" A role narrows the space of possible answers.\n- **One clear task verb** — summarise, compare, classify, rewrite. Compound tasks should be split into sequential prompts.\n- **Constraints** — length, language, what to avoid, the intended audience.\n- **At least one example** — a single input/output pair is stronger than a paragraph of explanation.\n\n## Why long prompts fail\n\nLonger is not automatically better. Common faults:\n\n- **Contradictory instructions** — \"be brief\" and \"explain in detail\" in the same text. The model will pick one at random.\n- **Burying the request in the middle** — the beginning and end of a prompt get more attention. Put the core task at one of those ends.\n- **Polite vagueness** — \"write something good about this\" is not a specification.\n- **Conflicting examples** — two examples in two different styles teach the model to waver.\n\n## Techniques worth mastering\n\n- **Step-by-step reasoning** — asking for the steps before the answer improves logical and arithmetic tasks.\n- **Few-shot examples** — one to three examples fix tone and format faster than any explanation.\n- **Output format specification** — requesting JSON with named keys makes results machine-processable instead of scraped with regex.\n- **Permission to say \"I don't know\"** — giving the model an explicit exit when it lacks knowledge measurably reduces [invention](/en/articles/llm-hallucination/).\n\n## From experiment to system\n\nA prompt that will live inside a [product](/en/articles/building-ai-saas/) is not a one-off piece of text. Treat it like code: keep it in a file, give it a version, build a test set of ten inputs whose correct outputs you know, and run it after every edit. Without that, an improvement in one case silently breaks others.\n\n## Conclusion\n\nPrompt engineering is not a set of secret tricks — it is discipline in communication: say who you are, what you want, in what shape, and what is off limits. Most of the gain comes from clarity, not cleverness.\n\n## Where to start\n\nTake a prompt you actually use and rewrite it with the four elements above. Run both versions on the same inputs and compare. The difference is usually larger than you expect."
+  }
+}

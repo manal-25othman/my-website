@@ -1,0 +1,51 @@
+{
+  "title": {
+    "ar": "هلوسة النماذج اللغوية: لماذا تحدث وكيف تُقلَّل",
+    "en": "LLM Hallucination: Why It Happens and How to Reduce It"
+  },
+  "description": {
+    "ar": "لماذا يخترع النموذج إجابات بثقة تامة، وما الفرق بين نقص المعرفة وسوء الاسترجاع، وطرق عملية لتقليص الاختراع في منتجك.",
+    "en": "Why models invent answers confidently, the difference between missing knowledge and bad retrieval, and practical ways to cut invention."
+  },
+  "date": "2026-08-16",
+  "updated": null,
+  "category": "generative-ai",
+  "tags": {
+    "ar": [
+      "هلوسة",
+      "نماذج لغوية",
+      "جودة",
+      "تقييم",
+      "موثوقية"
+    ],
+    "en": [
+      "hallucination",
+      "LLM",
+      "quality",
+      "evaluation",
+      "reliability"
+    ]
+  },
+  "keywords": [
+    "LLM hallucination",
+    "why models hallucinate",
+    "reduce hallucination"
+  ],
+  "cover": "img/articles/llm-hallucination.jpg",
+  "coverAlt": {
+    "ar": "غلاف المقال: هلوسة النماذج اللغوية: لماذا تحدث وكيف تُقلَّل",
+    "en": "Article cover: LLM Hallucination: Why It Happens and How to Reduce It"
+  },
+  "draft": false,
+  "slug": null,
+  "references": [
+    {
+      "label": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence)"
+    }
+  ],
+  "body": {
+    "ar": "أخطر ما في هلوسة النماذج ليس الخطأ نفسه، بل أنه يُقدَّم بالثقة نفسها التي تُقدَّم بها الإجابة الصحيحة. لا توجد نبرة تردّد تنبّه القارئ. فهم سبب هذا السلوك هو أول خطوة نحو منتج يمكن الوثوق به.\n\n## لماذا يحدث أصلًا\n\nالنموذج اللغوي لا يبحث في قاعدة حقائق، بل يتنبأ بالكلمة التالية الأرجح بناءً على ما قبلها. حين يكون النمط اللغوي واضحًا والحقيقة غائبة، ينتج نصًا يشبه الإجابة الصحيحة شكلًا دون أن يكون صحيحًا مضمونًا. الاختراع ليس عطلًا في النظام، بل نتيجة طبيعية لطريقة عمله.\n\n## ثلاثة أنواع يجب التفريق بينها\n\n- **نقص المعرفة** — سُئل عن شيء لم يُدرَّب عليه أصلًا.\n- **خطأ الاسترجاع** — النظام أعطاه مقطعًا خاطئًا، فأجاب بأمانة من مصدر خاطئ.\n- **تجاوز السياق** — أُعطي المعلومة الصحيحة لكنه أضاف إليها ما ليس فيها.\n\nالعلاج يختلف كليًا بين الثلاثة، ولهذا فإن الخلط بينها يجعل التحسين عشوائيًا.\n\n## ما يقلّل الاختراع فعليًا\n\n- **تزويده بالمصدر** — [RAG](/articles/what-is-rag/) يحوّل المهمة من تذكّر إلى قراءة، وهذا أكبر مكسب منفرد.\n- **إذن صريح بالجهل** — «إن لم تجد الإجابة في النص المرفق فقل لا أعرف» تُغيّر السلوك بوضوح.\n- **طلب الاقتباس** — إلزامه بذكر المقطع الذي بنى عليه إجابته يجعل الاختراع مكشوفًا فورًا.\n- **تضييق السؤال** — الأسئلة المفتوحة تدعو للتوسّع، والمحدّدة ت[ضبط](/articles/fine-tuning-vs-rag/)ه.\n- **خفض العشوائية** — تقليل معامل الحرارة يجعل المخرجات أكثر تحفّظًا وثباتًا.\n\n## ما لا يفيد\n\n- إضافة «لا تهلوس» إلى [التعليمة](/articles/prompt-engineering/). النموذج لا يعرف متى يهلوس؛ لو عرف لتوقّف.\n- سؤاله «هل أنت متأكد؟» — قد يتراجع عن إجابة صحيحة بقدر ما يصحّح خاطئة.\n- الاعتماد على طول الإجابة أو ثقة نبرتها كمؤشر على صحتها. لا علاقة بينهما.\n\n## التصميم يتحمّل جزءًا من المسؤولية\n\nالمنتج الجيد لا يفترض إجابة مثالية دائمًا. اعرضي المصدر بجانب الإجابة، وميّزي بصريًا ما استُخرج من مستند عمّا صيغ من النموذج، وأتيحي طريقًا سهلًا للإبلاغ عن خطأ. في المجالات الحسّاسة، اجعلي المخرجات اقتراحًا يراجعه إنسان لا قرارًا نهائيًا.\n\n## الخلاصة\n\nالهلوسة خاصية بنيوية لا عيب عارض، ولا تُلغى بالكامل. الهدف الواقعي هو تقليصها إلى حدّ مقبول، وتصميم واجهة تجعل الخطأ مرئيًا وقابلًا للتصحيح بدل أن يمرّ بصمت.\n\n## من أين تبدأ\n\nاجمعي عشرين سؤالًا تعرفين إجاباتها الصحيحة يقينًا، وشغّليها على نظامك، وصنّفي كل فشل ضمن الأنواع الثلاثة أعلاه. النوع الأكثر تكرارًا هو ما يستحق جهدك أولًا.",
+    "en": "The dangerous part of hallucination is not the error itself but that it arrives with exactly the same confidence as a correct answer. There is no hesitant tone to warn the reader. Understanding why this happens is the first step toward a [product](/en/articles/building-ai-saas/) people can trust.\n\n## Why it happens at all\n\nA language model does not look things up in a fact store; it predicts the most likely next word given what came before. When the linguistic pattern is clear but the fact is absent, it produces text that resembles a correct answer in form without being correct in substance. Invention is not a malfunction — it is a natural consequence of how the thing works.\n\n## Three types worth separating\n\n- **Missing knowledge** — it was asked about something never in its training.\n- **Retrieval error** — the system handed it the wrong passage, so it answered faithfully from a wrong source.\n- **Overreach** — it was given the right information but added things not present in it.\n\nThe remedy differs completely across the three, which is why conflating them makes improvement random.\n\n## What actually reduces invention\n\n- **Give it the source** — [RAG](/en/articles/what-is-rag/) turns the task from recall into reading, and that is the single largest gain.\n- **Explicit permission to not know** — \"if the answer is not in the provided text, say you don't know\" changes behaviour measurably.\n- **Require citation** — forcing it to name the passage it relied on exposes invention immediately.\n- **Narrow the question** — open questions invite expansion; specific ones constrain it.\n- **Lower randomness** — reducing temperature makes output more conservative and stable.\n\n## What does not help\n\n- Adding \"do not hallucinate\" to the [prompt](/en/articles/prompt-engineering/). The model does not know when it is hallucinating; if it did, it would stop.\n- Asking \"are you sure?\" — it may retract a correct answer as readily as it corrects a wrong one.\n- Treating answer length or confident tone as a signal of correctness. There is no relationship.\n\n## Design carries part of the responsibility\n\nA good product does not assume a perfect answer every time. Show the source beside the answer, visually distinguish what was extracted from a document versus what the model phrased, and give an easy path to report an error. In sensitive domains, make the output a suggestion a human reviews rather than a final decision.\n\n## Conclusion\n\nHallucination is a structural property, not an occasional defect, and it will not be eliminated. The realistic goal is to shrink it to an acceptable level and design an interface that makes error visible and correctable instead of letting it pass silently.\n\n## Where to start\n\nCollect twenty questions whose correct answers you know for certain, run them through your system, and sort every failure into the three types above. Whichever type dominates deserves your effort first."
+  }
+}

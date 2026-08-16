@@ -1,0 +1,51 @@
+{
+  "title": {
+    "ar": "الذكاء الاصطناعي متعدد الوسائط: حين يرى النموذج ويسمع",
+    "en": "Multimodal AI: When the Model Sees and Hears"
+  },
+  "description": {
+    "ar": "كيف تعمل النماذج التي تفهم الصورة والصوت والنص معًا، وما تطبيقاتها العملية اليوم في قراءة المستندات والوصولية، وأين تبقى حدودها واضحة.",
+    "en": "How models that understand images, audio, and text together work, their practical uses today, and where their limits remain clear."
+  },
+  "date": "2026-08-16",
+  "updated": null,
+  "category": "generative-ai",
+  "tags": {
+    "ar": [
+      "متعدد الوسائط",
+      "رؤية حاسوبية",
+      "صوت",
+      "نماذج",
+      "تطبيقات"
+    ],
+    "en": [
+      "multimodal",
+      "computer vision",
+      "audio",
+      "models",
+      "applications"
+    ]
+  },
+  "keywords": [
+    "multimodal AI",
+    "vision language models",
+    "image understanding"
+  ],
+  "cover": "img/articles/multimodal-ai.jpg",
+  "coverAlt": {
+    "ar": "غلاف المقال: الذكاء الاصطناعي متعدد الوسائط: حين يرى النموذج ويسمع",
+    "en": "Article cover: Multimodal AI: When the Model Sees and Hears"
+  },
+  "draft": false,
+  "slug": null,
+  "references": [
+    {
+      "label": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Multimodal_learning"
+    }
+  ],
+  "body": {
+    "ar": "لسنوات كان لكل وسيط نموذجه: نموذج للنص، وآخر للصور، وثالث للصوت. النماذج متعددة الوسائط تكسر هذا الفصل — تستقبل صورة وسؤالًا نصيًا عنها وتجيب بنص، أو تسمع تسجيلًا وتلخّصه. الفكرة الجوهرية أن كل الوسائط تُحوَّل إلى تمثيل داخلي مشترك يمكن للنموذج التعامل معه بالطريقة نفسها.\n\n## كيف يحدث ذلك\n\nالصورة تُقسَّم إلى أجزاء، وكل جزء يُحوَّل إلى [متجه](/articles/embeddings-explained/) شبيه بالمتجه الذي يمثّل كلمة. بعد هذا التحويل، يصبح «فهم» الصورة من وجهة نظر النموذج قريبًا من فهم جملة: تسلسل من الرموز يعالجها بالآلية نفسها. الشيء نفسه ينطبق على مقاطع الصوت.\n\n## تطبيقات عملية اليوم\n\n- **قراءة المستندات الممسوحة** — استخراج بيانات من فاتورة أو نموذج مصوّر دون قوالب مُعدّة مسبقًا لكل شكل.\n- **وصف الصور للوصولية** — توليد نص بديل أولي يراجعه إنسان، وهذا يوفّر وقتًا كبيرًا على المواقع الكبيرة.\n- **تفريغ الاجتماعات وتلخيصها** — من الصوت إلى نص إلى قرارات ومهام.\n- **دعم فني بالصور** — يرسل المستخدم صورة الخطأ بدل وصفه بالكلمات.\n- **مراجعة الواجهات** — تحليل لقطة شاشة واقتراح تحسينات على التخطيط أو التباين.\n\n## أين تبقى الحدود\n\n- **النصوص الصغيرة داخل الصور** — الأرقام الدقيقة والخطوط الصغيرة تُقرأ خطأ أحيانًا، وهذا خطير في [السياق](/articles/context-windows/) المالي أو الطبي.\n- **العلاقات المكانية الدقيقة** — «ما الذي يقع يسار العنصر الثالث؟» أضعف بكثير من التعرّف على المحتوى.\n- **العربية المكتوبة بخط اليد** — أداء أضعف بوضوح من الإنجليزية.\n- **الثقة الزائدة** — يصف النموذج ما «يتوقّع» وجوده في صورة من نوع معيّن، لا ما فيها بالضرورة.\n\n## اعتبارات عملية\n\nالصور أثقل من النص بكثير في [التكلفة](/articles/ai-cost-management/) وزمن الاستجابة. صغّري الصورة إلى أقل دقة تكفي المهمة قبل الإرسال، ولا ترسلي صفحة كاملة إن كان المطلوب حقلًا واحدًا. وانتبهي للخصوصية: الصور قد تحمل وجوهًا وبيانات شخصية وبيانات وصفية عن الموقع — عالجيها قبل الإرسال.\n\n## الخلاصة\n\nتعدّد الوسائط يوسّع ما يمكن أتمتته، خصوصًا في المهام التي كانت تتطلب عينًا بشرية لقراءة مستند أو صورة. لكنه يرث كل حدود النماذج اللغوية ويضيف إليها حدود الإدراك البصري.\n\n## من أين تبدأ\n\nخذي مهمة واحدة تقومين بها يدويًا على صور أو مستندات ممسوحة، وجرّبيها على عشرين عيّنة حقيقية. قيسي نسبة الاستخراج الصحيح، وقرّري بناءً عليها لا على الانطباع الأول.",
+    "en": "For years each medium had its own model: one for text, another for images, a third for audio. Multimodal models break that separation — they take an image plus a written question about it and answer in text, or listen to a recording and summarise it. The core idea is that all media are converted into a shared internal representation the model can handle unifor[ml](/en/articles/how-machine-learning-works/)y.\n\n## How it happens\n\nAn image is split into patches, and each patch becomes a [vector](/en/articles/embeddings-explained/) similar to the one representing a word. After that conversion, \"understanding\" an image looks, from the model's side, much like understanding a sentence: a sequence of tokens processed by the same machinery. The same applies to audio segments.\n\n## Practical applications today\n\n- **Reading scanned documents** — extracting data from an invoice or photographed form without templates prepared for every layout.\n- **Image descriptions for accessibility** — generating draft alt text a human reviews, which saves substantial time on large sites.\n- **Meeting transcription and summarisation** — from audio to text to decisions and tasks.\n- **Visual support tickets** — a user sends a screenshot of the error instead of describing it in words.\n- **Interface review** — analysing a screenshot and suggesting layout or contrast improvements.\n\n## Where the limits remain\n\n- **Small text inside images** — precise digits and fine print are sometimes misread, which is dangerous in financial or medical contexts.\n- **Fine spatial relations** — \"what sits to the left of the third element?\" is far weaker than content recognition.\n- **Handwritten Arabic** — noticeably weaker performance than English.\n- **Overconfidence** — the model describes what it expects to find in an image of a given type, not necessarily what is there.\n\n## Practical considerations\n\nImages are far heavier than text in both [cost](/en/articles/ai-cost-management/) and latency. Downscale to the lowest resolution the task needs before sending, and do not send a full page when one field is required. Mind privacy too: images may carry faces, personal data, and location metadata — process them before sending.\n\n## Conclusion\n\nMultimodality widens what can be automated, especially tasks that previously required a human eye to read a document or a picture. But it inherits every limit of language models and adds the limits of visual perception on top.\n\n## Where to start\n\nTake one task you currently do by hand on images or scanned documents and try it on twenty real samples. Measure the correct-extraction rate and decide from that, not from a first impression."
+  }
+}
