@@ -112,32 +112,21 @@ export function projectCard(project, ui, lang) {
  * ═══════════════════════════════════════════════════════════════════ */
 
 /**
- * صورة مقال متجاوبة.
- * تُصدَّر كل صورة بثلاثة عروض: {name}-800.jpg و -1200 و -1600
+ * صورة مقال.
+ * القيمة تأتي من حقل الصورة في لوحة التحكم كمسار داخل مجلد الأصول،
+ * مثل  img/articles/deepfake.jpg — صورة واحدة تُرفع من اللوحة مباشرة.
  * صورة الغلاف هي عنصر LCP في صفحة المقال، فلا تُحمَّل بكسل أبداً.
  */
-export function articleImage(cover, alt, { priority = false, className = '' } = {}) {
+export function articleImage(cover, alt, { priority = false } = {}) {
   if (!cover) return '';
-  const src = (w) => asset(`img/articles/${cover}-${w}.jpg`);
-  return `<img class="${attr(className)}"
-    src="${attr(src(1200))}"
-    srcset="${attr(`${src(800)} 800w, ${src(1200)} 1200w, ${src(1600)} 1600w`)}"
-    sizes="${attr(ARTICLE_IMG_SIZES)}"
+  return `<img src="${attr(asset(cover))}"
     alt="${attr(alt || '')}" width="1200" height="675" decoding="async"
     ${priority ? 'fetchpriority="high" loading="eager"' : 'loading="lazy"'}>`;
 }
 
-export const ARTICLE_IMG_SIZES = '(max-width: 780px) 100vw, 760px';
-
-/** مصادر صورة الغلاف — تُستخدم في preload داخل <head> */
+/** مصدر صورة الغلاف — يُستخدم في preload داخل <head> لتحسين LCP */
 export function articleImageSources(cover) {
-  if (!cover) return null;
-  const src = (w) => asset(`img/articles/${cover}-${w}.jpg`);
-  return {
-    preloadImage: src(1200),
-    preloadSrcset: `${src(800)} 800w, ${src(1200)} 1200w, ${src(1600)} 1600w`,
-    preloadSizes: ARTICLE_IMG_SIZES,
-  };
+  return cover ? { preloadImage: asset(cover) } : null;
 }
 
 /** بطاقة مقال في الفهرس */

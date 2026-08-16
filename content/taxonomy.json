@@ -32,6 +32,17 @@
         "ar": "كيف تتحوّل الفكرة إلى منتج رقمي قابل للاستخدام — البنية، وتجربة المستخدم، والقرارات التي تُتخذ بين التصور والتنفيذ.",
         "en": "How an idea becomes a usable digital product — architecture, user experience, and the decisions made between concept and delivery."
       }
+    },
+    {
+      "slug": "cybersecurity",
+      "name": {
+        "ar": "الأمن السيبراني والتوعية الرقمية",
+        "en": "Cybersecurity & Digital Awareness"
+      },
+      "description": {
+        "ar": "مقالات عن حماية الأفراد والمؤسسات رقميًا — من التزييف العميق والاحتيال إلى الممارسات اليومية التي تقلّل المخاطر.",
+        "en": "Articles on protecting people and organisations online — from deepfakes and fraud to the everyday practices that reduce risk."
+      }
     }
   ]
 }

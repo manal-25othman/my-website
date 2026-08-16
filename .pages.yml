@@ -273,135 +273,153 @@ content:
       - { name: url, label: رابط المشروع, type: string }
 
   # ─────────────────────────────────────────────────────────────────────
-  #  ٣ · المقالات (عربي)
+  #  ٣ · المقالات
   # ─────────────────────────────────────────────────────────────────────
-  #  كل مقال ملف Markdown مستقل. اسم الملف هو رابط المقال، فاكتبيه
-  #  بحروف لاتينية بلا مسافات: rag-explained ← /articles/rag-explained/
-  #  المقال لا يظهر في الموقع ما دام «مسودة» مفعّلًا.
+  #  كل مقال إدخال واحد فيه اللغتان معًا.
+  #  · الرابط يُنشأ تلقائيًا — لا تكتبيه.
+  #  · اتركي الحقول الإنجليزية فارغة ولن تُنشأ نسخة إنجليزية أصلًا.
+  #  · «مسودة» مفعّل افتراضيًا: اكتبي على راحتك ثم أطفئيه عند الجاهزية.
   # ─────────────────────────────────────────────────────────────────────
-  - name: articles_ar
-    label: المقالات (عربي)
+  - name: articles
+    label: المقالات
     type: collection
-    path: content/articles/ar
-    filename: '{fields.slug}.md'
-    format: yaml-frontmatter
+    path: content/articles
+    format: json
     icon: file-text
-    exclude: ['_template.md']
+    filename: '{fields.title.ar}.json'
+    exclude: ['_template.json']
     view:
-      fields: [title, date, category, draft]
-      primary: title
-      sort: [date, title]
+      fields: [title.ar, date, category, draft]
+      primary: title.ar
+      sort: [date]
+      default:
+        sort: date
+        order: desc
     fields:
-      - name: slug
-        label: معرّف الرابط
-        type: string
-        required: true
-        pattern: '^[a-z0-9]+(-[a-z0-9]+)*$'
-        description: 'حروف لاتينية صغيرة وشرطات فقط: rag-explained ← /articles/rag-explained/ — لا تغيّريه بعد النشر'
+      - name: draft
+        label: مسودة — لا تظهر في الموقع
+        type: boolean
+        default: true
+        description: أطفئيه عندما يصبح المقال جاهزًا للنشر
+
       - name: title
         label: عنوان المقال
-        type: string
+        type: object
         required: true
-        description: يصبح العنوان الرئيسي للصفحة — أبقيه تحت ٦٠ حرفًا
+        fields:
+          - { name: ar, label: بالعربية, type: string, required: true }
+          - { name: en, label: بالإنجليزية (اختياري), type: string }
+        description: يصبح العنوان الرئيسي للصفحة — الأمثل ٢٥ إلى ٦٠ حرفًا
+
       - name: description
         label: وصف الميتا
-        type: text
-        description: السطر الذي يظهر في نتائج جوجل — حتى ١٥٨ حرفًا. إن تركتِه فارغًا يُشتق من أول فقرة
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: text }
+          - { name: en, label: بالإنجليزية (اختياري), type: text }
+        description: السطر الذي يظهر تحت العنوان في نتائج جوجل — الأمثل ١١٠ إلى ١٥٨ حرفًا. إن تركتِه فارغًا يُشتق من أول فقرة
+
       - name: date
         label: تاريخ النشر
         type: date
         required: true
         options: { format: 'yyyy-MM-dd' }
+
       - name: updated
         label: تاريخ آخر تعديل
         type: date
         options: { format: 'yyyy-MM-dd' }
         description: املئيه فقط عند تعديل جوهري — وإلا اتركيه فارغًا
+
       - name: category
         label: التصنيف
         type: select
         required: true
+        default: generative-ai
         options:
           values:
             - { value: generative-ai, label: الذكاء الاصطناعي التوليدي }
             - { value: ai-engineering, label: هندسة الذكاء الاصطناعي }
             - { value: digital-products, label: المنتجات الرقمية }
+            - { value: cybersecurity, label: الأمن السيبراني والتوعية الرقمية }
+        description: لإضافة تصنيف جديد عدّليه من قسم «تصنيفات المقالات» ثم أخبريني لأضيفه لهذه القائمة
+
       - name: tags
         label: الوسوم
-        type: string
-        list: true
-        description: من صفر إلى خمسة — أعيدي استخدام الوسوم نفسها قدر الإمكان
+        type: object
+        fields:
+          - { name: ar, label: وسوم عربية, type: string, list: true }
+          - { name: en, label: وسوم إنجليزية, type: string, list: true }
+        description: من وسمين إلى خمسة لكل لغة — أعيدي استخدام الوسوم نفسها قدر الإمكان
+
       - name: cover
-        label: اسم صورة الغلاف
-        type: string
-        description: 'الاسم فقط بلا امتداد ولا مقاس. ارفعي ثلاث نسخ في src/assets/img/articles/ بالأسماء: {الاسم}-800.jpg و -1200.jpg و -1600.jpg'
+        label: صورة الغلاف
+        type: image
+        options:
+          media: images
+          path: src/assets/img/articles
+        description: ارفعيها من هنا مباشرة. العرض المفضل ١٢٠٠ بكسل بنسبة ١٦:٩، وأبقي حجم الملف تحت ٢٠٠ كيلوبايت
+
       - name: coverAlt
-        label: النص البديل للصورة
-        type: string
-        description: مطلوب إن وُجدت صورة — بدونه يتوقف البناء
-      - name: draft
-        label: مسودة
-        type: boolean
-        default: true
-        description: ما دام مفعّلًا لا يظهر المقال في الموقع إطلاقًا
+        label: وصف الصورة للمكفوفين ومحركات البحث
+        type: object
+        fields:
+          - { name: ar, label: بالعربية, type: string }
+          - { name: en, label: بالإنجليزية (اختياري), type: string }
+        description: صِفي ما يظهر في الصورة. مطلوب إن رفعتِ صورة، وبدونه يتوقف النشر
+
       - name: body
         label: نص المقال
-        type: rich-text
-        description: ابدئي بـ ## وليس # — العنوان الرئيسي يأتي من حقل العنوان أعلاه
+        type: object
+        fields:
+          - name: ar
+            label: المتن بالعربية
+            type: rich-text
+            description: ابدئي بـ ## وليس # — العنوان الرئيسي يأتي من حقل العنوان أعلاه
+          - name: en
+            label: المتن بالإنجليزية (اختياري)
+            type: rich-text
+            description: اتركيه فارغًا ولن تُنشأ نسخة إنجليزية لهذا المقال
+
+      - name: slug
+        label: رابط مخصّص (اختياري تمامًا)
+        type: string
+        pattern: '^[a-z0-9]+(-[a-z0-9]+)*$'
+        description: اتركيه فارغًا — يُنشأ الرابط تلقائيًا. املئيه فقط لو أردتِ رابطًا إنجليزيًا مثل deepfake-detection
 
   # ─────────────────────────────────────────────────────────────────────
-  #  ٤ · المقالات (إنجليزي)
+  #  ٤ · تصنيفات المقالات
   # ─────────────────────────────────────────────────────────────────────
-  #  اختياري تمامًا. لربط ترجمة بمقال عربي، استخدمي اسم الملف نفسه.
-  #  بلا ترجمة لا يعلن الموقع عن نسخة إنجليزية أصلًا — وهذا مقصود.
-  # ─────────────────────────────────────────────────────────────────────
-  - name: articles_en
-    label: المقالات (إنجليزي)
-    type: collection
-    path: content/articles/en
-    filename: '{fields.slug}.md'
-    format: yaml-frontmatter
-    icon: file-text
-    exclude: ['_README.md']
-    view:
-      fields: [title, date, category, draft]
-      primary: title
-      sort: [date, title]
+  - name: taxonomy
+    label: تصنيفات المقالات
+    type: file
+    path: content/taxonomy.json
+    icon: tag
     fields:
-      - name: slug
-        label: Slug
-        type: string
-        required: true
-        pattern: '^[a-z0-9]+(-[a-z0-9]+)*$'
-        description: Use the SAME slug as the Arabic article to pair them as translations
-      - { name: title, label: Title, type: string, required: true }
-      - { name: description, label: Meta description, type: text }
-      - name: date
-        label: Publish date
-        type: date
-        required: true
-        options: { format: 'yyyy-MM-dd' }
-      - name: updated
-        label: Last updated
-        type: date
-        options: { format: 'yyyy-MM-dd' }
-      - name: category
-        label: Category
-        type: select
-        required: true
-        options:
-          values:
-            - { value: generative-ai, label: Generative AI }
-            - { value: ai-engineering, label: AI Engineering }
-            - { value: digital-products, label: Digital Products }
-      - { name: tags, label: Tags, type: string, list: true }
-      - { name: cover, label: Cover image name, type: string }
-      - { name: coverAlt, label: Cover alt text, type: string }
-      - { name: draft, label: Draft, type: boolean, default: true }
-      - name: body
-        label: Body
-        type: rich-text
-        description: Start at ## — the H1 comes from the title field
+      - name: categories
+        label: التصنيفات
+        type: object
+        list: true
+        fields:
+          - name: slug
+            label: معرّف التصنيف
+            type: string
+            required: true
+            pattern: '^[a-z0-9]+(-[a-z0-9]+)*$'
+            description: حروف لاتينية صغيرة وشرطات — يصبح جزءًا من الرابط
+          - name: name
+            label: اسم التصنيف
+            type: object
+            fields:
+              - { name: ar, label: بالعربية, type: string }
+              - { name: en, label: بالإنجليزية, type: string }
+          - name: description
+            label: وصف التصنيف
+            type: object
+            description: فقرة تظهر أعلى صفحة التصنيف — وجودها يفرّق بين صفحة تُفهرَس وصفحة تُعدّ ضعيفة
+            fields:
+              - { name: ar, label: بالعربية, type: text }
+              - { name: en, label: بالإنجليزية, type: text }
 
   # ─────────────────────────────────────────────────────────────────────
   #  ٥ · من أنا

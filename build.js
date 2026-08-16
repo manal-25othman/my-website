@@ -24,7 +24,7 @@ import { fileURLToPath } from 'node:url';
 import UI from './content/ui.js';
 
 import { setBasePath, href, asset, absolute, L, esc, slugify, formatDate, isPlaceholderText } from './src/lib/html.js';
-import { parseFrontmatter, renderMarkdown, readingTime, plainExcerpt } from './src/lib/markdown.js';
+import { renderMarkdown, readingTime, plainExcerpt } from './src/lib/markdown.js';
 import { ogCover, appIcon, photoPlaceholder } from './src/lib/png.js';
 import { layout } from './src/templates/layout.js';
 import * as P from './src/templates/pages.js';
@@ -121,58 +121,113 @@ SITE.profile.photoIsPlaceholder = !hasAsset(SITE.profile.photo);
 /* ═══════════════════════════════════════════════════════════════════
  *  المقالات  /  Articles
  * ═══════════════════════════════════════════════════════════════════
- *  كل مقال ملف Markdown في  content/articles/<lang>/<slug>.md
- *  اسم الملف هو الـ slug، والاسم نفسه في لغتين يعني أنهما ترجمتان.
- *  الملفات التي تبدأ بـ _ قوالب، والمسوّدات (draft) لا تدخل البناء.
+ *  كل مقال ملف JSON واحد في  content/articles/  يحمل اللغتين معًا،
+ *  تمامًا كبقية محتوى الموقع ({ ar, en } في كل حقل).
+ *
+ *  اللغة تظهر فقط إن كان لها عنوان ومتن. تركُ الحقول الإنجليزية
+ *  فارغة يعني ألا تُنشأ نسخة إنجليزية ولا يُعلن عنها في hreflang.
+ *
+ *  الرابط يُشتق من اسم الملف تلقائيًا (أو من حقل slug إن مُلئ)،
+ *  واسم الملف يُثبَّت لحظة الإنشاء فلا يتغيّر الرابط لو عُدّل العنوان.
  * ═══════════════════════════════════════════════════════════════════ */
 const PER_PAGE = 10;
 
-function loadArticles(lang) {
-  const dir = path.join(ROOT, 'content', 'articles', lang);
+const filled = (v) => typeof v === 'string' && v.trim() !== '';
+
+function loadArticleFiles() {
+  const dir = path.join(ROOT, 'content', 'articles');
   if (!fs.existsSync(dir)) return [];
 
   return fs
     .readdirSync(dir)
-    .filter((f) => f.endsWith('.md') && !f.startsWith('_'))
+    .filter((f) => f.endsWith('.json') && !f.startsWith('_'))
     .map((file) => {
-      const where = `content/articles/${lang}/${file}`;
-      const slug = file.replace(/\.md$/, '');
-      const { data, body } = parseFrontmatter(fs.readFileSync(path.join(dir, file), 'utf8'));
+      const where = `content/articles/${file}`;
+      let raw;
+      try {
+        raw = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8'));
+      } catch (e) {
+        throw new Error(`[${where}] ملف JSON غير صالح — ${e.message}`);
+      }
 
-      /* الفشل المبكر خير من إشارة SEO خاطئة تُنشر بصمت */
-      if (!data.title) throw new Error(`[${where}] ينقصه title`);
-      if (!data.date) throw new Error(`[${where}] ينقصه date — التاريخ يحدّد الترتيب و lastmod`);
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(String(data.date)))
-        throw new Error(`[${where}] صيغة date يجب أن تكون YYYY-MM-DD`);
-      if (data.cover && !data.coverAlt)
-        throw new Error(`[${where}] صورة بلا نص بديل — coverAlt مطلوب للوصولية`);
-      if (data.category && !TAXONOMY.categories.some((c) => c.slug === data.category))
-        throw new Error(`[${where}] تصنيف غير معروف: "${data.category}" — راجع content/taxonomy.json`);
-      if (/^#\s/m.test(body))
-        throw new Error(`[${where}] استخدم ## بدل # — العنوان الرئيسي يأتي من title`);
+      /* الرابط: حقل slug إن مُلئ، وإلا اسم الملف بعد حذف بادئة التاريخ
+         التي تضيفها لوحة التحكم. اسم الملف يُثبَّت لحظة الإنشاء، فتعديل
+         العنوان لاحقًا لا يكسر رابطًا منشورًا. */
+      const base = file.replace(/\.json$/, '').replace(/^\d{4}-\d{2}-\d{2}[-_]?/, '');
+      const slug = slugify(filled(raw.slug) ? raw.slug : base) || slugify(file.replace(/\.json$/, ''));
+      if (!slug) throw new Error(`[${where}] تعذّر اشتقاق رابط من اسم الملف`);
 
-      const { html, toc, words } = renderMarkdown(body);
+      if (!raw.date) throw new Error(`[${where}] ينقصه تاريخ النشر`);
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(String(raw.date)))
+        throw new Error(`[${where}] صيغة التاريخ يجب أن تكون YYYY-MM-DD — الموجود: "${raw.date}"`);
+      if (!filled(L(raw.title, LANGS[0])) && !LANGS.some((l) => filled(L(raw.title, l))))
+        throw new Error(`[${where}] ينقصه عنوان بأي لغة`);
 
-      return {
-        ...data,
-        slug,
-        lang,
-        html,
-        toc,
-        words,
-        tags: Array.isArray(data.tags) ? data.tags.filter(Boolean) : [],
-        readMinutes: readingTime(words),
-        description: data.description || plainExcerpt(body, 158),
-      };
+      return { ...raw, slug, file: where };
     })
     .filter((a) => a.draft !== true)
     .sort((a, b) => String(b.date).localeCompare(String(a.date)));
 }
 
-const ARTICLES = Object.fromEntries(LANGS.map((l) => [l, loadArticles(l)]));
+const ARTICLE_FILES = loadArticleFiles();
+
+/** هل هذا المقال منشور بهذه اللغة؟ يحتاج عنوانًا ومتنًا معًا. */
+const hasLang = (a, lang) => filled(L(a.title, lang)) && filled(L(a.body, lang));
+
+/** يبني نسخة لغة واحدة من مقال — يحوّل المتن ويحسب زمن القراءة */
+function articleFor(a, lang) {
+  const body = L(a.body, lang);
+  if (/^#\s/m.test(body))
+    throw new Error(`[${a.file}] المتن (${lang}) يبدأ بـ # — استخدمي ## فالعنوان الرئيسي يأتي من حقل العنوان`);
+
+  const cover = filled(a.cover) ? a.cover : null;
+  const coverAlt = L(a.coverAlt, lang);
+  if (cover && !filled(coverAlt))
+    throw new Error(`[${a.file}] صورة غلاف بلا نص بديل (${lang}) — مطلوب للوصولية`);
+
+  const { html, toc, words } = renderMarkdown(body);
+  const tags = (L(a.tags, lang) || []).filter(filled);
+
+  return {
+    slug: a.slug,
+    file: a.file,
+    lang,
+    date: a.date,
+    updated: filled(a.updated) ? a.updated : null,
+    category: a.category || null,
+    cover,
+    coverAlt,
+    tags,
+    title: L(a.title, lang).trim(),
+    description: filled(L(a.description, lang)) ? L(a.description, lang).trim() : plainExcerpt(body, 158),
+    html,
+    toc,
+    words,
+    readMinutes: readingTime(words),
+  };
+}
+
+const ARTICLES = Object.fromEntries(
+  LANGS.map((l) => [l, ARTICLE_FILES.filter((a) => hasLang(a, l)).map((a) => articleFor(a, l))])
+);
 
 /** اللغات التي يتوفر فيها هذا المقال فعلاً — تغذّي hreflang ومبدّل اللغة */
 const langsForSlug = (slug) => LANGS.filter((l) => ARTICLES[l].some((a) => a.slug === slug));
+
+/* تصنيف مستخدَم في مقال وغير مسجَّل في taxonomy.json يُسجَّل تلقائيًا
+   باسم مشتقّ من معرّفه — إضافة تصنيف جديد لا توقف البناء أبدًا. */
+for (const lang of LANGS) {
+  for (const a of ARTICLES[lang]) {
+    if (!a.category || TAXONOMY.categories.some((c) => c.slug === a.category)) continue;
+    const label = a.category.replace(/-/g, ' ');
+    TAXONOMY.categories.push({
+      slug: a.category,
+      name: { ar: label, en: label },
+      description: { ar: '', en: '' },
+      autoRegistered: true,
+    });
+  }
+}
 
 /**
  * الوسوم المستخدمة فعلاً في لغة ما، مع slug لكل وسم.
@@ -346,6 +401,7 @@ function build() {
   const report = placeholderReport();
 
   if (CHECK_ONLY) {
+    printSeoReport();
     printReport(report);
     return;
   }
@@ -414,12 +470,13 @@ function build() {
   write('assets/site.webmanifest', manifest());
   write('.nojekyll', ''); // يمنع GitHub Pages من تجاهل الملفات التي تبدأ بـ _
 
+  printSeoReport();
   printReport(report);
   console.log(`\n✅  ${count} ${'صفحة'} — ${((Date.now() - started) / 1000).toFixed(2)}s → dist/`);
   const counts = LANGS.map((l) => `${l}: ${ARTICLES[l].length}`).join(' · ');
   console.log(`    📝  المقالات — ${counts}`);
   if (!LANGS.some((l) => ARTICLES[l].length)) {
-    console.log('        لا مقالات بعد. أضف ملف .md في content/articles/ar/ ليظهر القسم.');
+    console.log('        لا مقالات بعد — القسم مخفي. أضيفي مقالًا من لوحة التحكم ليظهر.');
   }
   console.log(`    ${SITE.url}${SITE.basePath || ''}`);
 }
@@ -522,6 +579,63 @@ function faviconSvg() {
   <circle cx="46" cy="46" r="4.5" fill="url(#g)"/>
 </svg>
 `;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+ *  مقياس السيو للمقالات  /  Per-article SEO score
+ * ═══════════════════════════════════════════════════════════════════
+ *  فحوص موضوعية فقط — طول العنوان والوصف، عمق المحتوى، بنية العناوين،
+ *  الروابط الداخلية، الصورة ونصها البديل. لا يقيس جودة الكتابة.
+ * ═══════════════════════════════════════════════════════════════════ */
+function seoChecks(a) {
+  const titleLen = a.title.length;
+  const descLen = (a.description || '').length;
+  const h2 = (a.toc || []).filter((t) => t.level === 2).length;
+  const internal = (a.html.match(/href="\/(?!\/)/g) || []).length;
+  const external = (a.html.match(/href="https?:\/\//g) || []).length;
+
+  return [
+    {
+      ok: titleLen >= 25 && titleLen <= 60,
+      label: 'طول العنوان',
+      hint: titleLen < 25 ? `قصير (${titleLen}) — اجعليه ٢٥–٦٠ حرفًا` : `طويل (${titleLen}) — يُقتطع في جوجل فوق ٦٠`,
+    },
+    {
+      ok: descLen >= 110 && descLen <= 158,
+      label: 'وصف الميتا',
+      hint: descLen === 0 ? 'غائب — يُشتق تلقائيًا، والأفضل كتابته' : descLen < 110 ? `قصير (${descLen}) — الأمثل ١١٠–١٥٨` : `طويل (${descLen}) — يُقتطع فوق ١٥٨`,
+    },
+    { ok: a.words >= 600, label: 'عمق المحتوى', hint: `${a.words} كلمة — تحت ٦٠٠ تُعدّ صفحة ضعيفة` },
+    { ok: h2 >= 3, label: 'بنية العناوين', hint: `${h2} عناوين ## — الأفضل ٣ فأكثر` },
+    { ok: internal >= 2, label: 'روابط داخلية', hint: `${internal} — اربطي بمقالين أو بمشروع من مشاريعك` },
+    { ok: external >= 1, label: 'مرجع خارجي', hint: 'لا يوجد — رابط لمصدر موثوق يدعم المصداقية' },
+    { ok: Boolean(a.cover), label: 'صورة الغلاف', hint: 'بلا صورة — تُضعف المشاركة على لينكدإن وإكس' },
+    { ok: !a.cover || filled(a.coverAlt), label: 'النص البديل', hint: 'الصورة بلا نص بديل' },
+    { ok: (a.tags || []).length >= 2, label: 'الوسوم', hint: `${(a.tags || []).length} — أضيفي وسمين فأكثر` },
+  ];
+}
+
+function printSeoReport() {
+  const all = LANGS.flatMap((l) => ARTICLES[l].map((a) => ({ ...a, lang: l })));
+  if (!all.length) return;
+
+  console.log('\n──────────────────────────────────────────────────────────');
+  console.log('  مقياس السيو للمقالات  /  Article SEO score');
+  console.log('──────────────────────────────────────────────────────────');
+
+  for (const a of all) {
+    const checks = seoChecks(a);
+    const passed = checks.filter((c) => c.ok).length;
+    const score = Math.round((passed / checks.length) * 100);
+    const mark = score >= 85 ? '🟢' : score >= 60 ? '🟡' : '🔴';
+
+    console.log(`\n  ${mark}  ${score}%  [${a.lang}]  ${a.title}`);
+    for (const c of checks.filter((x) => !x.ok)) {
+      console.log(`        ✗ ${c.label}: ${c.hint}`);
+    }
+    if (passed === checks.length) console.log('        ✓ كل الفحوص ناجحة');
+  }
+  console.log('\n──────────────────────────────────────────────────────────');
 }
 
 /* ── التقرير ── */

@@ -271,7 +271,7 @@ export function layout(ctx) {
     <meta name="twitter:title" content="${attr(title)}">
     <meta name="twitter:description" content="${attr(metaDescription)}">
     <meta name="twitter:image" content="${attr(ogImg)}">
-    ${articleMeta && articleMeta.preloadImage ? `<link rel="preload" as="image" href="${attr(articleMeta.preloadImage)}" imagesrcset="${attr(articleMeta.preloadSrcset)}" imagesizes="${attr(articleMeta.preloadSizes)}" fetchpriority="high">` : ''}
+    ${articleMeta && articleMeta.preloadImage ? `<link rel="preload" as="image" href="${attr(articleMeta.preloadImage)}" fetchpriority="high">` : ''}
 
     <meta name="theme-color" content="#0b0d12" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">

@@ -2054,6 +2054,15 @@ html[dir='rtl'] .pcard__more svg { transform: scaleX(-1); }
   font-size: var(--t-xs);
   color: var(--faint);
 }
+/* داخل سطر الكاتب يرث الفاصل من .post__byline نفسه */
+.post__byline .post__meta {
+  margin-block-start: 0;
+  padding-block-start: 0;
+  border-block-start: none;
+}
+.post__avatar { flex: none; margin: 0; }
+.post__author { color: inherit; }
+.post__author:hover { color: var(--accent); }
 .post__head .eyebrow a { color: inherit; }
 .post__head .eyebrow a:hover { color: var(--accent); }
 .post__cover img { display: block; width: 100%; height: auto; }

@@ -491,11 +491,18 @@ export function articlePage(d, a) {
           ${cat ? `<p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span><a href="${href(`articles/category/${cat.slug}/`, lang)}">${esc(L(cat.name, lang))}</a></p>` : ''}
           <h1 class="post__title">${esc(a.title)}</h1>
           <p class="post__desc">${esc(a.description)}</p>
-          <div class="post__meta">
-            <time datetime="${attr(a.date)}">${esc(formatDate(a.date, lang))}</time>
-            <span class="dot" aria-hidden="true"></span>
-            <span>${esc(readingLabel(a.readMinutes, lang))}</span>
-            ${a.updated ? `<span class="dot" aria-hidden="true"></span><span>${esc(L(ui.articles.updated, lang))} ${esc(formatDate(a.updated, lang))}</span>` : ''}
+          <div class="post__byline">
+            ${portrait(site, lang, { size: 'xs', className: 'post__avatar' })}
+            <div class="post__bymeta">
+              <a class="post__author" href="${href('about/', lang)}" rel="author">${esc(L(site.profile.name, lang))}</a>
+              <span class="post__sub">${esc(L(site.profile.professionalTitle, lang))}</span>
+            </div>
+            <div class="post__meta">
+              <time datetime="${attr(a.date)}">${esc(formatDate(a.date, lang))}</time>
+              <span class="dot" aria-hidden="true"></span>
+              <span>${esc(readingLabel(a.readMinutes, lang))}</span>
+              ${a.updated ? `<span class="dot" aria-hidden="true"></span><span>${esc(L(ui.articles.updated, lang))} ${esc(formatDate(a.updated, lang))}</span>` : ''}
+            </div>
           </div>
         </div>
       </header>
