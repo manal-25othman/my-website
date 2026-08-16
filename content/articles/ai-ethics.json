@@ -53,5 +53,6 @@
       "label": "ai.google",
       "url": "https://ai.google/principles/"
     }
-  ]
+  ],
+  "order": 25
 }

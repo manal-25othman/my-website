@@ -166,7 +166,15 @@ function loadArticleFiles() {
       return { ...raw, slug, file: where };
     })
     .filter((a) => a.draft !== true)
-    .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+    /* الأحدث أولًا. وعند تساوي التاريخ — وهو الغالب حين تُنشر دفعة معًا —
+       نرتّب بحقل order ثم بالمعرّف، وإلا صار الترتيب انعكاسًا لترتيب
+       الملفات على القرص: عشوائي من وجهة نظر القارئ ويتغيّر بين البيئات. */
+    .sort(
+      (a, b) =>
+        String(b.date).localeCompare(String(a.date)) ||
+        (a.order ?? 999) - (b.order ?? 999) ||
+        a.slug.localeCompare(b.slug)
+    );
 }
 
 const ARTICLE_FILES = loadArticleFiles();

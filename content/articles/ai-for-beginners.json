@@ -53,5 +53,6 @@
       "label": "coursera.org",
       "url": "https://www.coursera.org/browse/artificial-intelligence"
     }
-  ]
+  ],
+  "order": 30
 }

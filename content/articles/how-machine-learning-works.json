@@ -53,5 +53,6 @@
       "label": "coursera.org",
       "url": "https://www.coursera.org/learn/machine-learning"
     }
-  ]
+  ],
+  "order": 9
 }
