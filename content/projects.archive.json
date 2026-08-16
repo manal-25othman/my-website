@@ -1,0 +1,400 @@
+[
+  {
+    "name": {
+      "ar": "مدونة جمالك",
+      "en": "Jamalik Blog"
+    },
+    "slug": "jamalik-blog",
+    "featured": false,
+    "year": null,
+    "tagline": {
+      "ar": "منصة محتوى عربية بنظام إدارة متكامل وتجربة موجّهة للبحث.",
+      "en": "An Arabic content platform with a full management system and a search-oriented experience."
+    },
+    "categories": [
+      "AI Content Platform",
+      "Web Development",
+      "SEO"
+    ],
+    "role": {
+      "ar": "تطوير المنصة ونظام إدارة المحتوى",
+      "en": "Platform & CMS Development"
+    },
+    "summary": {
+      "ar": "منصة محتوى عربية مع لوحة تحكم كاملة لإدارة المقالات والتصنيفات والكتّاب، وخصائص تحسين لمحركات البحث.",
+      "en": "An Arabic content platform with a full admin dashboard for articles, categories and authors, plus built-in SEO features."
+    },
+    "problem": {
+      "ar": "المحتوى العربي يحتاج منصة تجمع بين سهولة الإدارة وجودة تجربة القراءة والظهور في محركات البحث — لا مجرد مدونة بسيطة.",
+      "en": "Arabic content needs a platform that combines easy management, a good reading experience and search visibility — not just a simple blog."
+    },
+    "solution": {
+      "ar": "بناء منصة محتوى كاملة بلوحة تحكم تدعم إنشاء المحتوى وتحريره وجدولته ونشره، مع فحوصات SEO وتنظيم للتصنيفات والكتّاب.",
+      "en": "Built a complete content platform with an admin dashboard supporting content creation, editing, scheduling and publishing, with SEO checks and structured categories and authors."
+    },
+    "highlights": {
+      "ar": [
+        "لوحة تحكم لإدارة المحتوى (CRUD).",
+        "إدارة المسودات والنشر والجدولة.",
+        "فحوصات تحسين محركات البحث.",
+        "تنظيم التصنيفات والكتّاب.",
+        "تجربة قراءة عربية مصمّمة للمحتوى الطويل."
+      ],
+      "en": [
+        "Admin dashboard with full content CRUD.",
+        "Draft management, publishing and scheduling.",
+        "Built-in SEO checks.",
+        "Structured categories and authors.",
+        "An Arabic reading experience designed for long-form content."
+      ]
+    },
+    "metrics": [
+      {
+        "value": "15",
+        "label": {
+          "ar": "مقالًا عربيًا أصليًا",
+          "en": "original Arabic articles"
+        }
+      },
+      {
+        "value": "10",
+        "label": {
+          "ar": "تصنيفات",
+          "en": "categories"
+        }
+      },
+      {
+        "value": "4",
+        "label": {
+          "ar": "كتّاب",
+          "en": "authors"
+        }
+      },
+      {
+        "value": "34",
+        "label": {
+          "ar": "سؤالًا شائعًا",
+          "en": "FAQs"
+        }
+      }
+    ],
+    "stack": [
+      "Web Development",
+      "CMS",
+      "SEO",
+      "Content Architecture"
+    ],
+    "results": {
+      "ar": [
+        "يعكس المشروع القدرة على الجمع بين تطوير الويب، وإدارة المحتوى، وتحسين محركات البحث، وتجربة المستخدم في منتج رقمي متكامل."
+      ],
+      "en": [
+        "The project demonstrates combining web development, content management, SEO and user experience into one complete digital product."
+      ]
+    },
+    "image": null,
+    "url": null
+  },
+  {
+    "name": {
+      "ar": "أتمتة LinkedIn",
+      "en": "LinkedIn Automation"
+    },
+    "slug": "linkedin-automation",
+    "featured": false,
+    "year": null,
+    "tagline": {
+      "ar": "أتمتة سير العمل المرتبط بالمحتوى والنشر.",
+      "en": "Automating the workflow behind content and publishing."
+    },
+    "categories": [
+      "AI Automation",
+      "Content Automation",
+      "Web Platform"
+    ],
+    "role": {
+      "ar": "تطوير المنصة والأتمتة",
+      "en": "Platform & Automation Development"
+    },
+    "summary": {
+      "ar": "منصة لأتمتة وإدارة المحتوى وسير العمل المرتبط بالنشر على LinkedIn.",
+      "en": "A platform for automating and managing content and the publishing workflow on LinkedIn."
+    },
+    "problem": {
+      "ar": "النشر المهني المنتظم يستهلك وقتًا كبيرًا في خطوات متكررة: الصياغة، والمراجعة، والجدولة، والمتابعة.",
+      "en": "Consistent professional publishing consumes significant time in repetitive steps: drafting, reviewing, scheduling and follow-up."
+    },
+    "solution": {
+      "ar": "منصة تجمع بين توليد المحتوى بالذكاء الاصطناعي وأتمتة سير العمل وربط الأنظمة عبر واجهات برمجية، مع لوحة إدارة لتنظيم العملية.",
+      "en": "A platform combining AI content generation, workflow automation and API integration, with an admin layer to organise the whole process."
+    },
+    "highlights": {
+      "ar": [
+        "أتمتة مدعومة بالذكاء الاصطناعي.",
+        "توليد المحتوى.",
+        "أتمتة سير العمل.",
+        "التكامل عبر واجهات برمجية (APIs).",
+        "أنظمة إدارة ولوحات تحكم."
+      ],
+      "en": [
+        "AI-powered automation.",
+        "Content generation.",
+        "Workflow automation.",
+        "API integration.",
+        "Admin systems and dashboards."
+      ]
+    },
+    "metrics": [],
+    "stack": [
+      "AI Automation",
+      "Content Generation",
+      "APIs",
+      "Web Development",
+      "Admin Systems"
+    ],
+    "results": {
+      "ar": [
+        "يوضّح المشروع القدرة على استخدام الذكاء الاصطناعي والأتمتة لتقليل الأعمال المتكررة وتحويل سير العمل اليدوي إلى عمليات رقمية أكثر تنظيمًا."
+      ],
+      "en": [
+        "The project shows how AI and automation can cut repetitive work and turn a manual workflow into a structured digital process."
+      ]
+    },
+    "image": null,
+    "url": null
+  },
+  {
+    "name": {
+      "ar": "البوابة الإلكترونية — مستشفى الإيمان العام",
+      "en": "Electronic Gate — Al-Iman General Hospital"
+    },
+    "slug": "al-iman-portal",
+    "featured": false,
+    "year": null,
+    "tagline": {
+      "ar": "تنظيم الوصول إلى الخدمات والمعلومات داخل بيئة صحية.",
+      "en": "Organising access to services and information inside a healthcare environment."
+    },
+    "categories": [
+      "Healthcare Technology",
+      "Web Development"
+    ],
+    "role": {
+      "ar": "التطوير التقني",
+      "en": "Technical Development"
+    },
+    "summary": {
+      "ar": "بوابة إلكترونية ضمن بيئة صحية تهدف إلى تحسين الوصول إلى الخدمات والمعلومات الرقمية وتنظيم التجربة الإلكترونية للمستخدمين.",
+      "en": "An electronic gate inside a healthcare environment, improving access to digital services and information and organising the user experience."
+    },
+    "problem": {
+      "ar": "تعدّد قنوات الوصول إلى الخدمات والمعلومات داخل بيئة صحية يجعل التجربة مشتّتة وغير منظّمة للمستخدمين.",
+      "en": "Multiple, scattered access points to services and information inside a healthcare environment make the user experience fragmented."
+    },
+    "solution": {
+      "ar": "بوابة رقمية موحّدة تنظّم الوصول إلى الخدمات والمعلومات وتبسّط رحلة المستخدم داخل البيئة الصحية.",
+      "en": "A unified digital gateway that organises access to services and information and simplifies the user journey."
+    },
+    "highlights": {
+      "ar": [
+        "تطوير الويب.",
+        "الخدمات الرقمية.",
+        "تقنيات الرعاية الصحية.",
+        "تجربة المستخدم.",
+        "حل المشكلات التقنية."
+      ],
+      "en": [
+        "Web development.",
+        "Digital services.",
+        "Healthcare technology.",
+        "User experience.",
+        "Technical problem solving."
+      ]
+    },
+    "metrics": [],
+    "stack": [
+      "Web Development",
+      "Healthcare Technology",
+      "Digital Services"
+    ],
+    "results": {
+      "ar": [],
+      "en": []
+    },
+    "image": null,
+    "url": null
+  },
+  {
+    "name": {
+      "ar": "منصة تعليمية لموظفي المستشفى",
+      "en": "Healthcare Learning Platform"
+    },
+    "slug": "healthcare-learning-platform",
+    "featured": false,
+    "year": null,
+    "tagline": {
+      "ar": "تنظيم المحتوى التعليمي وتبسيط التعلّم الرقمي داخل بيئة صحية.",
+      "en": "Organising training content and simplifying digital learning in a healthcare setting."
+    },
+    "categories": [
+      "EdTech",
+      "Healthcare",
+      "Digital Platform"
+    ],
+    "role": {
+      "ar": "التصميم والتطوير والإطلاق",
+      "en": "Design, Development & Launch"
+    },
+    "summary": {
+      "ar": "منصة تعليمية رقمية موجّهة لموظفي البيئة الصحية، تُنظّم المحتوى التعليمي وتقدّم تجربة تعلّم أوضح وأسهل.",
+      "en": "A digital learning platform for healthcare staff that organises training content and delivers a clearer, easier learning experience."
+    },
+    "problem": {
+      "ar": "الوصول إلى المصادر التدريبية داخل المستشفى كان موزّعًا وغير منظّم، مما يصعّب على الفرق الإدارية والطبية متابعة تدريبهم.",
+      "en": "Access to training resources inside the hospital was scattered and unstructured, making it hard for administrative and medical teams to follow their training."
+    },
+    "solution": {
+      "ar": "تصميم وإطلاق منصة تعلّم رقمية تجمع المصادر التدريبية في مكان واحد وتُبسّط الوصول إليها للفرق الإدارية والطبية.",
+      "en": "Designed and launched a digital learning platform that brings training resources into one place and streamlines access for administrative and medical teams."
+    },
+    "highlights": {
+      "ar": [
+        "التعلّم الرقمي.",
+        "إدارة المحتوى التعليمي.",
+        "تجربة المستخدم.",
+        "تقنيات الرعاية الصحية."
+      ],
+      "en": [
+        "Digital learning.",
+        "Training content management.",
+        "User experience.",
+        "Healthcare technology."
+      ]
+    },
+    "metrics": [],
+    "stack": [
+      "Digital Learning",
+      "Content Management",
+      "Web Development"
+    ],
+    "results": {
+      "ar": [],
+      "en": []
+    },
+    "image": null,
+    "url": null
+  },
+  {
+    "name": {
+      "ar": "مدونة صحية",
+      "en": "Healthcare Blog"
+    },
+    "slug": "healthcare-blog",
+    "featured": false,
+    "year": null,
+    "tagline": {
+      "ar": "تجربة رقمية للمحتوى الصحي تركّز على التنظيم وسهولة الوصول.",
+      "en": "A digital experience for health content focused on structure and accessibility."
+    },
+    "categories": [
+      "Healthcare Content",
+      "Web Development"
+    ],
+    "role": {
+      "ar": "التصميم والتطوير",
+      "en": "Design & Development"
+    },
+    "summary": {
+      "ar": "مشروع لتطوير تجربة رقمية للمحتوى الصحي، مع التركيز على تنظيم المحتوى وسهولة الوصول إليه وتجربة المستخدم.",
+      "en": "A project building a digital experience for health content, focused on content structure, accessibility and user experience."
+    },
+    "problem": {
+      "ar": "المحتوى الصحي يحتاج عرضًا منظّمًا وسهل الوصول حتى يصل إلى القارئ غير المتخصص بوضوح.",
+      "en": "Health content needs structured, accessible presentation to reach a non-specialist reader clearly."
+    },
+    "solution": {
+      "ar": "بناء تجربة قراءة منظّمة للمحتوى الصحي مع تصنيف واضح وتنقّل مبسّط.",
+      "en": "Built a structured reading experience for health content with clear categorisation and simple navigation."
+    },
+    "highlights": {
+      "ar": [
+        "تطوير الويب.",
+        "تنظيم المحتوى.",
+        "تجربة المستخدم."
+      ],
+      "en": [
+        "Web development.",
+        "Content structure.",
+        "User experience."
+      ]
+    },
+    "metrics": [],
+    "stack": [
+      "Web Development",
+      "Content Design"
+    ],
+    "results": {
+      "ar": [],
+      "en": []
+    },
+    "image": null,
+    "url": null
+  },
+  {
+    "name": {
+      "ar": "متجر إلكتروني",
+      "en": "E-commerce Platform"
+    },
+    "slug": "ecommerce-platform",
+    "featured": false,
+    "year": null,
+    "tagline": {
+      "ar": "تجربة متجر إلكتروني من عرض المنتجات إلى رحلة الشراء.",
+      "en": "An online store experience from product display to the buying journey."
+    },
+    "categories": [
+      "E-commerce",
+      "Web Development"
+    ],
+    "role": {
+      "ar": "التصميم والتطوير",
+      "en": "Design & Development"
+    },
+    "summary": {
+      "ar": "مشروع لتطوير تجربة متجر إلكتروني تشمل عرض المنتجات وتنظيم المحتوى وبناء تجربة رقمية مناسبة للتجارة الإلكترونية.",
+      "en": "A project building an e-commerce experience covering product display, content structure and a digital journey suited to online retail."
+    },
+    "problem": {
+      "ar": "المتجر الإلكتروني يحتاج تنظيمًا واضحًا للمنتجات وتجربة شراء سلسة حتى يتحوّل الزائر إلى مشترٍ.",
+      "en": "An online store needs clear product structure and a smooth buying experience to turn a visitor into a customer."
+    },
+    "solution": {
+      "ar": "بناء واجهة متجر منظّمة تعرض المنتجات بوضوح وتبسّط رحلة المستخدم حتى إتمام الطلب.",
+      "en": "Built a structured storefront that presents products clearly and simplifies the user journey through to checkout."
+    },
+    "highlights": {
+      "ar": [
+        "تطوير الويب.",
+        "تجربة التجارة الإلكترونية.",
+        "تنظيم المنتجات."
+      ],
+      "en": [
+        "Web development.",
+        "E-commerce experience.",
+        "Product organisation."
+      ]
+    },
+    "metrics": [],
+    "stack": [
+      "Web Development",
+      "E-commerce",
+      "UX/UI"
+    ],
+    "results": {
+      "ar": [],
+      "en": []
+    },
+    "image": null,
+    "url": null
+  }
+]
