@@ -43,6 +43,50 @@
         "ar": "مقالات عن حماية الأفراد والمؤسسات رقميًا — من التزييف العميق والاحتيال إلى الممارسات اليومية التي تقلّل المخاطر.",
         "en": "Articles on protecting people and organisations online — from deepfakes and fraud to the everyday practices that reduce risk."
       }
+    },
+    {
+      "slug": "ai-basics",
+      "name": {
+        "ar": "أساسيات الذكاء الاصطناعي",
+        "en": "AI Fundamentals"
+      },
+      "description": {
+        "ar": "مدخل إلى الذكاء الاصطناعي لمن يبدأ من الصفر — التعريفات، والأنواع، والتطبيقات، وكيف تبدأ رحلتك عمليًا.",
+        "en": "An entry point for anyone starting from zero — definitions, types, applications, and how to begin in practice."
+      }
+    },
+    {
+      "slug": "ai-business",
+      "name": {
+        "ar": "الذكاء الاصطناعي في الأعمال",
+        "en": "AI in Business"
+      },
+      "description": {
+        "ar": "كيف تستخدم الشركات الذكاء الاصطناعي فعليًا — حالات الاستخدام، والأدوات، والعائد المتوقع من التبنّي.",
+        "en": "How companies actually use AI — use cases, tooling, and what to expect from adoption."
+      }
+    },
+    {
+      "slug": "ai-career",
+      "name": {
+        "ar": "المسار المهني والمستقبل",
+        "en": "Careers & Future"
+      },
+      "description": {
+        "ar": "المسارات الوظيفية في الذكاء الاصطناعي، والمهارات المطلوبة، والاتجاهات التي تشكّل السنوات القادمة.",
+        "en": "Career paths in AI, the skills they require, and the trends shaping the years ahead."
+      }
+    },
+    {
+      "slug": "ai-ethics",
+      "name": {
+        "ar": "أخلاقيات الذكاء الاصطناعي",
+        "en": "AI Ethics"
+      },
+      "description": {
+        "ar": "التحيّز، والخصوصية، والشفافية، والمسؤولية — الأسئلة التي يجب طرحها قبل نشر أي نظام ذكي.",
+        "en": "Bias, privacy, transparency, and accountability — the questions to ask before shipping any AI system."
+      }
     }
   ]
 }

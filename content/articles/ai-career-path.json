@@ -1,0 +1,47 @@
+{
+  "title": {
+    "ar": "وظائف الذكاء الاصطناعي: دليل المسار المهني 2026",
+    "en": "AI Careers: Career Path Guide 2026"
+  },
+  "description": {
+    "ar": "دليل المسار المهني في الذكاء الاصطناعي: أبرز المسميات الوظيفية، والمهارات المطلوبة لكل دور، وخطوات الدخول إلى المجال وبناء ملف أعمال مقنع.",
+    "en": "A guide to AI career paths: the main job titles, the skills each role requires, and how to enter the field and build a portfolio that convinces."
+  },
+  "date": "2026-08-16",
+  "updated": null,
+  "category": "ai-career",
+  "tags": {
+    "ar": [
+      "وظائف AI",
+      "ذكاء اصطناعي",
+      "مسار مهني",
+      "مهارات",
+      "رواتب"
+    ],
+    "en": [
+      "AI careers",
+      "artificial intelligence",
+      "career path",
+      "skills",
+      "salaries"
+    ]
+  },
+  "keywords": [
+    "AI career path",
+    "AI jobs 2026",
+    "machine learning engineer",
+    "AI skills required",
+    "AI salary"
+  ],
+  "cover": null,
+  "coverAlt": {
+    "ar": "شخص يعمل على حاسوب مع رسوم بيانية لمسار مهني في الذكاء الاصطناعي",
+    "en": "Person working on computer with AI career path charts"
+  },
+  "draft": false,
+  "slug": null,
+  "body": {
+    "ar": "## مقدمة\n\nمجال [الذكاء الاصطناعي](/articles/what-is-artificial-intelligence/) ينمو بسرعة قياسية. الوظائف في هذا المجال من الأعلى أجراً والأكثر طلباً عالمياً.\n\n> الأرقام أدناه تقديرات لسوق العمل الأمريكي وتتفاوت تفاوتًا كبيرًا حسب الدولة والخبرة وحجم الشركة، وليست عرضًا وظيفيًا ولا متوسطًا محليًا.\n\n## لماذا وظيفة في الذكاء الاصطناعي؟\n\n### طلب عالي\n\nالشركات تتسابق لتوظيف مواهب [الذكاء الاصطناعي](/articles/what-is-artificial-intelligence/). الطلب يفوق العرض.\n\n### رواتب ممتازة\n\nرواتب الذكاء الاصطناعي من الأعلى في التقنية. المبتدئون يبدأون من $80,000 سنوياً.\n\n### تأثير كبير\n\nعملك سيؤثر على منتجات يستخدمها الملايين. هذا مجزٍ مهنياً.\n\n### نمو مستمر\n\nالمجال يتطور بسرعة. فرص التعلم والنمو لا تنتهي.\n\n## وظائف الذكاء الاصطناعي الرئيسية\n\n### مهندس تعلم آلي (ML Engineer)\n\n### المسؤوليات\n\nبناء ونشر نماذج تعلم آلي، تحسين الأداء، تكامل مع أنظمة.\n\n### المهارات\n\nPython، TensorFlow/PyTorch، إحصاء، خوارزميات.\n\n### الراتب المتوسط\n\n$120,000 - $180,000 سنوياً.\n\n### عالم بيانات (Data Scientist)\n\n### المسؤوليات\n\nتحليل بيانات، بناء نماذج تنبؤية، تقديم رؤى.\n\n### المهارات\n\nPython/R، SQL، إحصاء، تصور بيانات.\n\n### الراتب المتوسط\n\n$100,000 - $160,000 سنوياً.\n\n### مهندس ذكاء اصطناعي (AI Engineer)\n\n### المسؤوليات\n\nتطوير أنظمة ذكاء اصطناعي كاملة، تكامل APIs، نشر نماذج.\n\n### المهارات\n\nPython، APIs، سحابة، تعلم آلي.\n\n### الراتب المتوسط\n\n$130,000 - $200,000 سنوياً.\n\n### باحث ذكاء اصطناعي (AI Researcher)\n\n### المسؤوليات\n\nبحث وتطوير خوارزميات جديدة، نشر أوراق علمية.\n\n### المهارات\n\nدكتوراه، رياضيات متقدمة، خوارزميات.\n\n### الراتب المتوسط\n\n$150,000 - $250,000+ سنوياً.\n\n### مهندس رؤية حاسوبية (Computer Vision Engineer)\n\n### المسؤوليات\n\nتطوير أنظمة رؤية، معالجة صور، كشف أشياء.\n\n### المهارات\n\nOpenCV، CNN، Python، معالجة صور.\n\n### الراتب المتوسط\n\n$120,000 - $180,000 سنوياً.\n\n### مهندس NLP (NLP Engineer)\n\n### المسؤوليات\n\nتطوير أنظمة فهم لغة، نماذج لغة، ترجمة.\n\n### المهارات\n\nNLP libraries، Transformers، Python.\n\n### الراتب المتوسط\n\n$120,000 - $180,000 سنوياً.\n\n## المهارات المطلوبة\n\n### المهارات التقنية\n\n### البرمجة\n\nPython أساسية. R، Java، C++ مفيدة.\n\n### الرياضيات\n\nإحصاء، جبر خطي، حساب تفاضلي.\n\n### أطر العمل\n\nTensorFlow، PyTorch، scikit-learn.\n\n### قواعد البيانات\n\nSQL، NoSQL.\n\n### السحابة\n\nAWS، GCP، Azure.\n\n### المهارات الناعمة\n\nحل المشاكل، تواصل، عمل فريق، تعلم مستمر.\n\n## كيفية البدء\n\n### 1. تعلم الأساسيات\n\n### دورات\n\n- Coursera: Machine Learning by Andrew Ng\n- edX: AI MicroMasters\n- Fast.ai: Practical Deep Learning\n\n### كتب\n\n- \"Hands-On Machine Learning\"\n- \"Deep Learning\" by Goodfellow\n\n### 2. ابنِ محفظة\n\n### مشاريع\n\n- تصنيف صور\n- تحليل مشاعر\n- تنبؤ أسعار\n- دردشة آلية\n\n### GitHub\n\nانشر كودك على GitHub. هذا يثبت مهاراتك.\n\n### 3. احصل على شهادة\n\n### شهادات معتمدة\n\n- Google Professional ML Engineer\n- AWS ML Specialty\n- Microsoft Azure AI Engineer\n\n### 4. تقدم للوظائف\n\n### منصات\n\nLinkedIn، Indeed، Glassdoor، AngelList.\n\n### شبّك\n\nاحضر مؤتمرات، انضم مجتمعات، تواصل مع محترفين.\n\n## مسار النمو المهني\n\n### مبتدئ (0-2 سنة)\n\nمهندس أو عالم بيانات مبتدئ. تعلم وتطبيق.\n\n### متوسط (3-5 سنوات)\n\nمهندس أول، قائد فريق صغير. تخصص أعمق.\n\n### متقدم (5-10 سنوات)\n\nمهندس رئيسي، مدير، أو باحث. قيادة استراتيجية.\n\n### خبير (10+ سنوات)\n\nمدير تقني، باحث رئيسي، مؤسس شركة.\n\n## اتجاهات مستقبلية\n\n### تخصصات ناشئة\n\n[أخلاقيات الذكاء الاصطناعي](/articles/ai-ethics/)، ذكاء اصطناعي صحي، روبوتات.\n\n### مهارات مستقبلية\n\nإدارة فرق ذكاء اصطناعي، استراتيجية ذكاء اصطناعي، دمج أنظمة.\n\n## الخلاصة\n\nوظائف الذكاء الاصطناعي مجزية ومطلوبة. التعلم المستمر والممارسة يضمنان النجاح.\n\n## من أين تبدأ\n\nابدأ بدورة ذكاء اصطناعي اليوم. ابنِ مشروعاً صغيراً وانشره على GitHub. قدم لوظائف مبتدئة.\n\n## مراجع\n\n- [linkedin.com](https://www.linkedin.com/jobs/artificial-intelligence-jobs/)\n- [glassdoor.com](https://www.glassdoor.com/Salaries/ai-engineer-salary)",
+    "en": "## Introduction\n\nAI field is growing at record pace. Jobs in this field are among highest paid and most demanded globally.\n\n> The figures below are estimates for the US market and vary widely by country, experience, and company size. They are not a local average.\n\n## Why AI Career?\n\n### High Demand\n\nCompanies competing to hire AI talent. Demand exceeds supply.\n\n### Excellent Salaries\n\nAI salaries among highest in tech. Beginners start from $80,000 annually.\n\n### Big Impact\n\nYour work will impact products used by millions. This is professionally rewarding.\n\n### Continuous Growth\n\nField evolving rapidly. Learning and growth opportunities endless.\n\n## Major AI Jobs\n\n### Machine Learning Engineer\n\n### Responsibilities\n\nBuilding and deploying ML models, optimizing performance, system integration.\n\n### Skills\n\nPython, TensorFlow/PyTorch, statistics, algorithms.\n\n### Average Salary\n\n$120,000 - $180,000 annually.\n\n### Data Scientist\n\n### Responsibilities\n\nAnalyzing data, building predictive models, providing insights.\n\n### Skills\n\nPython/R, SQL, statistics, data visualization.\n\n### Average Salary\n\n$100,000 - $160,000 annually.\n\n### AI Engineer\n\n### Responsibilities\n\nDeveloping complete AI systems, API integration, deploying models.\n\n### Skills\n\nPython, APIs, cloud, [machine learning](/en/articles/how-machine-learning-works/).\n\n### Average Salary\n\n$130,000 - $200,000 annually.\n\n### AI Researcher\n\n### Responsibilities\n\nResearching and developing new algorithms, publishing papers.\n\n### Skills\n\nPhD, advanced mathematics, algorithms.\n\n### Average Salary\n\n$150,000 - $250,000+ annually.\n\n### Computer Vision Engineer\n\n### Responsibilities\n\nDeveloping vision systems, image processing, object detection.\n\n### Skills\n\nOpenCV, CNN, Python, image processing.\n\n### Average Salary\n\n$120,000 - $180,000 annually.\n\n### NLP Engineer\n\n### Responsibilities\n\nDeveloping language understanding systems, language models, translation.\n\n### Skills\n\n[NLP](/en/articles/natural-language-processing/) libraries, Transformers, Python.\n\n### Average Salary\n\n$120,000 - $180,000 annually.\n\n## Required Skills\n\n### Technical Skills\n\n### Programming\n\nPython essential. R, Java, C++ useful.\n\n### Mathematics\n\nStatistics, linear algebra, calculus.\n\n### Frameworks\n\nTensorFlow, PyTorch, scikit-learn.\n\n### Databases\n\nSQL, NoSQL.\n\n### Cloud\n\nAWS, GCP, Azure.\n\n### Soft Skills\n\nProblem solving, communication, teamwork, continuous learning.\n\n## How to Start\n\n### 1. Learn Basics\n\n### Courses\n\n- Coursera: Machine Learning by Andrew Ng\n- edX: AI MicroMasters\n- Fast.ai: Practical Deep Learning\n\n### Books\n\n- \"Hands-On Machine Learning\"\n- \"Deep Learning\" by Goodfellow\n\n### 2. Build Portfolio\n\n### Projects\n\n- Image classification\n- Sentiment analysis\n- Price prediction\n- Chatbot\n\n### GitHub\n\nPublish your code on GitHub. This proves your skills.\n\n### 3. Get Certified\n\n### Certifications\n\n- Google Professional ML Engineer\n- AWS ML Specialty\n- Microsoft Azure AI Engineer\n\n### 4. Apply for Jobs\n\n### Platforms\n\nLinkedIn, Indeed, Glassdoor, AngelList.\n\n### Network\n\nAttend conferences, join communities, connect with professionals.\n\n## Career Growth Path\n\n### Junior (0-2 years)\n\nJunior engineer or data scientist. Learning and applying.\n\n### Mid (3-5 years)\n\nSenior engineer, small team lead. Deeper specialization.\n\n### Senior (5-10 years)\n\nPrincipal engineer, manager, or researcher. Strategic leadership.\n\n### Expert (10+ years)\n\nCTO, principal researcher, company founder.\n\n## Future Trends\n\n### Emerging Specializations\n\n[AI ethics](/en/articles/ai-ethics/), health AI, robotics.\n\n### Future Skills\n\nAI team management, AI strategy, system integration.\n\n## Conclusion\n\nAI careers are rewarding and in-demand. Continuous learning and practice ensure success.\n\n## Where to Start\n\nStart AI course today. Build small project and publish on GitHub. Apply for junior positions.\n\n## References\n\n- [linkedin.com](https://www.linkedin.com/jobs/artificial-intelligence-jobs/)\n- [glassdoor.com](https://www.glassdoor.com/Salaries/ai-engineer-salary)"
+  }
+}
