@@ -522,9 +522,21 @@ export function articlePage(d, a) {
         </div>
 
         <footer class="post__foot">
-          ${a.tags.length ? `<div class="post__tags">${a.tags.map((t) => chip(t, { url: href(`articles/tag/${slugify(t)}/`, lang), small: true })).join('')}</div>` : ''}
           ${shareRow(ui, lang, { url, title: a.title })}
         </footer>
+
+        ${
+          a.tags.length
+            ? `<nav class="hashtags" aria-label="${attr(L(ui.articles.tags, lang))}">
+                ${a.tags
+                  .map(
+                    (t) =>
+                      `<a class="hashtag" dir="auto" href="${href(`articles/tag/${slugify(t)}/`, lang)}"><span class="hashtag__hash" aria-hidden="true">#</span>${esc(t.replace(/\s+/g, '_'))}</a>`
+                  )
+                  .join('')}
+              </nav>`
+            : ''
+        }
       </div>
     </article>
 

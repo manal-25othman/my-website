@@ -174,11 +174,16 @@ export function pagination({ pageNum, pageCount, ui, lang }) {
   </nav>`;
 }
 
-/** فهرس محتويات المقال — يُبنى من عناوين ## و ### */
+/**
+ * فهرس محتويات المقال.
+ * الأقسام الرئيسية (##) فقط — إدراج العناوين الفرعية يحوّل الفهرس إلى
+ * جدار روابط يسبق المقال ويؤخّر القارئ عن أول سطر فيه.
+ */
 export function articleToc(toc, ui, lang) {
-  if (!toc || toc.length < 3) return '';
-  const items = toc
-    .map((t) => `<li class="toc__l${t.level}"><a href="#${attr(t.id)}">${esc(t.text)}</a></li>`)
+  const items2 = (toc || []).filter((t) => t.level === 2);
+  if (items2.length < 3) return '';
+  const items = items2
+    .map((t) => `<li><a href="#${attr(t.id)}">${esc(t.text)}</a></li>`)
     .join('');
   return `<nav class="toc" aria-labelledby="toc-h">
     <h2 class="toc__h" id="toc-h">${esc(L(ui.articles.toc, lang))}</h2>

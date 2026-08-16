@@ -2161,3 +2161,39 @@ html[dir='rtl'] .pcard__more svg { transform: scaleX(-1); }
 
 /* مراسي قياس عمق القراءة — تُحقن بـ JS وهي خارج التدفق تماماً */
 [data-scroll-depth] { position: relative; }
+
+/* فهرس المحتويات داخل عمود المقال: عمودان على الشاشات الواسعة حتى
+   لا يترك الصندوق فراغًا كبيرًا ولا يدفع أول فقرة بعيدًا عن الأعلى */
+.post__body .toc { margin-block-end: 2rem; }
+@media (min-width: 46rem) {
+  /* ol الأصلية grid — والأعمدة لا تعمل مع grid، فنعيدها block */
+  .post__body .toc ol { display: block; columns: 2; column-gap: 2.5rem; }
+  .post__body .toc li { break-inside: avoid; }
+}
+
+/* الوسوم كهاشتاقات — آخر عنصر في المقال بعد المشاركة */
+.hashtags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  margin-block-start: 1.6rem;
+  padding-block-start: 1.4rem;
+  border-block-start: 1px solid var(--line-2);
+}
+.hashtag {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--accent);
+  /* الهاشتاق وحدة معزولة، واتجاهه يُشتق من لغته: # يمين الوسم العربي
+     ويسار الوسم اللاتيني — عبر dir="auto" على الرابط نفسه */
+  unicode-bidi: isolate;
+  white-space: nowrap;
+  transition: color 0.18s var(--ease), opacity 0.18s var(--ease);
+}
+.hashtag__hash { opacity: 0.55; font-weight: 700; }
+.hashtag:hover { color: var(--accent-2); }
+.hashtag:hover .hashtag__hash { opacity: 1; }
