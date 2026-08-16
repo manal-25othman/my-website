@@ -464,7 +464,7 @@ export function articlePage(d, a) {
     title: truncate(`${a.title} — ${L(site.profile.name, lang)}`, 60),
     description: a.description,
     ogType: 'article',
-    ogImage: a.cover ? `img/articles/${a.cover}-1200.jpg` : null,
+    ogImage: a.cover || null,
     bodyClass: 'page-article',
     articleMeta: {
       published: a.date,
@@ -477,7 +477,7 @@ export function articlePage(d, a) {
       Schema.articleSchema(site, lang, {
         ...a,
         category: cat ? L(cat.name, lang) : null,
-        cover: a.cover ? `img/articles/${a.cover}-1200.jpg` : null,
+        cover: a.cover || null,
       }),
       Schema.breadcrumbSchema(site, lang, crumbs),
       /* Person لازم في الصفحة نفسها، وإلا بقيت author تشير إلى @id غير موجود */
@@ -521,10 +521,6 @@ export function articlePage(d, a) {
           ${a.html}
         </div>
 
-        <footer class="post__foot">
-          ${shareRow(ui, lang, { url, title: a.title })}
-        </footer>
-
         ${
           a.tags.length
             ? `<nav class="hashtags" aria-label="${attr(L(ui.articles.tags, lang))}">
@@ -537,6 +533,24 @@ export function articlePage(d, a) {
               </nav>`
             : ''
         }
+
+        ${
+          (a.references || []).length
+            ? `<section class="refs" aria-labelledby="refs-h">
+                <h2 class="refs__h" id="refs-h">${esc(L(ui.articles.references, lang))}</h2>
+                <ul>${a.references
+                  .map(
+                    (r) =>
+                      `<li><a href="${attr(r.url)}" target="_blank" rel="noopener noreferrer nofollow">${esc(r.label)}${icon('external', { size: 13 })}</a></li>`
+                  )
+                  .join('')}</ul>
+              </section>`
+            : ''
+        }
+
+        <footer class="post__foot">
+          ${shareRow(ui, lang, { url, title: a.title })}
+        </footer>
       </div>
     </article>
 

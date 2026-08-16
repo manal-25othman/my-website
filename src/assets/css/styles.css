@@ -2197,3 +2197,30 @@ html[dir='rtl'] .pcard__more svg { transform: scaleX(-1); }
 .hashtag__hash { opacity: 0.55; font-weight: 700; }
 .hashtag:hover { color: var(--accent-2); }
 .hashtag:hover .hashtag__hash { opacity: 1; }
+
+/* المراجع — بعد الهاشتاقات، بوزن بصري أخف من متن المقال */
+.refs {
+  margin-block-start: 2rem;
+  padding-block-start: 1.5rem;
+  border-block-start: 1px solid var(--line-2);
+}
+.refs__h {
+  font-size: var(--t-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faint);
+  font-weight: 700;
+  margin-block-end: 0.8rem;
+}
+.refs ul { display: grid; gap: 0.45rem; }
+.refs li { list-style: none; }
+.refs a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: var(--t-sm);
+  color: var(--muted);
+  word-break: break-word;
+}
+.refs a:hover { color: var(--accent); }
+.refs a svg { flex: none; opacity: 0.6; }

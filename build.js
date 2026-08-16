@@ -198,6 +198,7 @@ function articleFor(a, lang) {
     cover,
     coverAlt,
     tags,
+    references: Array.isArray(a.references) ? a.references : [],
     title: L(a.title, lang).trim(),
     description: filled(L(a.description, lang)) ? L(a.description, lang).trim() : plainExcerpt(body, 158),
     html,
@@ -592,7 +593,8 @@ function seoChecks(a) {
   const descLen = (a.description || '').length;
   const h2 = (a.toc || []).filter((t) => t.level === 2).length;
   const internal = (a.html.match(/href="\/(?!\/)/g) || []).length;
-  const external = (a.html.match(/href="https?:\/\//g) || []).length;
+  /* المراجع صارت حقلًا مستقلًا يُعرض أسفل المقال، فتُحتسب معه */
+  const external = (a.html.match(/href="https?:\/\//g) || []).length + (a.references || []).length;
 
   return [
     {

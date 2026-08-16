@@ -179,6 +179,7 @@ export default {
     related: { ar: 'مقالات ذات صلة', en: 'Related articles' },
     categories: { ar: 'التصنيفات', en: 'Categories' },
     tags: { ar: 'الوسوم', en: 'Tags' },
+    references: { ar: 'مراجع', en: 'References' },
     inCategory: { ar: 'مقالات في', en: 'Articles in' },
     taggedWith: { ar: 'مقالات موسومة بـ', en: 'Articles tagged' },
     published: { ar: 'نُشر', en: 'Published' },
