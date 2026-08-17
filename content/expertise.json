@@ -3,84 +3,140 @@
     "id": "ai",
     "icon": "spark",
     "feature": true,
-    "title": { "ar": "الذكاء الاصطناعي والأنظمة الذكية", "en": "AI & Intelligent Systems" },
+    "title": {
+      "ar": "الذكاء الاصطناعي والأنظمة الذكية",
+      "en": "AI & Intelligent Systems"
+    },
     "intro": {
       "ar": "المجال الأساسي: بناء حلول توليدية تعمل على معرفة وبيانات حقيقية.",
       "en": "The core domain: generative solutions grounded in real knowledge and data."
     },
     "items": [
-      { "ar": "Generative AI", "en": "Generative AI" },
-      { "ar": "RAG", "en": "RAG" },
-      { "ar": "AI Agents", "en": "AI Agents" },
-      { "ar": "LLM Applications", "en": "LLM Applications" },
-      { "ar": "Prompt Engineering", "en": "Prompt Engineering" },
-      { "ar": "AI Automation", "en": "AI Automation" }
+      {
+        "ar": "Generative AI",
+        "en": "Generative AI"
+      },
+      {
+        "ar": "RAG",
+        "en": "RAG"
+      },
+      {
+        "ar": "AI Agents",
+        "en": "AI Agents"
+      },
+      {
+        "ar": "LLM Applications",
+        "en": "LLM Applications"
+      },
+      {
+        "ar": "Prompt Engineering",
+        "en": "Prompt Engineering"
+      },
+      {
+        "ar": "AI Automation",
+        "en": "AI Automation"
+      }
     ]
   },
   {
     "id": "engineering",
     "icon": "chip",
-    "title": { "ar": "الهندسة والتطوير", "en": "Engineering" },
+    "feature": false,
+    "title": {
+      "ar": "الهندسة والتطوير",
+      "en": "Engineering"
+    },
     "intro": {
       "ar": "بناء الواجهات والمنصات التي تُستخدم فعلاً.",
       "en": "Building the interfaces and platforms that actually get used."
     },
     "items": [
-      { "ar": "Next.js", "en": "Next.js" },
-      { "ar": "React", "en": "React" },
-      { "ar": "TypeScript", "en": "TypeScript" },
-      { "ar": "JavaScript", "en": "JavaScript" },
-      { "ar": "Tailwind CSS", "en": "Tailwind CSS" },
-      { "ar": "REST APIs", "en": "REST APIs" }
-    ]
-  },
-  {
-    "id": "data",
-    "icon": "shield",
-    "title": { "ar": "البيانات والبنية", "en": "Data & Architecture" },
-    "intro": {
-      "ar": "طبقة البيانات والعزل والأمان — حيث تُصنع الثقة في منتجات SaaS.",
-      "en": "The data, isolation and security layer — where trust in a SaaS product is built."
-    },
-    "items": [
-      { "ar": "PostgreSQL", "en": "PostgreSQL" },
-      { "ar": "Prisma", "en": "Prisma" },
-      { "ar": "pgvector", "en": "pgvector" },
-      { "ar": "Database Architecture", "en": "Database Architecture" },
-      { "ar": "Row Level Security", "en": "Row Level Security" },
-      { "ar": "Multi-tenant Architecture", "en": "Multi-tenant Architecture" }
+      {
+        "ar": "TypeScript",
+        "en": "TypeScript"
+      },
+      {
+        "ar": "JavaScript",
+        "en": "JavaScript"
+      },
+      {
+        "ar": "Tailwind CSS",
+        "en": "Tailwind CSS"
+      },
+      {
+        "ar": "REST APIs",
+        "en": "REST APIs"
+      }
     ]
   },
   {
     "id": "product",
     "icon": "layers",
-    "title": { "ar": "المنتج", "en": "Product" },
+    "feature": false,
+    "title": {
+      "ar": "المنتج",
+      "en": "Product"
+    },
     "intro": {
       "ar": "من الفكرة إلى منتج رقمي قابل للاستخدام والتوسّع.",
       "en": "From idea to a digital product people can use and scale."
     },
     "items": [
-      { "ar": "SaaS", "en": "SaaS" },
-      { "ar": "AI Products", "en": "AI Products" },
-      { "ar": "Digital Products", "en": "Digital Products" },
-      { "ar": "UX/UI", "en": "UX/UI" },
-      { "ar": "Product Development", "en": "Product Development" },
-      { "ar": "Workflow Automation", "en": "Workflow Automation" }
+      {
+        "ar": "SaaS",
+        "en": "SaaS"
+      },
+      {
+        "ar": "AI Products",
+        "en": "AI Products"
+      },
+      {
+        "ar": "Digital Products",
+        "en": "Digital Products"
+      },
+      {
+        "ar": "UX/UI",
+        "en": "UX/UI"
+      },
+      {
+        "ar": "Product Development",
+        "en": "Product Development"
+      },
+      {
+        "ar": "Workflow Automation",
+        "en": "Workflow Automation"
+      }
     ]
   },
   {
     "id": "communication",
     "icon": "share",
-    "title": { "ar": "التواصل التقني", "en": "Communication" },
+    "feature": false,
+    "title": {
+      "ar": "التواصل التقني",
+      "en": "Communication"
+    },
     "intro": {
       "ar": "تبسيط التقنية وتحويلها إلى معرفة قابلة للتطبيق.",
       "en": "Making technology understandable and applicable."
     },
     "items": [
-      { "ar": "Technical Content", "en": "Technical Content" },
-      { "ar": "Technical Writing", "en": "Technical Writing" },
-      { "ar": "AI Education", "en": "AI Education" },
-      { "ar": "Technology Communication", "en": "Technology Communication" }
+      {
+        "ar": "Technical Content",
+        "en": "Technical Content"
+      },
+      {
+        "ar": "Technical Writing",
+        "en": "Technical Writing"
+      },
+      {
+        "ar": "AI Education",
+        "en": "AI Education"
+      },
+      {
+        "ar": "Technology Communication",
+        "en": "Technology Communication"
+      }
     ]
   }
 ]
