@@ -13,7 +13,7 @@
       "en": "AI Solutions Builder · AI Products · RAG · AI Agents"
     },
     "headline": {
-      "ar": "أبني حلولًا ذكية تجمع بين الذكاء الاصطناعي والمنتجات الرقمية.",
+      "ar": "أطور مواقع إلكترونية حديثة بمساعدة تقنيات الذكاء الاصطناعي",
       "en": "I build intelligent solutions at the intersection of Generative AI and digital products."
     },
     "supporting": {
@@ -57,7 +57,6 @@
       "ar": "مفتوحة لفرص العمل والتعاون في الذكاء الاصطناعي والمنتجات الرقمية",
       "en": "Open to roles and collaboration in AI and digital products"
     },
-    "cvUrl": null,
     "social": [
       {
         "id": "linkedin",
@@ -102,14 +101,12 @@
     ]
   },
   "url": "https://example.com",
-  "basePath": "",
   "languages": [
     {
       "code": "ar",
       "label": "العربية",
       "dir": "rtl",
-      "locale": "ar_SA",
-      "prefix": ""
+      "locale": "ar_SA"
     },
     {
       "code": "en",
@@ -149,17 +146,13 @@
         "SaaS",
         "AI Products"
       ]
-    },
-    "googleSiteVerification": null
+    }
   },
   "analytics": {
-    "googleAnalyticsId": null,
-    "tiktokPixelId": null,
     "respectDoNotTrack": true
   },
   "contactForm": {
-    "mode": "mailto",
-    "endpoint": null
+    "mode": "mailto"
   },
   "copyrightStartYear": 2026
 }
