@@ -177,47 +177,5 @@
       "Web Development",
       "Content Production"
     ]
-  },
-  {
-    "organization": {
-      "ar": "شركة تأهيل للتميز",
-      "en": "Rehabilitation Excellence Company"
-    },
-    "role": {
-      "ar": "مديرة العلاقات العامة",
-      "en": "Public Relations Manager"
-    },
-    "startDate": "2021",
-    "endDate": "2022",
-    "period": {
-      "ar": "2021 — 2022",
-      "en": "2021 — 2022"
-    },
-    "current": false,
-    "location": {
-      "ar": "الرياض",
-      "en": "Riyadh"
-    },
-    "summary": {
-      "ar": "التخطيط والإشراف على الفعاليات والمبادرات الرسمية، مع إشراف تقني على البوابة الإلكترونية للشركة.",
-      "en": "Planned and supervised official events and initiatives, with technical oversight of the company's electronic portal."
-    },
-    "responsibilities": {
-      "ar": [
-        "التخطيط والإشراف على الفعاليات والمبادرات الرسمية بما يعزز صورة العلامة المؤسسية.",
-        "الإشراف التقني على البوابة الإلكترونية للشركة.",
-        "بناء علاقات استراتيجية مع الشركاء وإدارة قنوات التواصل الرسمية."
-      ],
-      "en": [
-        "Planned and supervised official events and initiatives, strengthening the corporate brand image.",
-        "Provided technical oversight of the company's electronic portal.",
-        "Built strategic partner relationships and managed official communication channels."
-      ]
-    },
-    "stack": [
-      "Digital Portals",
-      "Stakeholder Management",
-      "Communications"
-    ]
   }
 ]
